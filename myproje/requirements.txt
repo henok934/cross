@@ -7,8 +7,8 @@ whitenoise>=6.0
 #psycopg2-binary>=2.9.0
 #cryptography==3.4.8
 cryptography>=41.0.5,<45
-#Django==5.1.10 # or Django==3.2.12 if needed
-Django>=3.2,<4.0
+Django==5.1.10 # or Django==3.2.12 if needed
+#Django>=3.2,<4.0
 #lxml>=4.6,<5.0
 dl==0.1.0
 #lxml==4.9.3
