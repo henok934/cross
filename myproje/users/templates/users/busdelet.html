@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>update side</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Travelix Project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/styles/bootstrap4/bootstrap.min.css">
+<link href="../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="../static/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="../static/styles/responsive.css">
+</head>
+<body style="background-color: lightblue;">
+<div class="super_container">
+<header class="header">
+                <div class="top_bar">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col d-flex flex-row">
+                                                <div class="phone">+251-11-551 82 92</div>
+                                                <div class="social">
+                                                        <ul class="social_list">
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                                        </ul>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+		<nav class="main_nav">
+    <div class="container">
+        <div class="row">
+            <div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
+                <div class="logo_container">
+                    <div class="logo">
+                        <a href="#">
+                            <img src="../static/images/logo.png" alt="">
+                            <span style="color: blue;">ticket</span>
+                        </a>
+                    </div>
+                </div>
+
+                <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+		<div class="main_nav_container ml-auto">
+		 <ul class="main_nav_list d-flex flex-row align-items-center" style="list-style-type: none; padding: 0; margin: 0;">
+                        <li class="main_nav_item" style="margin-right: 20px;">
+                            <a href="{% url 'home' %}" style="color: #FFFFFF; text-decoration: none;">home</a>
+                        </li>
+                        <li class="main_nav_item" style="margin-right: 10px;">
+                            <select onchange="location.href = this.value;" class="custom-select" style="min-width: 160px; color: #007BFF; background-color: #c8e6c9; border: 1px solid #388e3c; font-size: 14px;">
+                                <option value="#">Select for Register</option>
+                                <option value="{% url 'businsert' %}">Bus Registor</option>
+                            </select>
+                        </li>
+<li class="main_nav_item" style="margin-right: 10px;">
+                            <select onchange="location.href = this.value;" class="custom-select" style="min-width: 160px; color: #007BFF; background-color: #c8e6c9; border: 1px solid #388e3c; font-size: 14px;">
+                                <option value="#">Select for Update</option>
+                                <option value="{% url 'updatebus' %}">Update Bus</option>
+                            </select>
+                        </li>
+                        <li class="main_nav_item" style="margin-right: 10px;">
+                            <select onchange="location.href = this.value;" class="custom-select" style="min-width: 160px; color: #007BFF; background-color: #c8e6c9; border: 1px solid #388e3c; font-size: 14px;">
+                                <option value="#">Select for Show</option>
+                                <option value="{% url 'myroute' %}">My Routes</option>
+                                <option value="{% url 'mybus' %}">My Bus</option>
+                          
+                            </select>
+                        </li>
+<li class="main_nav_item" style="margin-right: 10px;">
+                            <select onchange="location.href = this.value;" class="custom-select" style="min-width: 160px; color: #007BFF; background-color: #c8e6c9; border: 1px solid #388e3c; font-size: 14px;">
+                                <option value="#">Select for Delete</option>
+                                <option value="{% url 'busdelete' %}">Delete Bus</option>
+                            </select>
+                        </li>
+                        <li class="footer_nav_item" style="margin-left: 20px;">
+                            <a href="{% url 'logout' %}" style="color: #FFFFFF; text-decoration: none;">Logout</a>
+                        </li>
+                    </ul>
+
+                 </div>
+
+            </div>
+        </div>
+    </div>
+</nav>
+
+<style>
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .main_nav_list {
+            flex-wrap: nowrap; /* Ensure items stay in a single line */
+            overflow-x: auto; /* Allow horizontal scrolling */
+        }
+
+        .main_nav_item {
+            margin-right: 10px; /* Maintain margin for spacing */
+        }
+
+        /* Optional: Adjust logo size */
+        .logo img {
+            max-height: 50px; /* Keep logo height manageable */
+        }
+    }
+</style>
+</header>
+</br>
+
+<form action="{% url 'specific' %}" method="post" id="search_form_1" class="search_panel_content" style="margin: 10px 0; width: 100%; max-width: 600px; border: 0; border-radius: 8px; margin-top: 200px; margin-left: 550px; display: flex; align-items: center; gap: 10px;">
+    {% csrf_token %}
+    <label for="from" style="color: blue; font-weight: bold; margin-right: 5px;"><b>From</b></label>
+    <div style="display: flex; align-items: center;">
+    <div style="display: flex; align-items: center; margin-right: 10px;">
+    <input type="date" name="from" id="from" class="form-control" style="width: 100px; height: 30px; color: brown; border: 2px solid #d3d3d3; border-radius: 8px; margin-top: 70px; margin-left: -70px;" required>
+    </div>
+    <div style="display: flex; align-items: center;">
+        <label for="to" style="color: blue; font-weight: bold; margin-right: 5px; margin-left: 60px;"><b>To</b></label>
+        <input type="date" name="to" id="to" class="form-control" style="width: 100px; height: 30px; color: brown; border: 2px solid #d3d3d3; border-radius: 8px; margin-top: 70px; margin-left: -50px;" required>
+    </div>
+</div>
+<button type="submit" style="background-color: yellow; color: blue; width: 100px; height: 30px; border: none; text-align: center; border: 2px solid #d3d3d3; border-radius: 8px; margin-top: 70px; margin-left: 30px;">
+            <b>Search</b>
+    </button>
+</form>
+
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .success,
+    .error-message {
+        margin: 10px 0;
+        text-align: center;
+        font-size: 14px; /* Set a consistent font size */
+    }
+
+    .success h5,
+    .error-message h5 {
+        margin: 0;
+    }
+
+    .table-custom {
+        background-color: lightgray;
+    }
+
+    .table-custom th {
+        background-color: green;
+        color: white;
+        font-size: 16px; /* Increased font size for table headers */
+    }
+
+    .table-custom td {
+        background-color: lightgray;
+        font-size: 16px; /* Increased font size for table cells */
+    }
+
+    .form-control {
+        height: 50px; /* Increased height for input fields */
+        text-align: center;
+        color: blue;
+        border-radius: 5px; /* Reduced border radius */
+        border: 1px solid #ccc;
+        font-weight: bold;
+        font-size: 16px; /* Increased font size */
+    }
+
+    .btn-custom {
+        height: 40px; /* Increased height */
+        background-color: blue;
+        color: brown;
+        border-radius: 5px; /* Reduced border radius */
+        border: 1px solid #ccc;
+        font-weight: bold;
+        font-size: 14px; /* Increased font size */
+    }
+
+    @media (max-width: 600px) {
+        .form-control {
+            height: 45px; /* Adjust height on small screens */
+        }
+
+        .btn-custom {
+            height: 35px; /* Adjust height on small screens */
+        }
+    }
+</style>
+</b>
+<h2 style="text-align: center; color: blue;"><b>Delete Bus</b></h2>
+      {% if success %}
+    <div class="success">
+    <h4 style="color: yellow; text-align: center;"><b>{{ success }}</b><span style="margin-left:30px;" class="symbol">✔</span></h4>
+    </div>
+    {% endif %}
+<br>
+{% if error %}
+<div class="success">
+<h6 style="color: red; margin-left: 300px;"><b>{{ error }}</b><span style="margin-left:20px;" class="symbol"><b>X</b></span></h6>
+</div>
+{% endif %}
+
+<table style="margin: 0 auto; width: 100%; max-width: 350px; background-color: lightgray; border-collapse: collapse; border-spacing: 0;">
+    <thead>
+        <tr>
+            <th style="background-color: green; color: white; padding: 6px; text-align: center; font-size: 14px;">No</th>
+            <th style="background-color: green; color: white; padding: 6px; text-align: center; font-size: 14px;">Plate No</th>
+            <th style="background-color: green; color: white; padding: 6px; text-align: center; font-size: 14px;">Side No</th>
+            <th style="background-color: green; color: white; padding: 6px; text-align: center; font-size: 14px;">No Seats</th>
+            <th style="background-color: green; color: white; padding: 6px; text-align: center; font-size: 14px;">Action</th>
+        </tr>
+    </thead>
+    <tbody style="background-color: lightgray;">
+        {% for bus in buses %}
+        <tr>
+            <td style="text-align: center; color: brown; padding: 4px;">
+                <h4 style="margin: 0;">{{ forloop.counter }}</h4>
+            </td>
+
+            <td>
+                <form action="#" method="POST">
+                    {% csrf_token %}
+		    <input type="hidden" name="_method" value="DELETE">
+                    <input type="text" name="plate_no" value="{{ bus.plate_no }}" readonly
+                        style="height: 35px; width: 70px; text-align: center; color: blue; border-radius: 5px; border: 1px solid #ccc; font-weight: bold; margin: 2px; padding: 5px; margin-left: 20px;">
+            </td>
+            <td>
+                <input type="text" name="sideno" value="{{ bus.sideno }}" readonly
+                    style="height: 35px; width: 70px; text-align: center; color: blue; border-radius: 5px; border: 1px solid #ccc; font-weight: bold; margin: 2px; padding: 5px; margin-left: 20px;">
+            </td>
+            <td>
+                <input type="text" name="no_seats" value="{{ bus.no_seats }}" readonly
+                    style="height: 35px; width: 70px; text-align: center; color: blue; border-radius: 5px; border: 1px solid #ccc; font-weight: bold; margin: 2px; padding: 5px; margin-left: 20px;">
+            </td>
+            <td style="text-align: center;">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<button type="submit" style="border: none; background: none; padding: 0; cursor: pointer;">
+    <i class="fas fa-trash-alt" style="color: #f44336; font-size: 20px; margin-left: 10px;"></i>
+</button>
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</br></br></br></br>
+<script src="../static/js/jquery-3.2.1.min.js"></script>
+<script src="../static/styles/bootstrap4/popper.js"></script>
+<script src="../static/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="../static/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="../static/https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
+<script src="../static/js/contact_custom.js"></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Booked Tickets</title>
+</head>
+<body>
+    {% if success %}
+        <div class="success">
+            <h6 style="color: green; margin-left: 300px;"><b>{{ success }}</b><span style="margin-left:20px;" class="symbol"><b></b></span></h6>
+        </div>
+    {% endif %}
+
+    {% if tickets %}
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+
+        <script>
+            function downloadTicket() {
+                // Get the content to be downloaded (includes all tickets)
+                const ticketContent = document.getElementById("ticketContent").outerHTML;
+
+                // Define styles for the downloaded HTML
+                const styles = `
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 20px;
+                            background-color: #f4f4f4;
+                        }
+                        #ticketContent {
+                            max-width: 800px;
+                            margin: 0 auto;
+                        }
+                        .single-ticket {
+                            border: 1px solid #4CAF50;
+                            border-radius: 8px;
+                            padding: 10px;
+                            background-color: white;
+                            margin-bottom: 20px;
+                        }
+                        h1 {
+                            color: purple;
+                            text-align: center;
+                        }
+                        h3 {
+                            color: green;
+                            margin: 0;
+                            padding: 3px 0;
+                            text-align: left;
+                        }
+                        b {
+                            color: blue;
+                        }
+                        .qr-code {
+                            width: 250px;
+                            height: auto;
+                            border: 2px solid #4CAF50;
+                            border-radius: 4px;
+                            float: right;
+                            margin: 10px;
+                        }
+                        .total-tickets {
+                            text-align: center;
+                            color: #333;
+                            font-weight: bold;
+                            margin-top: 20px;
+                        }
+                    </style>
+                `;
+
+                // Full HTML for download (includes all tickets and styles)
+                const fullContent = `
+                    <html>
+                        <head>
+                            <title>Downloaded Tickets</title>
+                            ${styles}
+                        </head>
+                        <body>
+                            <div class="top_bar" style="background-color: #005500; height: 40px; width: 100%; position: relative;"></div>
+                            ${ticketContent}
+                        </body>
+                    </html>
+                `;
+
+                // Create and trigger download
+                const ticketBlob = new Blob([fullContent], { type: "text/html" });
+                const downloadLink = document.createElement("a");
+                downloadLink.href = URL.createObjectURL(ticketBlob);
+                downloadLink.download = "my_tickets.html";  // Changed filename for clarity
+                downloadLink.click();
+            }
+        </script>
+
+        <h5 style="margin: 0 auto; padding-left: 130px; display: block; color: blue;">Download All Tickets</h5>
+        <button onclick="downloadTicket()" style="background-color: #FF9800; margin-left: 150px; padding: 10px 20px; border: none; cursor: pointer; font-size: 16px; color: white;">
+            ⬇️ Download ({{ tickets|length }} Tickets)
+        </button>
+        <p style="margin-left: 150px; color: #666; font-size: 14px;">Download will include all {{ tickets|length }} tickets as an HTML file.</p>
+
+        <div class="center" id="ticketContent" style="padding: 20px; text-align: left; max-width: 800px; margin: 0 auto;">
+            {% for ticket in tickets %}
+                <div class="single-ticket">  <!-- Each ticket in its own bordered section -->
+                    <h1 style="color: purple; text-align: center;"><b>Thanks for Traveling with us!!</b></h1>
+
+                    <h4 style="color: #007bff; text-align: center; margin-bottom: 10px;">Ticket {{ forloop.counter }} for {{ ticket.firstname }} {{ ticket.lastname }}</h4>  <!-- Ticket number for multiples -->
+
+                    <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+                        <b>PNR:</b> <b style="color: blue;">{{ ticket.pnr }}</b>
+                    </h3>
+                    <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+                        <b>Booked Time:</b> <b style="color: blue;">{{ ticket.booked_time }}</b>
+                    </h3>
+                    <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+                        <b>First Name:</b> <b style="color: blue;">{{ ticket.firstname }}</b>
+                    </h3>
+                    <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+                        <b>Last Name:</b> <b style="color: blue;">{{ ticket.lastname }}</b>
+                    </h3>
+                    <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+                        <b>Ticket ID:</b> <b style="color: blue;">{{ ticket.ticket_id }}</b>
+                    </h3>
+                    <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+                        <b>Phone No:</b> <b style="color: blue;">{{ ticket.phone }}</b>
+                    </h3>
+                    <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+                        <b>From:</b> <b style="color: blue;">{{ ticket.depcity }}</b>
+                    </h3>
+                    <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+                        <b>To:</b> <b style="color: blue;">{{ ticket.descity }}</b>
+                    </h3>
+                    <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+                        <b>Side No:</b> <b style="color: blue;">{{ ticket.side_no }}</b>
+                    </h3>
+                    <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+                        <b>Travel Date:</b> <b style="color: blue;">{{ ticket.date|date:"M d, Y" }}</b>
+                    </h3>
+                    <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+                        <b>Seat No:</b> <b style="color: blue;">{{ ticket.no_seat }}</b>
+                    </h3>
+                    <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+                        <b>Price:</b> <b style="color: blue;">{{ ticket.price }}</b>
+                    </h3>
+                    <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+                        <b>Email:</b> <b style="color: blue;">{{ ticket.email }}</b>
+                    </h3>
+                    <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+                        <b>Gender:</b> <b style="color: blue;">{{ ticket.gender }}</b>
+                    </h3>
+                    <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+                        <b>Plate No:</b> <b style="color: blue;">{{ ticket.plate_no }}</b>
+                    </h3>
+
+                    <!-- QR Code for this specific ticket (positioned at bottom-right) -->
+                    {% if ticket.qr_code %}
+                        <img src="{{ ticket.qr_code.url }}" alt="QR Code for {{ ticket.firstname }} {{ ticket.lastname }}" class="qr-code">
+                    {% else %}
+                        <p style="color: red; text-align: center; margin-top: 10px;"><em>QR Code not available yet.</em></p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <!-- Total tickets footer -->
+            <div class="total-tickets">
+                <p>Total Tickets Booked: {{ tickets|length }}</p>
+            </div>
+        </div>
+
+        <!-- Back to booking link -->
+        <br><br>
+        <a href="{% url 'ticket' %}" style="margin-left: 300px; color: blue; text-decoration: none;">← Back to Ticket Booking</a>  <!-- Adjust URL name -->
+
+    {% else %}
+        <div style="color: red; text-align: center; margin: 50px;">
+            <h3>No tickets found or booking failed. <a href="{% url 'ticket' %}" style="color: blue;">Try booking again</a>.</h3>
+        </div>
+    {% endif %}
+</body>
+</html>

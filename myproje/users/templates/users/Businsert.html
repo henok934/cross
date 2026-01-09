@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Bus Registor</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Travelix Project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/styles/bootstrap4/bootstrap.min.css">
+<link href="../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="../static/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="../static/styles/responsive.css">
+</head>
+<div class="top_bar" style="background-color: #005500; height: 40px; width: 100%; position: relative;">
+</div>
+<body>
+<div class="super_container">
+        <header class="header">
+                <div class="top_bar" style="background-color: #005500; height: 30px; width: 100%; position: relative; !important">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col d-flex flex-row">
+                                                <div class="phone">+251-11-551 82 92</div>
+                                                <div class="social">
+                                                        <ul class="social_list">
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                                        </ul>
+                                                </div>
+
+
+<div class="user_box ml-auto">
+                                                        <div class="user_box_login user_box_link"><a href="{% url 'login' %}">login</a></div>
+                                                        <div class="user_box_register user_box_link"><a href="{% url 'registor' %}"></a></div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+
+
+
+<nav class="main_nav">
+    <div class="container">
+        <div class="row">
+            <div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
+                <div class="logo_container">
+                    <div class="logo">
+                        <a href="#">
+                            <img src="../static/images/logo.png" alt="">
+                            <span style="color: blue;">ticket</span>
+                        </a>
+                    </div>
+                </div>
+                <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+		 <div class="main_nav_container ml-auto">
+
+		   <ul class="main_nav_list d-flex flex-row align-items-center" style="list-style-type: none; padding: 0; margin: 0;">
+                        <li class="main_nav_item" style="margin-right: 20px;">
+                            <a href="{% url 'home' %}" style="color: #FFFFFF; text-decoration: none;">home</a>
+                        </li>
+                        <li class="main_nav_item" style="margin-right: 10px;">
+                            <select onchange="location.href = this.value;" class="custom-select" style="min-width: 160px; color: #007BFF; background-color: #c8e6c9; border: 1px solid #388e3c; font-size: 14px;">
+                                <option value="#">Select for Register</option>
+                                <option value="{% url 'businsert' %}">Bus Registor</option>
+                            </select>
+                        </li>
+<li class="main_nav_item" style="margin-right: 10px;">
+                            <select onchange="location.href = this.value;" class="custom-select" style="min-width: 160px; color: #007BFF; background-color: #c8e6c9; border: 1px solid #388e3c; font-size: 14px;">
+                                <option value="#">Select for Update</option>
+                                <option value="{% url 'updatebus' %}">Update Bus</option>
+                            </select>
+                        </li>
+                        <li class="main_nav_item" style="margin-right: 10px;">
+                            <select onchange="location.href = this.value;" class="custom-select" style="min-width: 160px; color: #007BFF; background-color: #c8e6c9; border: 1px solid #388e3c; font-size: 14px;">
+                                <option value="#">Select for Show</option>
+                                <option value="{% url 'myroute' %}">My Routes</option>
+                                <option value="{% url 'mybus' %}">My Bus</option>
+                                
+                            </select>
+                        </li>
+<li class="main_nav_item" style="margin-right: 10px;">
+                            <select onchange="location.href = this.value;" class="custom-select" style="min-width: 160px; color: #007BFF; background-color: #c8e6c9; border: 1px solid #388e3c; font-size: 14px;">
+                                <option value="#">Select for Delete</option>
+                                <option value="{% url 'busdelete' %}">Delete Bus</option>
+                            </select>
+                        </li>
+                        <li class="footer_nav_item" style="margin-left: 20px;">
+                            <a href="{% url 'logout' %}" style="color: #FFFFFF; text-decoration: none;">Logout</a>
+                        </li>
+                    </ul>
+
+                 </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!--
+<form action="{% url 'specific' %}" method="post" id="search_form_1" class="search_panel_content" style="margin: 10px 0; width: 100%; max-width: 600px; border: 0; border-radius: 8px; margin-top: 200px; margin-left: 450px; display: flex; align-items: center; gap: 10px;">
+    {% csrf_token %}
+
+    <div style="display: flex; align-items: center;">
+        <label for="from" style="color: blue; font-weight: bold; margin-right: 5px;"><b>From</b></label>
+        <input type="date" name="from" id="to" class="form-control" style="width: 100px; height: 35px; color: brown;  border: 2px solid #d3d3d3; border-radius: 8px;" required>
+
+        </div>
+
+    <div style="display: flex; align-items: center;">
+        <label for="to" style="color: blue; font-weight: bold; margin-right: 5px;"><b>To</b></label>
+        <input type="date" name="to" id="to" class="form-control" style="width: 100px; height: 35px; color: brown; border: 2px background-color: brown; solid #d3d3d3; border-radius: 8px;" required>
+    </div>
+
+    <button type="submit" style="background-color: yellow; color: black; width: 100px; height: 35px; border: none; text-align: center; border: 2px solid #d3d3d3; border-radius: 8px;">
+        Search
+    </button>
+</form>
+-->
+
+<style>
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .main_nav_list {
+            flex-wrap: nowrap; /* Ensure items stay in a single line */
+            overflow-x: auto; /* Allow horizontal scrolling */
+        }
+
+        .main_nav_item {
+            margin-right: 10px; /* Maintain margin for spacing */
+        }
+
+        /* Optional: Adjust logo size */
+        .logo img {
+            max-height: 50px; /* Keep logo height manageable */
+        }
+    }
+</style>
+<style>
+    /* Basic responsiveness */
+    @media (max-width: 768px) {
+        .main_nav_list {
+            flex-direction: column; /* Stack items vertically on small screens */
+            align-items: flex-start; /* Align items to the left */
+        }
+
+        .main_nav_item {
+            margin-right: 0; /* Remove right margin for stacked items */
+            margin-bottom: 10px; /* Add bottom margin for spacing */
+        }
+
+        .logo {
+            flex-grow: 1; /* Allow logo to take available space */
+            text-align: center; /* Center logo on small screens */
+        }
+    }
+</style>
+</header>
+
+</br></br></br></br></br></br>
+<div class="search11 d-flex justify-content-center" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col">
+            <div class="search_panel active">
+                <div class="container mt-4">
+<form action="{% url 'businsert' %}" method="post" id="search_form_1" class="form-container" style="width: 350px; margin: 0 auto;">
+    <div id="response_message" style="margin-bottom: 20px;"></div>
+    {% csrf_token %}
+    {% if error %}
+
+    {% endif %}
+    {% if success %}
+    <div class="message success">
+        <h5 style="margin-left: 40px; color: green;"><b>{{ success }}</b><span class="symbol">✔</span></h5>
+    </div>
+    {% endif %}
+     {% if errors %}
+    <div class="error">
+        <h6 style="color: red; margin-left: 40px;"><b>{{ errors }}</b><span style="margin-left:30px;" class="symbol">x</span></h6>
+    </div>
+    {% endif %}
+    <h2 class="form-title text-center">Bus Register</h2>
+    <div class="form-group row">
+        <label for="side-no-input" class="col-sm-3 col-form-label">S.c Name:</label>
+        <div class="col-sm-9">
+		<input type="text" class="form-control" id="kilometer-input" name="name" value="{{ name }}" readonly style="text-align: center;" required>
+            <div id="error-message-kilo" style="color: red; display: none;">Please enter a valid positive number for kilometers</div>
+        </div>
+    </div>
+<div class="form-group row">
+        <label for="side-no-input" class="col-sm-3 col-form-label">First name:</label>
+        <div class="col-sm-9">
+<input type="text" class="form-control" id="kilometer-input" name="firstname" placeholder="Enter First Name" maxlength="15" style="text-align: center;" required
+       oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').charAt(0).toUpperCase() + this.value.slice(1).toLowerCase();">
+
+
+            <div id="error-message-kilo" style="color: red; display: none;">Please enter a valid positive number for kilometers</div>
+        </div>
+    </div>
+<div class="form-group row">
+        <label for="side-no-input" class="col-sm-3 col-form-label">Last Name:</label>
+        <div class="col-sm-9">
+	<input type="text" class="form-control" id="kilometer-input" name="lastname" placeholder="Enter Last Name" maxlength="15" style="text-align: center;" required
+       oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').charAt(0).toUpperCase() + this.value.slice(1).toLowerCase();">
+            <div id="error-message-kilo" style="color: red; display: none;">Please enter a valid positive number for kilometers</div>
+        </div>
+    </div>
+<div class="form-group row">
+        <label for="side-no-input" class="col-sm-3 col-form-label">Phone:</label>
+        <div class="col-sm-9">
+	<input type="text" class="form-control" id="kilometer-input" name="phone" placeholder="Enter Phone Number" maxlength="10" style="text-align: center;" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+            <div id="error-message-kilo" style="color: red; display: none;">Please enter a valid positive number for kilometers</div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="side-no-input" class="col-sm-3 col-form-label">Plate_no:</label>
+        <div class="col-sm-9">
+		<!--
+	        <input type="text" class="form-control" id="kilometer-input" name="plate_no" placeholder="Enter Plate Number" maxlength="5" style="text-align: center;" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+		-->
+		<input type="text" class="form-control" id="kilometer-input" name="plate_no"
+           placeholder="Enter Plate Number" maxlength="5" style="text-align: center;"
+           required oninput="handleInput(this);">
+
+   <script>
+function handleInput(input) {
+    const firstChar = input.value.charAt(0);
+
+    // Check if the first character is a letter
+    if (firstChar && /^[A-Za-z]$/.test(firstChar)) {
+        // Set maxlength to 6 if the first character is a letter
+        input.maxLength = 6;
+        input.value = firstChar.toUpperCase() + input.value.slice(1).replace(/[^0-9]/g, '');
+    } else {
+        // Set maxlength to 5 for all other cases
+        input.maxLength = 5;
+        input.value = input.value.replace(/[^0-9]/g, '');
+    }
+}
+</script>
+            <div id="error-message-kilo" style="color: red; display: none;">Please enter a valid positive number for kilometers</div>
+        </div>
+    </div>
+
+<div style="display: flex; align-items: center; margin-left: 0px;">
+    <label for="sideno" class="col-form-label" style="margin-right: 10px;">Side No:</label>
+    <input type="text" id="sideno" name="sideno" maxlength="4" required
+           style="width: 230px; margin-left: 10px;" class="form-control"
+           placeholder="Enter side number"
+           oninput="this.value = this.value.replace(/[^0-9]/g, ''); validateInput();">
+</div>
+<p id="error-message" style="color: red; display: none;"></p>
+
+<script>
+    const side = "{{ side }}";  // Example: "3/80/81"
+    const validStarts = side.split('/').map(part => part.trim()); // Extract valid starts
+
+    // Set the maxlength based on the presence of '3'
+    const sidenoInput = document.getElementById('sideno');
+    if (validStarts.includes('3')) {
+        sidenoInput.maxLength = 3; // Change maxlength to 3 if side is 3
+    } else {
+        sidenoInput.maxLength = 4; // Otherwise, keep maxlength as 4
+    }
+
+    function validateInput() {
+        const value = sidenoInput.value;
+        const errorMessage = document.getElementById('error-message');
+
+        // Check if side includes '3'
+        const isSideThree = validStarts.includes('3');
+
+        // If side is 3, check if the input is exactly 3 digits
+        if (isSideThree) {
+            if (value.length !== 3) {
+                errorMessage.textContent = `Invalid input. Please enter a 3-digit number.`;
+                errorMessage.style.display = 'block'; // Show error message
+            } else {
+                errorMessage.style.display = 'none'; // Hide error message if valid
+            }
+        } else {
+            // For other sides, check if it starts with valid prefixes
+            if (value.length > 0 && !validStarts.some(start => value.startsWith(start))) {
+                errorMessage.textContent = `Invalid input. Please enter a number starting with ${validStarts.join(', ')}.`;
+                errorMessage.style.display = 'block'; // Show error message
+            } else {
+                errorMessage.style.display = 'none'; // Hide error message if valid
+            }
+        }
+    }
+
+    document.querySelector('form').addEventListener('submit', function(event) {
+        const value = sidenoInput.value;
+        const errorMessage = document.getElementById('error-message');
+
+        // Final validation on form submission
+        const isSideThree = validStarts.includes('3');
+
+        if (isSideThree) {
+            if (value.length !== 3) {
+                event.preventDefault(); // Prevent form submission
+                errorMessage.textContent = `Invalid input. Please enter a 3-digit number.`;
+                errorMessage.style.display = 'block'; // Show error message
+            }
+        } else {
+            if (value.length > 0 && !validStarts.some(start => value.startsWith(start))) {
+                event.preventDefault(); // Prevent form submission
+                errorMessage.textContent = `Invalid input. Please enter a number starting with ${validStarts.join(', ')}.`;
+                errorMessage.style.display = 'block'; // Show error message
+            }
+        }
+    });
+</script>
+
+
+
+
+
+
+<!--
+<div style="display: flex; align-items: center; margin-left: 0px;">
+    <label for="sideno" class="col-form-label" style="margin-right: 10px;">Side No:</label>
+    <input type="text" id="sideno" name="sideno" maxlength="4" required
+           style="width: 230px; margin-left: 10px;" class="form-control"
+           placeholder="Enter side number" 
+           oninput="this.value = this.value.replace(/[^0-9]/g, ''); validateInput();">
+</div>
+<p id="error-message" style="color: red; display: none;"></p>
+
+<script>
+    const side = "{{ side }}";  // Example: "3/80/81"
+    const validStarts = side.split('/').map(part => part.trim()); // Extract valid starts
+
+    // Set the maxlength based on the presence of '3'
+    const sidenoInput = document.getElementById('sideno');
+    sidenoInput.maxLength = 3; // Set maxlength to 3 regardless
+
+    function validateInput() {
+        const value = sidenoInput.value;
+        const errorMessage = document.getElementById('error-message');
+
+        // Check if the input is exactly three digits
+        if (value.length !== 3) {
+            errorMessage.textContent = `Invalid input. Please enter a 3-digit number.`;
+            errorMessage.style.display = 'block'; // Show error message
+        } else if (value.length > 0 && !validStarts.some(start => value.startsWith(start))) {
+            errorMessage.textContent = `Invalid input. Please enter a number starting with ${validStarts.join(', ')}.`;
+            errorMessage.style.display = 'block'; // Show error message
+        } else {
+            errorMessage.style.display = 'none'; // Hide error message if valid
+        }
+    }
+
+    document.querySelector('form').addEventListener('submit', function(event) {
+        const value = sidenoInput.value;
+        const errorMessage = document.getElementById('error-message');
+
+        // Final validation on form submission
+        if (value.length !== 3) {
+            event.preventDefault(); // Prevent form submission
+            errorMessage.textContent = `Invalid input. Please enter a 3-digit number.`;
+            errorMessage.style.display = 'block'; // Show error message
+        } else if (value.length > 0 && !validStarts.some(start => value.startsWith(start))) {
+            event.preventDefault(); // Prevent form submission
+            errorMessage.textContent = `Invalid input. Please enter a number starting with ${validStarts.join(', ')}.`;
+            errorMessage.style.display = 'block'; // Show error message
+        } else {
+            errorMessage.style.display = 'none'; // Hide error message if valid
+        }
+    });
+</script>
+-->
+
+
+
+<!--
+<div style="display: flex; align-items: center; margin-left: 0px;">
+    <label for="sideno" class="col-form-label" style="margin-right: 10px;">Side No:</label>
+    <input type="text" id="sideno" name="sideno" maxlength="4" required
+           style="width: 230px; margin-left: 10px;" class="form-control"
+           placeholder="Enter side number" 
+           oninput="this.value = this.value.replace(/[^0-9]/g, ''); validateInput();">
+</div>
+<p id="error-message" style="color: red; display: none;"></p>
+
+<script>
+    const side = "{{ side }}";  // Example: "3/80/81"
+    const validStarts = side.split('/').map(part => part.trim()); // Extract valid starts
+
+    // Set the maxlength based on the presence of '3'
+    const sidenoInput = document.getElementById('sideno');
+    if (validStarts.includes('3')) {
+        sidenoInput.maxLength = 3; // Set maxlength to 3 if side is 3
+    } else {
+        sidenoInput.maxLength = 4; // Set maxlength to 4 otherwise
+    }
+
+    function validateInput() {
+        const value = sidenoInput.value;
+        const errorMessage = document.getElementById('error-message');
+
+        // Check if side includes 3 and enforce 3-digit length
+        const isSideThree = validStarts.includes('3');
+
+        // If the side includes 3, the input must be exactly 3 digits
+        if (isSideThree && value.length !== 3) {
+            errorMessage.textContent = `Invalid input. If side number is 3, it must be exactly 3 digits.`;
+            errorMessage.style.display = 'block'; // Show error message
+        } else if (value.length > 0 && isSideThree && !/^\d{3}$/.test(value)) {
+            errorMessage.textContent = `Invalid input. If side number is 3, it must be a 3-digit number.`;
+            errorMessage.style.display = 'block'; // Show error message
+        }  
+	  else {
+            errorMessage.style.display = 'none'; // Hide error message if valid
+        }
+    }
+
+    document.querySelector('form').addEventListener('submit', function(event) {
+        const value = sidenoInput.value;
+        const errorMessage = document.getElementById('error-message');
+
+        // Final validation on form submission
+        const isSideThree = validStarts.includes('3');
+
+        if (isSideThree && value.length !== 3) {
+            event.preventDefault(); // Prevent form submission
+            errorMessage.textContent = `Invalid input. If side number is 3, it must be exactly 3 digits.`;
+            errorMessage.style.display = 'block'; // Show error message
+        } else if (isSideThree && !/^\d{3}$/.test(value)) {
+            event.preventDefault(); // Prevent form submission
+            errorMessage.textContent = `Invalid input. If side number is 3, it must be a 3-digit number.`;
+            errorMessage.style.display = 'block'; // Show error message
+
+        } else if (value.length > 0 && !validStarts.some(start => value.startsWith(start))) {
+            event.preventDefault(); // Prevent form submission
+            errorMessage.textContent = `Invalid input. Please enter a number starting with ${validStarts.join(', ')}.`;
+            errorMessage.style.display = 'block'; // Show error message
+        } else {
+            errorMessage.style.display = 'none'; // Hide error message if valid
+        }
+    });
+</script>
+-->
+
+
+
+
+<div class="form-group row">
+        <label for="side-no-input" class="col-sm-3 col-form-label">Total Seat:</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="kilometer-input" name="no_seats" placeholder="Enter Total Seat" maxlength="2" style="text-align: center;" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+            <div id="error-message-kilo" style="color: red; display: none;">Please enter a valid positive number for kilometers</div>
+        </div>
+    </div>
+    <div class="form-group text-center">
+        <input type="submit" style="margin-left:30px;" value="Submit" class="btn btn-primary">
+    </div>
+</form>
+<script>
+    function updateSideNo(selectedPlateNo) {
+        const sideNoInput = document.getElementById("side-no-input");
+        const plateOptions = document.getElementById("plate-no-input").options;
+
+        for (let i = 0; i < plateOptions.length; i++) {
+            if (plateOptions[i].value === selectedPlateNo) {
+                sideNoInput.value = plateOptions[i].dataset.sideno;
+                break;
+            }
+        }
+    }
+    function updatePlateNo(selectedSideNo) {
+        const plateNoInput = document.getElementById("plate-no-input");
+        const sideOptions = document.getElementById("side-no-input").options;
+
+        for (let i = 0; i < sideOptions.length; i++) {
+            if (sideOptions[i].value === selectedSideNo) {
+                plateNoInput.value = sideOptions[i].dataset.plate;
+                break;
+            }
+        }
+    }
+    function validateKilo(input) {
+        const value = input.value;
+        const errorMessage = document.getElementById('error-message-kilo');
+        if (value.trim() === "" || isNaN(value) || Number(value) <= 0 || value.length > 4) {
+            errorMessage.style.display = 'inline';
+            input.value = '';
+        } else {
+            errorMessage.style.display = 'none';
+        }
+    }
+    function validatePrice(input) {
+        const value = input.value;
+        const errorMessage = document.getElementById('error-message-price');
+        if (value.trim() === "" || isNaN(value) || Number(value) <= 0 || value.length > 4) {
+            errorMessage.style.display = 'inline';
+            input.value = '';
+        } else {
+            errorMessage.style.display = 'none';
+        }
+    }
+</script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<style>
+    .form-container {
+        border: 2px solid #007bff; /* Bootstrap primary color */
+        border-radius: 10px;
+        padding: 20px; /* Padding inside the form */
+        background-color: #f8f9fa; /* Light background */
+        margin: 30px auto; /* Center the form */
+        max-width: 500px; /* Limit the width of the form */
+        width: 100%; /* Full width within the limit */
+    }
+    .form-title {
+        color: blue;
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+    .error-message {
+        margin-top: 5px;
+    }
+    .input-active {
+        background-color: #d1e7dd; /* Color on focus */
+    }
+    @media (max-width: 768px) {
+        .form-title {
+            font-size: 28px; /* Smaller title on smaller screens */
+        }
+    }
+</style>
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/styles/bootstrap4/popper.js"></script>
+    <script src="../static/styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="../static/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="../static/js/custom.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+<li class="main_nav_item"><a href="{% url 'businsert' %}">BusInsert</a></li>

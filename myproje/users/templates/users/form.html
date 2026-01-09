@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Info Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { margin-bottom: 20px; }
+        #response { margin-top: 20px; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9; }
+    </style>
+</head>
+<body>
+
+<h1>Check Route Information</h1>
+<form id="routeForm">
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required><br><br>
+    
+    <label for="depcity">Departure City:</label>
+    <input type="text" id="depcity" name="depcity" required><br><br>
+    
+    <label for="descity">Destination City:</label>
+    <input type="text" id="descity" name="descity" required><br><br>
+    
+    <button type="submit">Submit</button>
+</form>
+
+<div id="response"></div>
+
+<script>
+    document.getElementById('routeForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const date = document.getElementById('date').value;
+        const depcity = document.getElementById('depcity').value;
+        const descity = document.getElementById('descity').value;
+
+        fetch('http://localhost:8000/users/show-routes/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ date, depcity, descity })
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('response').innerText = JSON.stringify(data);
+        })
+        .catch(error => {
+            document.getElementById('response').innerText = 'Error: ' + error;
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>show routes</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Travelix Project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/styles/bootstrap4/bootstrap.min.css">
+<link href="../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="../static/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="../static/styles/responsive.css">
+</head>
+<body style="background-color: lightblue;">
+<div class="super_container">
+<header class="header">
+		<div class="top_bar">
+			<div class="container">
+				<div class="row">
+					<div class="col d-flex flex-row">
+						<div class="phone">+251-11-551 82 92</div>
+						<div class="social">
+							<ul class="social_list">
+								<li class="social_list_item"><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+								<li class="social_list_item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li class="social_list_item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li class="social_list_item"><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+								<li class="social_list_item"><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+								<li class="social_list_item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+
+<nav class="main_nav">
+    <div class="container">
+        <div class="row">
+            <div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
+                <div class="logo_container">
+                    <div class="logo">
+                        <a href="#">
+                            <img src="../static/images/logo.png" alt="">
+                            <span style="color: blue;">ticket</span>
+                        </a>
+                    </div>
+                </div>
+
+                <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+                <div class="container-fluid" style="background-color: #ffcccb; padding: 10px; border-radius: 5px;">
+                    <ul class="main_nav_list d-flex flex-row align-items-center" style="list-style-type: none; padding: 0; margin: 0; overflow-x: auto;">
+                        <li class="main_nav_item" style="margin-right: 20px;">
+                            <a href="{% url 'home' %}" style="color: blue; text-decoration: none;">home</a>
+                        </li>
+                        <li class="main_nav_item" style="margin-right: 10px;">
+                            <select onchange="location.href = this.value;" class="custom-select" style="min-width: 160px; color: #007BFF; background-color: #c8e6c9; border: 1px solid #388e3c; font-size: 14px;">
+                                <option value="#">Select for Register</option>
+                                <option value="{% url 'route' %}">Register Route</option>
+                                <option value="{% url 'registor' %}">Register Admin</option>
+    <option value="{% url 'worker' %}">Registor Booker</option>
+                                <option value="{% url 'city' %}">Register City</option>
+    <option value="{% url 'sc' %}">Add SC</option>  <!-- Added this line -->
+    <option value="{% url 'service_fee' %}">Add Service Value</option>
+                            </select>
+                        </li>
+                        <li class="main_nav_item" style="margin-right: 10px;">
+                            <select onchange="location.href = this.value;" class="custom-select" style="min-width: 160px; color: #007BFF; background-color: #c8e6c9; border: 1px solid #388e3c; font-size: 14px;">
+                                <option value="#">Select for Update</option>
+                                <option value="{% url 'changebus' %}">Change Bus</option>
+    <option value="{% url 'scupdate' %}">S.c Update</option>
+    <option value="{% url 'active' %}">Active Routes</option>
+    <option value="{% url 'serviceupdate' %}">Service Fee Update</option>
+                            </select>
+                        </li>
+                        <li class="main_nav_item" style="margin-right: 10px;">
+                            <select onchange="location.href = this.value;" class="custom-select" style="min-width: 160px; color: #007BFF; background-color: #c8e6c9; border: 1px solid #388e3c; font-size: 14px;">
+                                <option value="#">Select for Show</option>
+                                <option value="{% url 'routes' %}">Show Routes</option>
+                                <option value="{% url 'users' %}">Show Users</option>
+    <option value="{% url 'totalballance' %}">Current Balance</option>
+    				<option value="{% url 'sce' %}">show s.c</option>
+				<option value="{% url 'totalballance' %}">Current Balance</option>
+                                <option value="{% url 'buses' %}">Show Buses</option>
+                                <option value="{% url 'comments' %}">Show Comments</option>
+                                <option value="{% url 'driver' %}">Booker</option>
+                                <option value="{% url 'ticketinfo' %}">Booked Ticket</option>
+                            </select>
+                        </li>
+                        <li class="main_nav_item" style="margin-right: 10px;">
+                            <select onchange="location.href = this.value;" class="custom-select" style="min-width: 160px; color: #007BFF; background-color: #c8e6c9; border: 1px solid #388e3c; font-size: 14px;">
+                                <option value="#">Select for Delete</option>
+                                <option value="{% url 'admindelete' %}">Delete Admin</option>
+    <option value="{% url 'scdelete' %}">Delete S.c</option>
+                                <option value="{% url 'commentdelete' %}">Delete Comment</option>
+                                <option value="{% url 'citydelete' %}">Delete City</option>
+                                <option value="{% url 'routedelete' %}">Delete Route</option>
+    <option value="{% url 'workerdelete' %}">Booker Delete</option>
+                                <option value="{% url 'delete_ticket' %}">Delete Ticket</option>
+                            </select>
+                        </li>
+                        <li class="footer_nav_item" style="margin-left: 20px;">
+                            <a href="{% url 'logout' %}" style="color: blue; text-decoration: none;">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<style>
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .main_nav_list {
+            flex-wrap: nowrap; /* Ensure items stay in a single line */
+            overflow-x: auto; /* Allow horizontal scrolling */
+        }
+
+        .main_nav_item {
+            margin-right: 10px; /* Maintain margin for spacing */
+        }
+
+        /* Optional: Adjust logo size */
+        .logo img {
+            max-height: 50px; /* Keep logo height manageable */
+        }
+    }
+</style>
+</header>
+
+</br></br></br></br>
+</br></br></br></br>
+</br>
+
+<h1 style="margin: 0 auto; padding-left: 20px; text-align: center; display: block; color:blue;">All Routes</h1>
+<style>
+  body {
+    font-family: Arial, sans-serif; /* Set a default font */
+    margin: 0;
+    padding: 20px; /* Add padding around the body */
+    background-color: #f4f4f4; /* Light background for contrast */
+  }
+  h1 {
+    margin: 0; /* Remove margin from h1 */
+  }
+  table {
+    width: 100%; /* Use full width */
+    max-width: 800px; /* Set a max width for larger screens */
+    border-collapse: collapse; /* Ensure borders are collapsed */
+    margin: 10px auto; /* Center the table and add vertical margin */
+    background-color: #f9f9f9; /* Background color for the table */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  }
+
+  th, td {
+    border: 2px solid #007BFF; /* Border color */
+    padding: 8px; /* Padding for cells */
+    text-align: left; /* Align text to the left */
+    font-size: 14px; /* Font size */
+    word-wrap: break-word; /* Allow word wrapping */
+  }
+
+  th {
+    background-color: #e9ecef; /* Light gray background for header */
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 767px) {
+    h1 {
+      margin: 0; /* Ensure no margin on small devices */
+    }
+    table {
+      margin-top: 0; /* Remove top margin for small devices */
+    }
+    th, td {
+      font-size: 12px; /* Smaller font size for mobile */
+      padding: 6px; /* Slightly less padding for mobile */
+    }
+  }
+</style>
+<!--
+<table>
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Travel Date</th>
+      <th>Departure</th>
+      <th>Destination</th>
+      <th>Kilometer</th>
+      <th>Price</th>
+      <th>Plate No</th>
+      <th>Side No</th>
+    </tr>
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th {
+        background-color: #4CAF50; /* Green background */
+        color: white;              /* White text */
+        padding: 10px;            /* Padding for cells */
+        text-align: left;         /* Align text to the left */
+    }
+    th:first-child {
+        text-align: center;       /* Center align the first column */
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2; /* Zebra striping for rows */
+    }
+</style>
+
+  </thead>
+  <tbody>
+    {% for route in routes %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ route.date }}</td>
+        <td>{{ route.depcity }}</td>
+        <td>{{ route.descity }}</td>
+        <td>{{ route.kilometer }}</td>
+        <td>{{ route.price }}</td>
+        <td>{{ route.plate_no }}</td>
+        <td>{{ route.side_no }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+-->
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <button id="global-toggle" onclick="toggleAllRoutes()">Activate All</button>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Travel Date</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Kilometer</th>
+                <th>Price</th>
+                <th>Plate No</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for route in routes %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ route.date }}</td>
+                <td>{{ route.depcity }}</td>
+                <td>{{ route.descity }}</td>
+                <td>{{ route.kilometer }}</td>
+                <td>{{ route.price }}</td>
+                <td>{{ route.plate_no }}</td>
+                <td>
+                    <button class="toggle-select" onclick="toggleRouteSelect(this)">Activate</button>
+                    <input type="hidden" class="route-status" value="0">
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    let allActivated = false; // Track global activation state
+
+    function toggleRouteSelect(button) {
+        const row = button.closest('tr');
+        const routeStatus = row.querySelector('.route-status');
+
+        if (button.textContent === 'Activate') {
+            button.textContent = 'Deactivate';
+            routeStatus.value = '1'; // Set to active
+        } else {
+            button.textContent = 'Activate'; 
+            routeStatus.value = '0'; // Set to inactive
+        }
+
+        // Update "Select" buttons in roo.html based on the current activation state
+        updateSelectButtonsInRoo();
+    }
+
+    function toggleAllRoutes() {
+        const rows = document.querySelectorAll('tbody tr');
+
+        allActivated = !allActivated; // Toggle global activation state
+        const globalToggleButton = document.getElementById('global-toggle');
+        globalToggleButton.textContent = allActivated ? 'Deactivate All' : 'Activate All';
+
+        rows.forEach(row => {
+            const toggleButton = row.querySelector('.toggle-select');
+            const routeStatus = row.querySelector('.route-status');
+
+            if (allActivated) {
+                toggleButton.textContent = 'Deactivate';
+                routeStatus.value = '1'; // Set all to active
+            } else {
+                toggleButton.textContent = 'Activate';
+                routeStatus.value = '0'; // Set all to inactive
+            }
+        });
+
+        // Update "Select" buttons in roo.html based on the activation state
+        updateSelectButtonsInRoo();
+    }
+
+    function updateSelectButtonsInRoo() {
+        const routes = Array.from(document.querySelectorAll('tbody tr'));
+        const selectButtons = document.querySelectorAll('roo-table .select-btn');
+
+        // Enable the "Select" button if a matching route is active
+        selectButtons.forEach(button => {
+            const depcity = button.querySelector('input[name="depcity"]').value;
+            const descity = button.querySelector('input[name="descity"]').value;
+            const date = button.querySelector('input[name="date"]').value;
+            const plate_no = button.querySelector('input[name="plate_no"]').value;
+
+            // Check if any active route matches the button values based on depcity, descity, date, and plate_no
+            const isActive = routes.some(row => {
+                return row.querySelector('.route-status').value === '1' &&
+                        row.children[2].textContent.trim() === depcity &&
+                        row.children[3].textContent.trim() === descity &&
+                        row.children[1].textContent.trim() === date &&
+                        row.children[6].textContent.trim() === plate_no;
+            });
+
+            button.disabled = !isActive; // Enable or disable the button
+        });
+    }
+</script>
+-->
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <button id="global-toggle" onclick="toggleAllRoutes()">Activate All</button>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Travel Date</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Kilometer</th>
+                <th>Price</th>
+                <th>Plate No</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for route in routes %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ route.date }}</td>
+                <td>{{ route.depcity }}</td>
+                <td>{{ route.descity }}</td>
+                <td>{{ route.kilometer }}</td>
+                <td>{{ route.price }}</td>
+                <td>{{ route.plate_no }}</td>
+                <td>
+                    <button class="toggle-select" onclick="toggleRouteSelect(this)">Activate</button>
+                    <input type="hidden" class="route-status" value="0">
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    let allActivated = false; // Track global activation state
+
+    function toggleRouteSelect(button) {
+        const row = button.closest('tr');
+        const routeStatus = row.querySelector('.route-status');
+
+        if (button.textContent === 'Activate') {
+            button.textContent = 'Deactivate';
+            routeStatus.value = '1'; // Set to active
+        } else {
+            button.textContent = 'Activate'; 
+            routeStatus.value = '0'; // Set to inactive
+        }
+
+        // Update "Select" buttons in roo.html
+        updateSelectButtonsInRoo();
+    }
+
+    function toggleAllRoutes() {
+        const rows = document.querySelectorAll('tbody tr');
+
+        allActivated = !allActivated; // Toggle global activation state
+        const globalToggleButton = document.getElementById('global-toggle');
+        globalToggleButton.textContent = allActivated ? 'Deactivate All' : 'Activate All';
+
+        rows.forEach(row => {
+            const toggleButton = row.querySelector('.toggle-select');
+            const routeStatus = row.querySelector('.route-status');
+
+            if (allActivated) {
+                toggleButton.textContent = 'Deactivate';
+                routeStatus.value = '1'; // Set all to active
+            } else {
+                toggleButton.textContent = 'Activate';
+                routeStatus.value = '0'; // Set all to inactive
+            }
+        });
+
+        // Update "Select" buttons in roo.html
+        updateSelectButtonsInRoo();
+    }
+
+    function updateSelectButtonsInRoo() {
+        const routes = Array.from(document.querySelectorAll('tbody tr'));
+        const selectButtons = document.querySelectorAll('roo-table .select-btn');
+
+        // Loop through each select button in roo.html
+        selectButtons.forEach(button => {
+            const depcity = button.querySelector('input[name="depcity"]').value;
+            const descity = button.querySelector('input[name="descity"]').value;
+            const date = button.querySelector('input[name="date"]').value;
+            const plate_no = button.querySelector('input[name="plate_no"]').value;
+
+            // Check if there is an active route matching the values of this select button
+            const isActive = routes.some(row => {
+                return row.querySelector('.route-status').value === '1' &&
+                       row.cells[2].textContent.trim() === depcity &&
+                       row.cells[3].textContent.trim() === descity &&
+                       row.cells[1].textContent.trim() === date &&
+                       row.cells[6].textContent.trim() === plate_no;
+            });
+
+            // Enable or disable the button based on the active status
+            button.disabled = !isActive;
+        });
+    }
+</script>
+-->
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <button id="global-toggle" onclick="toggleAllRoutes()">Activate All</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Travel Date</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Kilometer</th>
+                <th>Price</th>
+                <th>Plate No</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for route in routes %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ route.date }}</td>
+                <td>{{ route.depcity }}</td>
+                <td>{{ route.descity }}</td>
+                <td>{{ route.kilometer }}</td>
+                <td>{{ route.price }}</td>
+                <td>{{ route.plate_no }}</td>
+                <td>
+                    <button class="toggle-select" onclick="toggleRouteSelect(this)">Activate</button>
+                    <input type="hidden" class="route-status" value="0">
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    let allActivated = false; // Track global activation state
+
+    function toggleRouteSelect(button) {
+        const row = button.closest('tr');
+        const routeStatus = row.querySelector('.route-status');
+
+        if (button.textContent === 'Activate') {
+            button.textContent = 'Deactivate';
+            routeStatus.value = '1'; // Set to active
+        } else {
+            button.textContent = 'Activate'; 
+            routeStatus.value = '0'; // Set to inactive
+        }
+
+        // Update "Select" buttons in roo.html
+        updateSelectButtonsInRoo();
+    }
+
+    function toggleAllRoutes() {
+        const rows = document.querySelectorAll('tbody tr');
+
+        allActivated = !allActivated; // Toggle global activation state
+        const globalToggleButton = document.getElementById('global-toggle');
+        globalToggleButton.textContent = allActivated ? 'Deactivate All' : 'Activate All';
+
+        rows.forEach(row => {
+            const toggleButton = row.querySelector('.toggle-select');
+            const routeStatus = row.querySelector('.route-status');
+
+            if (allActivated) {
+                toggleButton.textContent = 'Deactivate';
+                routeStatus.value = '1'; // Set all to active
+            } else {
+                toggleButton.textContent = 'Activate';
+                routeStatus.value = '0'; // Set all to inactive
+            }
+        });
+
+        // Update "Select" buttons in roo.html
+        updateSelectButtonsInRoo();
+    }
+
+    function updateSelectButtonsInRoo() {
+        const routes = Array.from(document.querySelectorAll('tbody tr'));
+        const selectButtons = document.querySelectorAll('roo-table .select-btn');
+
+        // Loop through each select button in roo.html
+        selectButtons.forEach(button => {
+            const depcity = button.querySelector('input[name="depcity"]').value;
+            const descity = button.querySelector('input[name="descity"]').value;
+            const date = button.querySelector('input[name="date"]').value;
+            const plate_no = button.querySelector('input[name="plate_no"]').value;
+
+            // Check if there is an active route matching the values of this select button
+            const isActive = routes.some(row => {
+                return row.querySelector('.route-status').value === '1' &&
+                       row.cells[2].textContent.trim() === depcity &&
+                       row.cells[3].textContent.trim() === descity &&
+                       row.cells[1].textContent.trim() === date &&
+                       row.cells[6].textContent.trim() === plate_no;
+            });
+            // Enable or disable the button based on the active status
+            button.disabled = !isActive;
+        });
+    }
+</script>
+-->
+
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <button id="global-toggle" onclick="toggleAllRoutes()">Activate All</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Travel Date</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Kilometer</th>
+                <th>Price</th>
+                <th>Plate No</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for route in routes %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ route.date }}</td>
+                <td>{{ route.depcity }}</td>
+                <td>{{ route.descity }}</td>
+                <td>{{ route.kilometer }}</td>
+                <td>{{ route.price }}</td>
+                <td>{{ route.plate_no }}</td>
+                <td>
+                    <button class="toggle-select" onclick="toggleRouteSelect(this)">Activate</button>
+                    <input type="hidden" class="route-status" value="0">
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    let allActivated = false;
+
+    function toggleRouteSelect(button) {
+        const row = button.closest('tr');
+        const routeStatus = row.querySelector('.route-status');
+
+        if (button.textContent === 'Activate') {
+            button.textContent = 'Deactivate';
+            routeStatus.value = '1'; // Set to active
+        } else {
+            button.textContent = 'Activate';
+            routeStatus.value = '0'; // Set to inactive
+        }
+
+        updateSelectButtonsInRoo();
+    }
+
+    function toggleAllRoutes() {
+        const rows = document.querySelectorAll('tbody tr');
+        allActivated = !allActivated;
+
+        const globalToggleButton = document.getElementById('global-toggle');
+        globalToggleButton.textContent = allActivated ? 'Deactivate All' : 'Activate All';
+
+        rows.forEach(row => {
+            const toggleButton = row.querySelector('.toggle-select');
+            const routeStatus = row.querySelector('.route-status');
+
+            if (allActivated) {
+                toggleButton.textContent = 'Deactivate';
+                routeStatus.value = '1';
+            } else {
+                toggleButton.textContent = 'Activate';
+                routeStatus.value = '0';
+            }
+        });
+
+        updateSelectButtonsInRoo();
+    }
+
+    function updateSelectButtonsInRoo() {
+        const routes = Array.from(document.querySelectorAll('tbody tr'));
+        const selectButtons = document.querySelectorAll('.roo-table .select-btn');
+
+        selectButtons.forEach(button => {
+            const depcity = button.querySelector('input[name="depcity"]').value;
+            const descity = button.querySelector('input[name="descity"]').value;
+            const date = button.querySelector('input[name="date"]').value;
+            const plate_no = button.querySelector('input[name="plate_no"]').value;
+
+            const isActive = routes.some(row => {
+                return row.querySelector('.route-status').value === '1' &&
+                       row.cells[2].textContent.trim() === depcity &&
+                       row.cells[3].textContent.trim() === descity &&
+                       row.cells[1].textContent.trim() === date &&
+                       row.cells[6].textContent.trim() === plate_no;
+            });
+
+            button.disabled = !isActive; // Enable or disable the button based on the active status
+        });
+    }
+</script>
+-->
+
+
+<div class="search_panel active" style="margin-top: 10px;">
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Travel Date</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Kilometer</th>
+                <th>Price</th>
+                <th>Plate No</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for route in routes %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ route.date }}</td>
+                <td>{{ route.depcity }}</td>
+                <td>{{ route.descity }}</td>
+                <td>{{ route.kilometer }}</td>
+                <td>{{ route.price }}</td>
+                <td>{{ route.plate_no }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <button id="global-toggle" onclick="toggleAllRoutes()">Activate All</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Travel Date</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Kilometer</th>
+                <th>Price</th>
+                <th>Plate No</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for route in routes %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ route.date }}</td>
+                <td>{{ route.depcity }}</td>
+                <td>{{ route.descity }}</td>
+                <td>{{ route.kilometer }}</td>
+                <td>{{ route.price }}</td>
+                <td>{{ route.plate_no }}</td>
+                <td>
+                    <button class="toggle-select" onclick="toggleRouteSelect(this)">Activate</button>
+                    <input type="hidden" class="route-status" value="0">
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    let allActivated = false; // Track global activation state
+
+    function toggleRouteSelect(button) {
+        const row = button.closest('tr');
+        const routeStatus = row.querySelector('.route-status');
+
+        if (button.textContent === 'Activate') {
+            button.textContent = 'Deactivate';
+            routeStatus.value = '1'; // Set to active
+        } else {
+            button.textContent = 'Activate';
+            routeStatus.value = '0'; // Set to inactive
+        }
+
+        // Update "Select" buttons in roo.html
+        updateSelectButtonsInRoo();
+    }
+
+    function toggleAllRoutes() {
+        const rows = document.querySelectorAll('tbody tr');
+
+        allActivated = !allActivated; // Toggle global activation state
+        const globalToggleButton = document.getElementById('global-toggle');
+        globalToggleButton.textContent = allActivated ? 'Deactivate All' : 'Activate All';
+
+        rows.forEach(row => {
+            const toggleButton = row.querySelector('.toggle-select');
+            const routeStatus = row.querySelector('.route-status');
+
+            if (allActivated) {
+                toggleButton.textContent = 'Deactivate';
+                routeStatus.value = '1'; // Set all to active
+            } else {
+                toggleButton.textContent = 'Activate';
+                routeStatus.value = '0'; // Set all to inactive
+            }
+        });
+
+        // Update "Select" buttons in roo.html
+        updateSelectButtonsInRoo();
+    }
+
+    function updateSelectButtonsInRoo() {
+        const routes = Array.from(document.querySelectorAll('tbody tr'));
+        const selectButtons = document.querySelectorAll('roo-table .select-btn');
+
+        selectButtons.forEach(button => {
+            const depcity = button.querySelector('input[name="depcity"]').value;
+            const descity = button.querySelector('input[name="descity"]').value;
+            const date = button.querySelector('input[name="date"]').value;
+            const plate_no = button.querySelector('input[name="plate_no"]').value;
+
+            // Check if any active route matches the button values
+            const isActive = routes.some(row => {
+                return row.querySelector('.route-status').value === '1' &&
+                        row.children[2].textContent.trim() === depcity &&
+                        row.children[3].textContent.trim() === descity &&
+                        row.children[1].textContent.trim() === date &&
+                        row.children[6].textContent.trim() === plate_no;
+            });
+
+            button.disabled = !isActive; // Enable or disable the button based on active status
+        });
+    }
+</script>
+-->
+
+
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <button id="global-toggle" onclick="toggleAllRoutes()">Activate All</button>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Travel Date</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Kilometer</th>
+                <th>Price</th>
+                <th>Plate No</th>
+                <th>Side No</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for route in routes %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ route.date }}</td>
+                <td>{{ route.depcity }}</td>
+                <td>{{ route.descity }}</td>
+                <td>{{ route.kilometer }}</td>
+                <td>{{ route.price }}</td>
+                <td>{{ route.plate_no }}</td>
+                <td>{{ route.side_no }}</td>
+                <td>
+                    <button class="toggle-select" onclick="toggleRouteSelect(this)">Activate</button>
+                    <input type="hidden" class="route-status" value="0">
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    let allActivated = false; // Track global activation state
+
+    function toggleRouteSelect(button) {
+        const row = button.closest('tr');
+        const routeStatus = row.querySelector('.route-status');
+
+        if (button.textContent === 'Activate') {
+            button.textContent = 'Deactivate';
+            routeStatus.value = '1'; // Set to active
+        } else {
+            button.textContent = 'Activate'; 
+            routeStatus.value = '0'; // Set to inactive
+        }
+
+        // Update "Select" buttons in roo.html based on the route status
+        updateSelectButtonsInRoo();
+    }
+
+    function toggleAllRoutes() {
+        const rows = document.querySelectorAll('tbody tr');
+
+        allActivated = !allActivated; // Toggle global activation state
+        const globalToggleButton = document.getElementById('global-toggle');
+        globalToggleButton.textContent = allActivated ? 'Deactivate All' : 'Activate All';
+
+        rows.forEach(row => {
+            const toggleButton = row.querySelector('.toggle-select');
+            const routeStatus = row.querySelector('.route-status');
+
+            if (allActivated) {
+                toggleButton.textContent = 'Deactivate';
+                routeStatus.value = '1'; // Set all to active
+            } else {
+                toggleButton.textContent = 'Activate';
+                routeStatus.value = '0'; // Set all to inactive
+            }
+        });
+
+        // Update "Select" buttons in roo.html based on the activation state
+        updateSelectButtonsInRoo();
+    }
+
+    function updateSelectButtonsInRoo() {
+        const routes = Array.from(document.querySelectorAll('tbody tr'));
+        const selectButtons = document.querySelectorAll('roo-table .select-btn');
+
+        const activeRoutes = routes.filter(row => row.querySelector('.route-status').value === '1');
+
+        selectButtons.forEach(button => {
+            const depcity = button.querySelector('input[name="depcity"]').value;
+            const descity = button.querySelector('input[name="descity"]').value;
+            const date = button.querySelector('input[name="date"]').value;
+            const plate_no = button.querySelector('input[name="plate_no"]').value;
+
+            // Enable the "Select" button if a matching route is active
+            button.disabled = !activeRoutes.some(row => {
+                return row.querySelector('td:nth-child(3)').textContent.trim() === depcity &&
+                       row.querySelector('td:nth-child(4)').textContent.trim() === descity &&
+                       row.querySelector('td:nth-child(2)').textContent.trim() === date &&
+                       row.querySelector('td:nth-child(7)').textContent.trim() === plate_no;
+            });
+        });
+    }
+</script>
+-->
+
+
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <button id="global-toggle" onclick="toggleAllRoutes()">Activate All</button>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Travel Date</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Kilometer</th>
+                <th>Price</th>
+                <th>Plate No</th>
+                <th>Side No</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for route in routes %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>
+                    <input type="text" value="{{ route.date }}" disabled class="route-field">
+                </td>
+                <td>
+                    <input type="text" value="{{ route.depcity }}" disabled class="route-field">
+                </td>
+                <td>
+                    <input type="text" value="{{ route.descity }}" disabled class="route-field">
+                </td>
+                <td>{{ route.kilometer }}</td>
+                <td>{{ route.price }}</td>
+                <td>
+                    <input type="text" value="{{ route.plate_no }}" disabled class="route-field">
+                </td>
+                <td>
+                    <input type="text" value="{{ route.side_no }}" disabled class="route-field">
+                </td>
+                <td>
+                    <button class="toggle-select" onclick="toggleRouteSelect(this)">Activate</button>
+                    <form action="{% url 'see' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="depcity" value="{{ route.depcity }}">
+                        <input type="hidden" name="descity" value="{{ route.descity }}">
+                        <input type="hidden" name="price" value="{{ route.price }}">
+                        <input type="hidden" name="plate_no" value="{{ route.plate_no }}">
+                        <input type="hidden" name="date" value="{{ route.date }}">
+                        <button type="submit" class="select-btn" style="height: 30px; width: 80px; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;" disabled>
+                            <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    let allActivated = false; // Track global activation state
+
+    function toggleRouteSelect(button) {
+        const row = button.closest('tr');
+        const selectButton = row.querySelector('.select-btn');
+        const routeFields = row.querySelectorAll('.route-field');
+
+        if (button.textContent === 'Activate') {
+            button.textContent = 'Deactivate';
+            selectButton.disabled = false; // Enable the "Select" button
+            routeFields.forEach(field => field.disabled = false); // Enable route fields
+        } else {
+            button.textContent = 'Activate';
+            selectButton.disabled = true; // Disable the "Select" button
+            routeFields.forEach(field => field.disabled = true); // Disable route fields
+        }
+
+        // Update the select buttons in roo.html based on the current state
+        updateSelectButtonsInRoo();
+    }
+
+    function toggleAllRoutes() {
+        allActivated = !allActivated; // Toggle global activation state
+        const globalToggleButton = document.getElementById('global-toggle');
+        globalToggleButton.textContent = allActivated ? 'Deactivate All' : 'Activate All';
+
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            const selectButton = row.querySelector('.select-btn');
+            const toggleButton = row.querySelector('.toggle-select');
+
+            if (allActivated) {
+                toggleButton.textContent = 'Deactivate'; // Set toggle button to deactivate
+                selectButton.disabled = false; // Enable all select buttons
+                row.querySelectorAll('.route-field').forEach(field => field.disabled = false); // Enable all fields
+            } else {
+                toggleButton.textContent = 'Activate'; // Set toggle button to activate
+                selectButton.disabled = true; // Disable all select buttons
+                row.querySelectorAll('.route-field').forEach(field => field.disabled = true); // Disable all fields
+            }
+        });
+
+        // Update the select buttons in roo.html based on the current state
+        updateSelectButtonsInRoo();
+    }
+
+    function updateSelectButtonsInRoo() {
+        const selectButtons = document.querySelectorAll('roo-table .select-btn');
+        selectButtons.forEach(button => {
+            button.disabled = !allActivated; // Disable or enable based on allActivated state
+        });
+    }
+</script>
+-->
+
+
+
+
+<!--
+<button id="global-toggle" onclick="toggleAllRoutes()">Activate All</button>
+<table>
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Travel Date</th>
+      <th>Departure</th>
+      <th>Destination</th>
+      <th>Kilometer</th>
+      <th>Price</th>
+      <th>Plate No</th>
+      <th>Side No</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for route in routes %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>
+          <input type="text" value="{{ route.date }}" disabled class="route-field">
+        </td>
+        <td>
+          <input type="text" value="{{ route.depcity }}" disabled class="route-field">
+        </td>
+        <td>
+          <input type="text" value="{{ route.descity }}" disabled class="route-field">
+        </td>
+        <td>{{ route.kilometer }}</td>
+        <td>{{ route.price }}</td>
+        <td>
+          <input type="text" value="{{ route.plate_no }}" disabled class="route-field">
+        </td>
+        <td>
+          <input type="text" value="{{ route.side_no }}" disabled class="route-field">
+        </td>
+        <td>
+          <button class="toggle-select" onclick="toggleRouteSelect(this)">Activate</button>
+          <form action="{% url 'see' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <input type="hidden" name="depcity" value="{{ route.depcity }}">
+            <input type="hidden" name="descity" value="{{ route.descity }}">
+            <input type="hidden" name="price" value="{{ route.price }}">
+            <input type="hidden" name="plate_no" value="{{ route.plate_no }}">
+            <input type="hidden" name="date" value="{{ route.date }}">
+            <button type="submit" class="select-btn" style="height: 30px; width: 80px; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;" disabled>
+              <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+            </button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+-->
+
+<script>
+    let allActivated = false; // Track global activation state
+
+    function toggleRouteSelect(button) {
+        const row = button.closest('tr');
+        const selectButton = row.querySelector('.select-btn');
+        const routeFields = row.querySelectorAll('.route-field');
+
+        if (button.textContent === 'Activate') {
+            button.textContent = 'Deactivate';
+            selectButton.disabled = false; // Enable the "Select" button
+            selectButton.style.backgroundColor = 'blue'; // Change color if enabled
+            routeFields.forEach(field => field.disabled = false); // Enable input fields
+        } else {
+            button.textContent = 'Activate';
+            selectButton.disabled = true; // Disable the "Select" button
+            selectButton.style.backgroundColor = 'gray'; // Change color if disabled
+            routeFields.forEach(field => field.disabled = true); // Disable input fields
+        }
+    }
+
+    function toggleAllRoutes() {
+        allActivated = !allActivated; // Toggle the global activation state
+        const globalToggleButton = document.getElementById('global-toggle');
+        globalToggleButton.textContent = allActivated ? 'Deactivate All' : 'Activate All';
+
+        // Update each row based on the global state
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            const selectButton = row.querySelector('.select-btn');
+            const routeFields = row.querySelectorAll('.route-field');
+            const toggleButton = row.querySelector('.toggle-select');
+
+            if (allActivated) {
+                toggleButton.textContent = 'Deactivate'; // Set button to deactivate
+                selectButton.disabled = false; // Enable the "Select" button
+                selectButton.style.backgroundColor = 'blue'; // Change color if enabled
+                routeFields.forEach(field => field.disabled = false); // Enable input fields
+            } else {
+                toggleButton.textContent = 'Activate'; // Set button to activate
+                selectButton.disabled = true; // Disable the "Select" button
+                selectButton.style.backgroundColor = 'gray'; // Change color if disabled
+                routeFields.forEach(field => field.disabled = true); // Disable input fields
+            }
+        });
+    }
+</script>
+
+
+<!--
+<table>
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Travel Date</th>
+      <th>Departure</th>
+      <th>Destination</th>
+      <th>Kilometer</th>
+      <th>Price</th>
+      <th>Plate No</th>
+      <th>Side No</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for route in routes %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>
+          <input type="text" value="{{ route.date }}" disabled class="route-field">
+        </td>
+        <td>
+          <input type="text" value="{{ route.depcity }}" disabled class="route-field">
+        </td>
+        <td>
+          <input type="text" value="{{ route.descity }}" disabled class="route-field">
+        </td>
+        <td>{{ route.kilometer }}</td>
+        <td>{{ route.price }}</td>
+        <td>
+          <input type="text" value="{{ route.plate_no }}" disabled class="route-field">
+        </td>
+        <td>
+          <input type="text" value="{{ route.side_no }}" disabled class="route-field">
+        </td>
+        <td>
+          <button class="toggle-select" onclick="toggleRouteSelect(this)">Activate</button>
+          <form action="{% url 'see' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <input type="hidden" name="depcity" value="{{ route.depcity }}">
+            <input type="hidden" name="descity" value="{{ route.descity }}">
+            <input type="hidden" name="price" value="{{ route.price }}">
+            <input type="hidden" name="plate_no" value="{{ route.plate_no }}">
+            <input type="hidden" name="date" value="{{ route.date }}">
+            <button type="submit" class="select-btn" style="height: 30px; width: 80px; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;" disabled>
+              <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+            </button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+    function toggleRouteSelect(button) {
+        const row = button.closest('tr');
+        const selectButton = row.querySelector('.select-btn');
+        const routeFields = row.querySelectorAll('.route-field');
+
+        if (button.textContent === 'Activate') {
+            button.textContent = 'Deactivate';
+            selectButton.disabled = false; // Enable the "Select" button
+            selectButton.style.backgroundColor = 'blue'; // Change color if enabled
+            routeFields.forEach(field => field.disabled = false); // Enable input fields
+        } else {
+            button.textContent = 'Activate';
+            selectButton.disabled = true; // Disable the "Select" button
+            selectButton.style.backgroundColor = 'gray'; // Change color if disabled
+            routeFields.forEach(field => field.disabled = true); // Disable input fields
+        }
+    }
+</script>
+-->
+
+
+<!--
+<table>
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Travel Date</th>
+      <th>Departure</th>
+      <th>Destination</th>
+      <th>Kilometer</th>
+      <th>Price</th>
+      <th>Plate No</th>
+      <th>Side No</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for route in routes %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ route.date }}</td>
+        <td>{{ route.depcity }}</td>
+        <td>{{ route.descity }}</td>
+        <td>{{ route.kilometer }}</td>
+        <td>{{ route.price }}</td>
+        <td>{{ route.plate_no }}</td>
+        <td>{{ route.side_no }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<button id="toggle-select" onclick="toggleSelect()">Activate Selection</button>
+<script>
+    let selectionEnabled = false; // Variable to track selection state
+
+    function toggleSelect() {
+        selectionEnabled = !selectionEnabled;
+        const btn = document.getElementById('toggle-select');
+        btn.textContent = selectionEnabled ? 'Deactivate Selection' : 'Activate Selection';
+
+        // Redirect to see view with the selection state
+        window.location.href = "{% url 'see' %}?selectEnabled=" + selectionEnabled;
+    }
+</script>
+-->
+
+
+<br>
+  </br></br></br</br></br>
+  </br></br></br>
+  <!--
+  <div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 order-lg-1 order-2  ">
+					<div class="copyright_content d-flex flex-row align-items-center">
+					</div>
+				</div>
+				<div class="col-lg-9 order-lg-2 order-1">
+					<div class="footer_nav_container d-flex flex-row align-items-center justify-content-lg-end">
+						<div class="footer_nav">
+							<ul class="footer_nav_list">
+							<li class="main_nav_item"><a href="{% url 'about' %}">home</a></li>
+                           <select onchange="location.href = this.value;">
+                           <option value="#">Select for Register</option>
+                           <option value="{% url 'route' %}">Register Route</option>
+                           <option value="{% url 'registor' %}">Register Admin</option>
+    <option value="{% url 'worker' %}">Registor Booker</option>
+                           <option value="{% url 'city' %}">Register City</option>
+    <option value="{% url 'sc' %}">Add SC</option>
+    <option value="{% url 'service_fee' %}">Add Service Value</option>
+                           </select>
+                          <select onchange="location.href = this.value;">
+                          <option value="#">Select for Update</option>
+                           <option value="{% url 'changebus' %}">Change Bus</option>
+    <option value="{% url 'scupdate' %}">S.c Update</option>
+    <option value="{% url 'active' %}">Active Routes</option>
+    <option value="{% url 'serviceupdate' %}">Service Fee Update</option>
+                           </select>
+                           <select onchange="location.href = this.value;">
+                           <option value="{% url 'admindelete' %}">Select for Show</option>
+                           <option value="{% url 'routes' %}">show routes</option>
+                           <option value="{% url 'users' %}">show Users</option>
+    <option value="{% url 'sce' %}">show s.c</option>
+    <option value="{% url 'sce' %}">show s.c</option>
+    <option value="{% url 'sce' %}">show sc</option>
+    <option value="{% url 'sce' %}">show sc</option>
+                           <option value="{% url 'buses' %}">show Buses</option>
+                           <option value="{% url 'comments' %}">Show Comments</option>
+                           <option value="{% url 'driver' %}">Booker</option>
+                           <option value="{% url 'ticketinfo' %}">Booked Ticket</option>
+                           </select>
+                           <select onchange="location.href = this.value;">
+                           <option value="{% url 'admindelete' %}">Select for Delete</option>
+                           <option value="{% url 'admindelete' %}">Delete Admin</option>
+    <option value="{% url 'scdelete' %}">Delete S.c</option>
+                           <option value="{% url 'commentdelete' %}">Delete Comment</option>
+                           <option value="{% url 'citydelete' %}">Delete City</option>
+                           <option value="{% url 'routedelete' %}">Delete Route</option>
+    <option value="{% url 'workerdelete' %}">Booker Delete</option>
+                           <option value="{% url 'workerdelete' %}">Delete driver</option>
+    <option value="{% url 'delete_ticket' %}">Delete Ticket</option>
+                           </select>
+                           <li class="footer_nav_item"><a href="{% url 'logout' %}" style="color:white;margin-left:50px;">Logout</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+-->
+<script src="../static/js/jquery-3.2.1.min.js"></script>
+<script src="../static/styles/bootstrap4/popper.js"></script>
+<script src="../static/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="../static/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="../static/https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
+<script src="../static/js/contact_custom.js"></script>
+</body>
+</html>
+

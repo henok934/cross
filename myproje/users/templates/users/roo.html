@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>select route</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Travelix Project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/styles/bootstrap4/bootstrap.min.css">
+<link href="../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="../static/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="../static/styles/responsive.css">
+</head>
+<body style="background-color: lightblue;">
+<div class="super_container">
+		<!-- Header -->
+<header class="header">
+		<!-- Top Bar -->
+		<div class="top_bar">
+			<div class="container">
+				<div class="row">
+					<div class="col d-flex flex-row">
+						<div class="phone">+251-11-551 82 92</div>
+						<div class="social">
+							<ul class="social_list">
+								<li class="social_list_item"><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+								<li class="social_list_item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li class="social_list_item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li class="social_list_item"><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+								<li class="social_list_item"><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+								<li class="social_list_item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+		
+
+<nav class="main_nav">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
+                                                <div class="logo_container">
+                                                <div class="logo">
+    <a href="#">
+        <img src="../static/images/logo.png" alt="">
+        <span style="color: white;">ticket</span>
+    </a>
+</div>
+</div>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<div class="container-fluid" style="background-color: ![#000000][] #000000 padding: 10px; border-radius: 5px;">
+    <ul class="main_nav_list d-flex flex-nowrap align-items-center" style="list-style-type: none; padding: 0; margin: 0; overflow-x: auto;">
+        <li class="main_nav_item" style="margin-right: 20px; margin-left: 100px;">
+            <a href="{% url 'about' %}" style="color: blue; text-decoration: none;">HOME</a>
+        </li>
+
+        <li class="main_nav_item" style="margin-right: 20px; margin-left: 20px;">
+            <a href="{% url 'booker' %}" style="color: blue; text-decoration: none;">Book</a>
+        </li>
+
+<!--
+        <ul style="list-style-type: none; padding: 0; margin: 0;">
+    <li class="main_nav_item" style="margin-right: 20px; margin-left: 30px; display: inline; white-space: nowrap;">
+        <a href="{% url 'about' %}" style="color: blue; text-decoration: none;">About Us</a>
+    </li>
+</ul>
+<ul style="list-style-type: none; padding: 0; margin: 0;">
+    <li class="main_nav_item" style="margin-right: 20px; margin-left: 30px; display: inline; white-space: nowrap;">
+        <a href="{% url 'get_ticket' %}" style="color: blue; text-decoration: none;">Show Ticket</a>
+    </li>
+</ul>
+-->
+<!--
+<li class="main_nav_item" style="margin-right: 20px; margin-left:30px;">
+            <a href="{% url 'comment' %}" style="color: blue; text-decoration: none;">Comment</a>
+        </li>
+-->
+        <li class="main_nav_item" style="margin-right: 20px; margin-left:20px;">
+            <a href="{% url 'login' %}" style="color: blue; text-decoration: none;">Logout</a>
+        </li>
+<!--
+<li class="main_nav_item" style="display: inline;">
+    <form action="{% url 'changebuses' %}" method="post" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+        {% csrf_token %}
+        <button type="button" id="notificationButton" style="background: none; border: none; cursor: pointer; margin-left:30px;" class="main_nav_item">
+            🔔<span style="color: red;"><b>{{ buschanges_count }}</b></span>
+        </button>
+        <br>
+        <input type="date" name="date" placeholder="Date" required id="dateInput" style="display: none; margin-left: 10px; width: 120px; background-color: #ffebcd; border: 1px solid #ffa07a; border-radius: 4px; padding: 3px;">
+    </form>
+</li>
+-->
+
+<script>
+    document.getElementById('notificationButton').addEventListener('click', function() {
+        var dateInput = document.getElementById('dateInput');
+
+        // Toggle visibility of date input
+        if (dateInput.style.display === 'none') {
+            dateInput.style.display = 'inline-block';  // Show the date input
+            dateInput.focus(); // Focus on the date input when shown
+        } else {
+            dateInput.style.display = 'none';  // Hide the date input
+        }
+    });
+
+ document.getElementById('dateInput').addEventListener('change', function() {
+ document.getElementById('search_form_1').submit();
+    });
+</script>
+<div class="search_panel active">
+</div>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+	</header>
+		</br>
+		</br>
+	</div>
+	</br></br></br></br></br>
+
+	</br></b></br><br>
+</br>
+    {% if username %}
+        <p>Hello, {{ username }}!</p>
+    {% else %}
+        <p>Hello, Guest!</p>
+    {% endif %}
+
+	<h2 style="text-align: center; color: blue; margin-buttom:50px;"><b>Select Bus</b></h2>
+       <div class="search_panel active" style="margin-top:10px;">
+
+
+{{ username }}
+
+<!--
+<table>
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Travel Date</th>
+      <th>Departure</th>
+      <th>Destination</th>
+      <th>Kilometer</th>
+      <th>Price</th>
+      <th>Plate No</th>
+      <th>Side No</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for route in routes %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ route.date }}</td>
+        <td>{{ route.depcity }}</td>
+        <td>{{ route.descity }}</td>
+        <td>{{ route.kilometer }}</td>
+        <td>{{ route.price }}</td>
+        <td>{{ route.plate_no }}</td>
+        <td>{{ route.side_no }}</td>
+        <td>
+          <button class="toggle-select" onclick="toggleRouteSelect(this)">Activate</button>
+          <form action="{% url 'see' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <input type="hidden" name="depcity" value="{{ route.depcity }}">
+            <input type="hidden" name="descity" value="{{ route.descity }}">
+            <input type="hidden" name="price" value="{{ route.price }}">
+            <input type="hidden" name="plate_no" value="{{ route.plate_no }}">
+            <input type="hidden" name="date" value="{{ route.date }}">
+            <button type="submit" class="select-btn" style="height: 30px; width: 80px; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;" disabled>
+              <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+            </button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+    function toggleRouteSelect(button) {
+        const row = button.closest('tr');
+        const selectButton = row.querySelector('.select-btn');
+
+        if (button.textContent === 'Activate') {
+            button.textContent = 'Deactivate';
+            selectButton.disabled = false; // Enable the "Select" button
+            selectButton.style.backgroundColor = 'blue'; // Change color if enabled
+        } else {
+            button.textContent = 'Activate';
+            selectButton.disabled = true; // Disable the "Select" button
+            selectButton.style.backgroundColor = 'gray'; // Change color if disabled
+        }
+    }
+</script>
+-->
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <table style="margin: 20px auto; width: 90%; max-width: 600px; background-color: lightgray; border-collapse: collapse; font-size: 16px;">
+        <thead>
+            <tr style="background-color: green;">
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: red; font-weight: bold;">NO</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: yellow; font-weight: bold;">Level</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Departure</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Destination</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Price</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Travel Date</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Remaining Seats</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Action</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody style="background-color: lightgray;">
+            {% for item in routes %}
+            <tr style="background-color: {% if forloop.counter|divisibleby:2 %}#f2f2f2{% endif %};">
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: brown; font-weight: bold;">{{ forloop.counter }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: yellow; font-weight: bold;">{{ item.levels }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.depcity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.descity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.price }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.date }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: red; font-weight: bold;">{{ item.remaining_seats }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <form action="{% url 'see' %}" method="post" style="margin: 0;">
+                        {% csrf_token %}
+                        <input type="hidden" name="depcity" value="{{ item.route.depcity }}">
+                        <input type="hidden" name="descity" value="{{ item.route.descity }}">
+                        <input type="hidden" name="price" value="{{ item.route.price }}">
+                        <input type="hidden" name="plate_no" value="{{ item.route.plate_no }}">
+                        <input type="hidden" name="date" value="{{ item.route.date }}">
+                        <button type="submit" class="select-btn" style="height: 30px; width: 80px; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;" disabled>
+                            <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Get URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectEnabled = urlParams.get('selectEnabled') === 'true';
+
+    // Enable or disable the "Select" buttons based on the state passed
+    const selectButtons = document.querySelectorAll('.select-btn');
+    selectButtons.forEach(button => {
+        button.disabled = !selectEnabled; // Set based on passed state
+        if (selectEnabled) {
+            button.style.backgroundColor = 'blue'; // Change color if enabled
+        } else {
+            button.style.backgroundColor = 'gray'; // Change color if disabled
+        }
+    });
+</script>
+-->
+
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <table style="margin: 20px auto; width: 90%; max-width: 600px; background-color: lightgray; border-collapse: collapse; font-size: 16px;">
+        <thead>
+            <tr style="background-color: green;">
+                <th style="padding: 10px; font-size: 12px;">NO</th>
+                <th style="padding: 10px; font-size: 12px;">Level</th>
+                <th style="padding: 10px; font-size: 12px;">Departure</th>
+                <th style="padding: 10px; font-size: 12px;">Destination</th>
+                <th style="padding: 10px; font-size: 12px;">Price</th>
+                <th style="padding: 10px; font-size: 12px;">Travel Date</th>
+                <th style="padding: 10px; font-size: 12px;">Remaining Seats</th>
+                <th style="padding: 10px; font-size: 12px;">Action</th>
+            </tr>
+        </thead>
+        <tbody style="background-color: lightgray;">
+            {% for item in routes %}
+            <tr style="background-color: {% if forloop.counter|divisibleby:2 %}#f2f2f2{% endif %};">
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: brown; font-weight: bold;">{{ forloop.counter }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: yellow; font-weight: bold;">{{ item.levels }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.depcity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.descity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.price }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.date }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: red; font-weight: bold;">{{ item.remaining_seats }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <form action="{% url 'see' %}" method="post" style="margin: 0;">
+                        {% csrf_token %}
+                        <input type="hidden" name="depcity" value="{{ item.route.depcity }}">
+                        <input type="hidden" name="descity" value="{{ item.route.descity }}">
+                        <input type="hidden" name="price" value="{{ item.route.price }}">
+                        <input type="hidden" name="plate_no" value="{{ item.route.plate_no }}">
+                        <input type="hidden" name="date" value="{{ item.route.date }}">
+                        <button type="submit" class="select-btn" style="height: 30px; width: 80px; background-color: blue; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;" disabled>
+                            <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+-->
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <table style="margin: 20px auto; width: 90%; max-width: 600px; background-color: lightgray; border-collapse: collapse; font-size: 16px;">
+        <thead>
+            <tr style="background-color: green;">
+                <th style="padding: 10px; font-size: 12px;">NO</th>
+                <th style="padding: 10px; font-size: 12px;">Level</th>
+                <th style="padding: 10px; font-size: 12px;">Departure</th>
+                <th style="padding: 10px; font-size: 12px;">Destination</th>
+                <th style="padding: 10px; font-size: 12px;">Price</th>
+                <th style="padding: 10px; font-size: 12px;">Travel Date</th>
+                <th style="padding: 10px; font-size: 12px;">Remaining Seats</th>
+                <th style="padding: 10px; font-size: 12px;">Action</th>
+            </tr>
+        </thead>
+        <tbody style="background-color: lightgray;">
+            {% for item in routes %}
+            <tr style="background-color: {% if forloop.counter|divisibleby:2 %}#f2f2f2{% endif %};">
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: brown; font-weight: bold;">{{ forloop.counter }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: yellow; font-weight: bold;">{{ item.levels }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.depcity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.descity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.price }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.date }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: red; font-weight: bold;">{{ item.remaining_seats }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <form action="{% url 'see' %}" method="post" style="margin: 0;">
+                        {% csrf_token %}
+                        <input type="hidden" name="depcity" value="{{ item.route.depcity }}">
+                        <input type="hidden" name="descity" value="{{ item.route.descity }}">
+                        <input type="hidden" name="price" value="{{ item.route.price }}">
+                        <input type="hidden" name="plate_no" value="{{ item.route.plate_no }}">
+                        <input type="hidden" name="date" value="{{ item.route.date }}">
+                        <button type="submit" class="select-btn" style="height: 30px; width: 80px; background-color: blue; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;" disabled>
+                            <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+-->
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <table style="margin: 20px auto; width: 90%; max-width: 600px; background-color: lightgray; border-collapse: collapse; font-size: 16px;">
+        <thead>
+            <tr style="background-color: green;">
+                <th style="padding: 10px; font-size: 12px;">NO</th>
+                <th style="padding: 10px; font-size: 12px;">Level</th>
+                <th style="padding: 10px; font-size: 12px;">Departure</th>
+                <th style="padding: 10px; font-size: 12px;">Destination</th>
+                <th style="padding: 10px; font-size: 12px;">Price</th>
+                <th style="padding: 10px; font-size: 12px;">Travel Date</th>
+                <th style="padding: 10px; font-size: 12px;">Remaining Seats</th>
+                <th style="padding: 10px; font-size: 12px;">Action</th>
+            </tr>
+        </thead>
+        <tbody style="background-color: lightgray;">
+            {% for item in routes %}
+            <tr style="background-color: {% if forloop.counter|divisibleby:2 %}#f2f2f2{% endif %};">
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: brown; font-weight: bold;">{{ forloop.counter }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: yellow; font-weight: bold;">{{ item.levels }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.depcity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.descity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.price }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.date }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: red; font-weight: bold;">{{ item.remaining_seats }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <form action="{% url 'see' %}" method="post" style="margin: 0;">
+                        {% csrf_token %}
+                        <input type="hidden" name="depcity" value="{{ item.route.depcity }}">
+                        <input type="hidden" name="descity" value="{{ item.route.descity }}">
+                        <input type="hidden" name="price" value="{{ item.route.price }}">
+                        <input type="hidden" name="plate_no" value="{{ item.route.plate_no }}">
+                        <input type="hidden" name="date" value="{{ item.route.date }}">
+                        <button type="submit" class="select-btn" style="height: 30px; width: 80px; background-color: blue; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;" disabled>
+                            <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+-->
+
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <table style="margin: 20px auto; width: 90%; max-width: 600px; background-color: lightgray; border-collapse: collapse; font-size: 16px;">
+        <thead>
+            <tr style="background-color: green;">
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: red; font-weight: bold;">NO</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: yellow; font-weight: bold;">Level</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Departure</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Destination</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Price</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Travel Date</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Remaining Seats</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Action</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody style="background-color: lightgray;">
+            {% for item in routes %}
+            <tr style="background-color: {% if forloop.counter|divisibleby:2 %}#f2f2f2{% endif %};">
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: brown; font-weight: bold;">{{ forloop.counter }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: yellow; font-weight: bold;">{{ item.levels }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.depcity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.descity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.price }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.date }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: red; font-weight: bold;">{{ item.remaining_seats }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <form action="{% url 'see' %}" method="post" style="margin: 0;">
+                        {% csrf_token %}
+                        <input type="hidden" name="depcity" value="{{ item.route.depcity }}">
+                        <input type="hidden" name="descity" value="{{ item.route.descity }}">
+                        <input type="hidden" name="price" value="{{ item.route.price }}">
+                        <input type="hidden" name="plate_no" value="{{ item.route.plate_no }}">
+                        <input type="hidden" name="date" value="{{ item.route.date }}">
+                        <button type="submit" class="select-btn" style="height: 30px; width: 80px; background-color: blue; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;" disabled>
+                            <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+-->
+
+
+
+<div class="search_panel active" style="margin-top: 10px;">
+    <table style="margin: 20px auto; width: 90%; max-width: 600px; background-color: lightgray; border-collapse: collapse; font-size: 16px;">
+        <thead>
+            <tr style="background-color: green;">
+		<th style="padding: 10px; font-size: 12px;">
+                 <span style="color: red; font-weight: bold;">NO</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: yellow; font-weight: bold;">Level</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Departure</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Destination</span>
+                </th>	
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Price</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Travel Date</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Remaining Seats</span>
+                </th>
+                <th style="padding: 10px; font-size: 12px;">
+                    <span style="color: white; font-weight: bold;">Action</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody style="background-color: lightgray;">
+            {% for item in routes %}
+            <tr style="background-color: {% if forloop.counter|divisibleby:2 %}#f2f2f2{% endif %};">
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: brown; font-weight: bold;">{{ forloop.counter }}</span>
+                </td>
+		<td style="padding: 10px; text-align: center;">
+                    <span style="color: yellow; font-weight: bold;">{{ item.levels }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.depcity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.descity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.price }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.date }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: red; font-weight: bold;">{{ item.remaining_seats }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <form action="{% url 'see' %}" method="post" style="margin: 0;">
+                        {% csrf_token %}
+                        <input type="hidden" name="depcity" value="{{ item.route.depcity }}">
+                        <input type="hidden" name="descity" value="{{ item.route.descity }}">
+			<input type="hidden" name="price" value="{{ item.route.price }}">
+                        <input type="hidden" name="plate_no" value="{{ item.route.plate_no }}">
+                        <input type="hidden" name="date" value="{{ item.route.date }}">
+
+		<!--
+		 <button type="submit" class="select-btn"
+                            style="height: 30px; width: 80px; background-color: blue; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;"
+                            {% if not item.route.is_active %} disabled {% endif %}>
+                            <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+                        </button>
+		-->
+		<button type="submit" class="select-btn"
+    style="height: 30px; width: 80px;
+           background-color: {% if item.route.is_active %} blue {% else %} brown {% endif %};
+           color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;"
+    {% if not item.route.is_active %} disabled {% endif %}>
+    <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+</button>
+
+
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <table style="margin: 20px auto; width: 90%; max-width: 600px; background-color: lightgray; border-collapse: collapse; font-size: 16px;">
+        <thead>
+            <tr style="background-color: green;">
+                <th style="padding: 10px; font-size: 12px;">NO</th>
+                <th style="padding: 10px; font-size: 12px;">Level</th>
+                <th style="padding: 10px; font-size: 12px;">Departure</th>
+                <th style="padding: 10px; font-size: 12px;">Destination</th>
+                <th style="padding: 10px; font-size: 12px;">Price</th>
+                <th style="padding: 10px; font-size: 12px;">Travel Date</th>
+                <th style="padding: 10px; font-size: 12px;">Remaining Seats</th>
+                <th style="padding: 10px; font-size: 12px;">Action</th>
+            </tr>
+        </thead>
+        <tbody style="background-color: lightgray;">
+            {% for item in routes %}
+            <tr style="background-color: {% if forloop.counter|divisibleby:2 %}#f2f2f2{% endif %};">
+                <td style="padding: 10px; text-align: center;">{{ forloop.counter }}</td>
+                <td style="padding: 10px; text-align: center;">{{ item.levels }}</td>
+                <td style="padding: 10px; text-align: center;">{{ item.route.depcity }}</td>
+                <td style="padding: 10px; text-align: center;">{{ item.route.descity }}</td>
+                <td style="padding: 10px; text-align: center;">{{ item.route.price }}</td>
+                <td style="padding: 10px; text-align: center;">{{ item.route.date }}</td>
+                <td style="padding: 10px; text-align: center;"><span style="color: red;">{{ item.remaining_seats }}</span></td>
+                <td style="padding: 10px; text-align: center;">
+                    <form action="{% url 'see' %}" method="post" style="margin: 0;">
+                        {% csrf_token %}
+                        <input type="hidden" name="depcity" value="{{ item.route.depcity }}">
+                        <input type="hidden" name="descity" value="{{ item.route.descity }}">
+                        <input type="hidden" name="price" value="{{ item.route.price }}">
+                        <input type="hidden" name="plate_no" value="{{ item.route.plate_no }}">
+                        <input type="hidden" name="date" value="{{ item.route.date }}">
+                        <button type="submit" class="select-btn" style="height: 30px; width: 80px; background-color: {% if item.remaining_seats == 'Full' %}gray{% else %}blue{% endif %}; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;" {% if item.remaining_seats == 'Full' %}disabled{% endif %}>
+                            <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+-->
+
+
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <table class="roo-table" style="margin: 20px auto; width: 90%; max-width: 600px; background-color: lightgray; border-collapse: collapse; font-size: 16px;">
+        <thead>
+            <tr style="background-color: green;">
+                <th style="padding: 10px; font-size: 12px;">NO</th>
+                <th style="padding: 10px; font-size: 12px;">Level</th>
+                <th style="padding: 10px; font-size: 12px;">Departure</th>
+                <th style="padding: 10px; font-size: 12px;">Destination</th>
+                <th style="padding: 10px; font-size: 12px;">Price</th>
+                <th style="padding: 10px; font-size: 12px;">Travel Date</th>
+                <th style="padding: 10px; font-size: 12px;">Remaining Seats</th>
+                <th style="padding: 10px; font-size: 12px;">Action</th>
+            </tr>
+        </thead>
+        <tbody style="background-color: lightgray;">
+            {% for item in routes %}
+            <tr style="background-color: {% if forloop.counter|divisibleby:2 %}#f2f2f2{% endif %};">
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: brown; font-weight: bold;">{{ forloop.counter }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: yellow; font-weight: bold;">{{ item.levels }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.depcity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.descity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.price }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.date }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: red; font-weight: bold;">{{ item.remaining_seats }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <form action="{% url 'see' %}" method="post" style="margin: 0;">
+                        {% csrf_token %}
+                        <input type="hidden" name="depcity" value="{{ item.route.depcity }}">
+                        <input type="hidden" name="descity" value="{{ item.route.descity }}">
+                        <input type="hidden" name="price" value="{{ item.route.price }}">
+                        <input type="hidden" name="plate_no" value="{{ item.route.plate_no }}">
+                        <input type="hidden" name="date" value="{{ item.route.date }}">
+                        <button type="submit" class="select-btn" style="height: 30px; width: 80px; background-color: blue; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;">
+                            <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+-->
+
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <table class="roo-table" style="margin: 20px auto; width: 90%; max-width: 600px; background-color: lightgray; border-collapse: collapse; font-size: 16px;">
+        <thead>
+            <tr style="background-color: green;">
+                <th style="padding: 10px; font-size: 12px;">NO</th>
+                <th style="padding: 10px; font-size: 12px;">Level</th>
+                <th style="padding: 10px; font-size: 12px;">Departure</th>
+                <th style="padding: 10px; font-size: 12px;">Destination</th>
+                <th style="padding: 10px; font-size: 12px;">Price</th>
+                <th style="padding: 10px; font-size: 12px;">Travel Date</th>
+                <th style="padding: 10px; font-size: 12px;">Remaining Seats</th>
+                <th style="padding: 10px; font-size: 12px;">Action</th>
+            </tr>
+        </thead>
+        <tbody style="background-color: lightgray;">
+            {% for item in routes %}
+            <tr style="background-color: {% if forloop.counter|divisibleby:2 %}#f2f2f2{% endif %};">
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: brown; font-weight: bold;">{{ forloop.counter }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: yellow; font-weight: bold;">{{ item.levels }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.depcity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.descity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.price }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.date }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: red; font-weight: bold;">{{ item.remaining_seats }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <form action="{% url 'see' %}" method="post" style="margin: 0;">
+                        {% csrf_token %}
+                        <input type="hidden" name="depcity" value="{{ item.depcity }}">
+                        <input type="hidden" name="descity" value="{{ item.descity }}">
+                        <input type="hidden" name="price" value="{{ item.price }}">
+                        <input type="hidden" name="plate_no" value="{{ item.plate_no }}">
+                        <input type="hidden" name="date" value="{{ item.date }}">
+                        <button type="submit" class="select-btn"
+                            style="height: 30px; width: 80px; background-color: blue; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;"
+                            {% if not item.is_active %} disabled {% endif %}>
+                            <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+-->
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <table class="roo-table" style="margin: 20px auto; width: 90%; max-width: 600px; background-color: lightgray; border-collapse: collapse; font-size: 16px;">
+        <thead>
+            <tr style="background-color: green;">
+                <th style="padding: 10px; font-size: 12px;">NO</th>
+                <th style="padding: 10px; font-size: 12px;">Level</th>
+                <th style="padding: 10px; font-size: 12px;">Departure</th>
+                <th style="padding: 10px; font-size: 12px;">Destination</th>
+                <th style="padding: 10px; font-size: 12px;">Price</th>
+                <th style="padding: 10px; font-size: 12px;">Travel Date</th>
+                <th style="padding: 10px; font-size: 12px;">Remaining Seats</th>
+                <th style="padding: 10px; font-size: 12px;">Action</th>
+            </tr>
+        </thead>
+        <tbody style="background-color: lightgray;">
+            {% for item in routes %}
+            <tr style="background-color: {% if forloop.counter|divisibleby:2 %}#f2f2f2{% endif %};">
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: brown; font-weight: bold;">{{ forloop.counter }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: yellow; font-weight: bold;">{{ item.levels }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.depcity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.descity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.price }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.date }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: red; font-weight: bold;">{{ item.remaining_seats }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <form action="{% url 'see' %}" method="post" style="margin: 0;">
+                        {% csrf_token %}
+                        <input type="hidden" name="depcity" value="{{ item.route.depcity }}">
+                        <input type="hidden" name="descity" value="{{ item.route.descity }}">
+                        <input type="hidden" name="price" value="{{ item.route.price }}">
+                        <input type="hidden" name="plate_no" value="{{ item.route.plate_no }}">
+                        <input type="hidden" name="date" value="{{ item.route.date }}">
+
+			<button type="submit" class="select-btn" style="height: 30px; width: 80px; background-color: blue; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;"
+        {% if not is_active %} disabled {% endif %}>
+    <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+-->
+
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <table style="margin: 20px auto; width: 90%; max-width: 600px; background-color: lightgray; border-collapse: collapse; font-size: 16px;">
+        <thead>
+            <tr style="background-color: green;">
+                <th style="padding: 10px; font-size: 12px;">NO</th>
+                <th style="padding: 10px; font-size: 12px;">Level</th>
+                <th style="padding: 10px; font-size: 12px;">Departure</th>
+                <th style="padding: 10px; font-size: 12px;">Destination</th>
+                <th style="padding: 10px; font-size: 12px;">Price</th>
+                <th style="padding: 10px; font-size: 12px;">Travel Date</th>
+                <th style="padding: 10px; font-size: 12px;">Remaining Seats</th>
+                <th style="padding: 10px; font-size: 12px;">Action</th>
+            </tr>
+        </thead>
+        <tbody style="background-color: lightgray;">
+            {% for item in routes %}
+            <tr style="background-color: {% if forloop.counter|divisibleby:2 %}#f2f2f2{% endif %};">
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: brown; font-weight: bold;">{{ forloop.counter }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: yellow; font-weight: bold;">{{ item.levels }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.depcity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.descity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.price }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.date }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: red; font-weight: bold;">{{ item.remaining_seats }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <form action="{% url 'see' %}" method="post" style="margin: 0;">
+                        {% csrf_token %}
+                        <input type="hidden" name="depcity" value="{{ item.route.depcity }}">
+                        <input type="hidden" name="descity" value="{{ item.route.descity }}">
+                        <input type="hidden" name="price" value="{{ item.route.price }}">
+                        <input type="hidden" name="plate_no" value="{{ item.route.plate_no }}">
+                        <input type="hidden" name="date" value="{{ item.route.date }}">
+                        <button type="submit" class="select-btn" style="height: 30px; width: 80px; background-color: blue; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;" >
+                            <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+-->
+
+
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <table style="margin: 20px auto; width: 90%; max-width: 600px; background-color: lightgray; border-collapse: collapse; font-size: 16px;">
+        <thead>
+            <tr style="background-color: green;">
+                <th style="padding: 10px; font-size: 12px;">NO</th>
+                <th style="padding: 10px; font-size: 12px;">Level</th>
+                <th style="padding: 10px; font-size: 12px;">Departure</th>
+                <th style="padding: 10px; font-size: 12px;">Destination</th>
+                <th style="padding: 10px; font-size: 12px;">Price</th>
+                <th style="padding: 10px; font-size: 12px;">Travel Date</th>
+                <th style="padding: 10px; font-size: 12px;">Remaining Seats</th>
+                <th style="padding: 10px; font-size: 12px;">Action</th>
+            </tr>
+        </thead>
+        <tbody style="background-color: lightgray;">
+            {% for item in routes %}
+            <tr style="background-color: {% if forloop.counter|divisibleby:2 %}#f2f2f2{% endif %};">
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: brown; font-weight: bold;">{{ forloop.counter }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: yellow; font-weight: bold;">{{ item.levels }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.depcity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.descity }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.price }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: blue; font-weight: bold;">{{ item.route.date }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <span style="color: red; font-weight: bold;">{{ item.remaining_seats }}</span>
+                </td>
+                <td style="padding: 10px; text-align: center;">
+                    <form action="{% url 'see' %}" method="post" style="margin: 0;">
+                        {% csrf_token %}
+                        <input type="hidden" name="depcity" value="{{ item.route.depcity }}">
+                        <input type="hidden" name="descity" value="{{ item.route.descity }}">
+                        <input type="hidden" name="price" value="{{ item.route.price }}">
+                        <input type="hidden" name="plate_no" value="{{ item.route.plate_no }}">
+                        <input type="hidden" name="date" value="{{ item.route.date }}">
+                        <button type="submit" class="select-btn" style="height: 30px; width: 80px; background-color: blue; color: brown; border-radius: 5px; border: 1px solid #ccc; font-weight: bold;" disabled>
+                            <span style="color: pink; font-weight: bold; font-size: 12px;">Select</span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+-->
+<!--
+<div class="search_panel active" style="margin-top: 10px;">
+    <button id="global-toggle" onclick="toggleAllRoutes()">Activate All</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Travel Date</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Kilometer</th>
+                <th>Price</th>
+                <th>Plate No</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for route in routes %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ route.date }}</td>
+                <td>{{ route.depcity }}</td>
+                <td>{{ route.descity }}</td>
+                <td>{{ route.kilometer }}</td>
+                <td>{{ route.price }}</td>
+                <td>{{ route.plate_no }}</td>
+                <td>
+                    <button class="toggle-select" onclick="toggleRouteSelect(this)">Activate</button>
+                    <input type="hidden" class="route-status" value="0">
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    let allActivated = false; // Track global activation state
+
+    function toggleRouteSelect(button) {
+        const row = button.closest('tr');
+        const routeStatus = row.querySelector('.route-status');
+
+        if (button.textContent === 'Activate') {
+            button.textContent = 'Deactivate';
+            routeStatus.value = '1'; // Set to active
+        } else {
+            button.textContent = 'Activate';
+            routeStatus.value = '0'; // Set to inactive
+        }
+
+        // Update "Select" buttons in roo.html
+        updateSelectButtonsInRoo();
+    }
+
+    function toggleAllRoutes() {
+        const rows = document.querySelectorAll('tbody tr');
+
+        allActivated = !allActivated; // Toggle global activation state
+        const globalToggleButton = document.getElementById('global-toggle');
+        globalToggleButton.textContent = allActivated ? 'Deactivate All' : 'Activate All';
+
+        rows.forEach(row => {
+            const toggleButton = row.querySelector('.toggle-select');
+            const routeStatus = row.querySelector('.route-status');
+
+            if (allActivated) {
+                toggleButton.textContent = 'Deactivate';
+                routeStatus.value = '1'; // Set all to active
+            } else {
+                toggleButton.textContent = 'Activate';
+                routeStatus.value = '0'; // Set all to inactive
+            }
+        });
+
+        // Update "Select" buttons in roo.html
+        updateSelectButtonsInRoo();
+    }
+
+    function updateSelectButtonsInRoo() {
+        const routes = Array.from(document.querySelectorAll('tbody tr'));
+        const selectButtons = document.querySelectorAll('roo-table .select-btn');
+
+        // Loop through each select button in roo.html
+        selectButtons.forEach(button => {
+            const depcity = button.querySelector('input[name="depcity"]').value;
+            const descity = button.querySelector('input[name="descity"]').value;
+            const date = button.querySelector('input[name="date"]').value;
+            const plate_no = button.querySelector('input[name="plate_no"]').value;
+
+            // Check if there is an active route matching the values of this select button
+            const isActive = routes.some(row => {
+                return row.querySelector('.route-status').value === '1' &&
+                       row.cells[2].textContent.trim() === depcity &&
+                       row.cells[3].textContent.trim() === descity &&
+                       row.cells[1].textContent.trim() === date &&
+                       row.cells[6].textContent.trim() === plate_no;
+            });
+
+            // Enable or disable the button based on the active status
+            button.disabled = !isActive;
+        });
+    }
+</script>
+-->
+
+
+<style>
+    @media (max-width: 600px) {
+        table {
+            width: 100%; /* Full width for smaller screens */
+            font-size: 12px; /* Adjust font size */
+        }
+        th, td {
+            padding: 8px; /* Reduce padding */
+        }
+        button {
+            width: 70px; /* Adjust button width */
+        }
+    }
+</style>
+
+
+
+
+
+<style>
+    @media (max-width: 600px) {
+        table {
+            font-size: 14px; /* Slightly smaller font size on mobile */
+            width: 100%; /* Ensure table uses full width */
+        }
+        th, td {
+            padding: 5px; /* Reduced padding for smaller screens */
+        }
+        button {
+            width: 70px; /* Adjust button width for mobile */
+            height: 30px; /* Adjust button height for mobile */
+        }
+    }
+</style>
+
+
+{% if error %}
+    <div class="error" style="margin-left: 30px; margin-top: 20px;">
+        <h3 style="color: red;"><b>{{ error }}</b><span style="margin-left:30px;" class="symbol">X</span></h3>
+    </div>
+{% endif %}
+
+
+</br></br></br>
+  </br></br></br></br></br></br></br</br>
+</body>
+</html>
