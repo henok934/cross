@@ -11,6 +11,7 @@ Django==5.1.10 # or Django==3.2.12 if needed
 #Django>=3.2,<4.0
 #lxml>=4.6,<5.0
 dl==0.1.0
+django-axes==8.0.0
 #lxml==4.9.3
 filelock==3.6.0
 HTMLParser==0.0.2
