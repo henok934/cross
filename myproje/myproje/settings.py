@@ -139,15 +139,15 @@ WSGI_APPLICATION = 'myproje.wsgi.application'
 
 #DATABASES = {
 
-"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-"""
 
+
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -158,6 +158,7 @@ DATABASES = {
         'PORT': '5432',  
     }
 }
+"""
 CORS_ALLOW_ALL_ORIGINS = True
 
 
