@@ -325,6 +325,30 @@ class Ticket(models.Model):
         self.__class__.objects.filter(ticket_id=self.ticket_id).update(qr_code=self.qr_code)
 
 
+"""
+class Buschange(models.Model):
+    new_side_no = models.CharField(max_length=50, null=True, blank=True)
+    new_plate_no = models.CharField(max_length=50, null=True, blank=True)
+    depcity = models.CharField(max_length=50, null=True, blank=True)
+    descity = models.CharField(max_length=50, null=True, blank=True)
+    date = models.CharField(max_length=50, null=True, blank=True)
+    side_no = models.CharField(max_length=20, null=True, blank=True)
+    plate_no = models.CharField(max_length=20, null=True, blank=True)
+
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='buschange_set',
+        blank=True
+    )
+    buschange_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='buschange_permissions_set',
+        blank=True
+    )
+    def __str__(self):
+        return f"{self.depcity} - {self.descity}, {self.new_side_no} - {self.new_plate_no}, - {self.plate_no} - {self.side_no} - {self.date}"
+"""
+from django.db import models
 
 class Buschange(models.Model):
     new_side_no = models.CharField(max_length=50, null=True, blank=True)
@@ -345,6 +369,7 @@ class Buschange(models.Model):
         related_name='buschange_permissions_set',
         blank=True
     )
+
     def __str__(self):
         return f"{self.depcity} - {self.descity}, {self.new_side_no} - {self.new_plate_no}, - {self.plate_no} - {self.side_no} - {self.date}"
 
