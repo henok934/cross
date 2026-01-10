@@ -5,6 +5,7 @@ ConfigParser==7.2.0
 gunicorn==23.0.0
 django-cors-headers==4.7.0
 drf-yasg==1.21.11
+psycopg2-binary==2.9.10
 coverage==7.7.1
 whitenoise>=6.0
 #psycopg2-binary>=2.9.0
