@@ -288,6 +288,528 @@
 }
 </style>
 </br>
+<table class="responsive-table" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+        {% if error %}
+        <div class="error">
+            <h6 style="color: red; text-align: center; margin-left: 400px;"><b>{{ error }}</b></h6>
+        </div>
+        {% endif %}
+        {% if success %}
+        <div class="success">
+            <h6 style="color: green; text-align: center;"><b>{{ success }}</b></h6>
+        </div>
+        {% endif %}
+        <tr style="background-color: #2e7d32; color: white; text-align: center;">
+            <th style="padding: 10px;">No</th>
+            <th>Plate No</th>
+            <th>Side No</th>
+            <th>No Seat</th>
+            <th>New Side</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bus in buses %}
+        <tr style="text-align: center; border-bottom: 1px solid #ddd; background-color: #f2f2f2;">
+            <td style="color: brown;">{{ forloop.counter }}</td>
+            <td>
+                <form action="{% url 'updatebus' %}" method="POST" class="update-form" style="margin: 0;">
+                    {% csrf_token %}
+                    <input type="text" name="plate_no" value="{{ bus.plate_no }}" readonly style="border:none; background:transparent; text-align:center;">
+            </td>
+            <td>
+                <input type="text" name="sideno" value="{{ bus.sideno }}" readonly style="border:none; background:transparent; text-align:center;">
+            </td>
+            <td>
+                <input type="number" name="no_seats" value="{{ bus.no_seats|default:0 }}" style="width: 60px; text-align: center;">
+            </td>
+	    <!--
+            <td>
+                <input type="text" name="new_sideno" id="new_sideno_{{ forloop.counter }}" required
+                       class="new-sideno-input form-control"
+                       {% if side == "3" %} maxlength="3" {% else %} maxlength="4" {% endif %}
+                       style="width: 110px; text-align: center; border: 1px solid #ccc; border-radius: 4px;"
+                       placeholder="Enter side">
+                
+                <p id="error-message_{{ forloop.counter }}" style="color: red; font-size: 11px; display: none; margin-top: 2px; font-weight: bold;"></p>
+            </td>
+	    -->
+	    <td>
+	    <input type="text"
+           name="new_sideno"
+           id="new_sideno_{{ forloop.counter }}"
+           class="new-sideno-input form-control"
+           {% if side == "3" %} maxlength="3" {% else %} maxlength="4" {% endif %}
+           oninput="this.value = this.value.replace(/[^0-9]/g, ''); validateSide(this, '{{ side }}', {{ forloop.counter }});"
+           required
+           style="width: 110px; text-align: center;"
+           placeholder="Enter side">
+
+    <p id="error-message_{{ forloop.counter }}" style="color: red; font-size: 11px; display: none; margin-top: 2px; font-weight: bold;"></p>
+</td>
+
+            <td>
+                <button type="submit" style="background-color: blue; color: white; border: none; padding: 5px 15px; cursor: pointer; border-radius: 4px;">
+                    <b>Change</b>
+                </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    const sideValue = "{{ side }}".trim();
+    const validStarts = sideValue.split('/').map(part => part.trim());
+
+    // Strict mode: Only 3-digit if the config is exactly "3"
+    const isThreeDigitMode = (sideValue === "3");
+
+    document.querySelectorAll('.new-sideno-input').forEach((input, index) => {
+        const errorDiv = document.getElementById(`error-message_${index + 1}`);
+
+        input.addEventListener('input', function() {
+            // 1. BLOCK CHARACTERS: Remove anything that isn't a number 0-9
+            this.value = this.value.replace(/[^0-9]/g, '');
+
+            const val = this.value;
+
+            if (val.length > 0) {
+                if (isThreeDigitMode) {
+                    // Rule for 3-digit buses
+                    if (val.length !== 3) {
+                        errorDiv.textContent = "Need exactly 3 digits.";
+                        errorDiv.style.display = 'block';
+                    } else {
+                        errorDiv.style.display = 'none';
+                    }
+                } else {
+                    // Rule for 4-digit prefixes (37/38)
+                    const startsCorrectly = validStarts.some(s => val.startsWith(s));
+
+                    if (!startsCorrectly) {
+                        errorDiv.textContent = `Must start with ${validStarts.join(' or ')}`;
+                        errorDiv.style.display = 'block';
+                    } else if (val.length !== 4) {
+                        errorDiv.textContent = "Need exactly 4 digits.";
+                        errorDiv.style.display = 'block';
+                    } else {
+                        errorDiv.style.display = 'none';
+                    }
+                }
+            } else {
+                errorDiv.style.display = 'none';
+            }
+        });
+
+        // Final guard to prevent submission of bad data
+        const form = input.closest('form');
+        form.addEventListener('submit', function(event) {
+            const val = input.value;
+            let isValid = true;
+
+            if (isThreeDigitMode) {
+                if (val.length !== 3) isValid = false;
+            } else {
+                const startsCorrectly = validStarts.some(s => val.startsWith(s));
+                if (!startsCorrectly || val.length !== 4) isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = "Invalid side number format.";
+            }
+        });
+    });
+</script>
+
+
+<!--
+<table class="responsive-table" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+        {% if error %}
+        <div class="error">
+            <h6 style="color: red; text-align: center;"><b>{{ error }}</b><span class="symbol">X</span></h6>
+        </div>
+        {% endif %}
+        {% if success %}
+        <div class="success">
+            <h6 style="color: green; text-align: center;"><b>{{ success }}</b></h6>
+        </div>
+        {% endif %}
+        <tr style="background-color: #2e7d32; color: white; text-align: center;">
+            <th style="padding: 10px;">No</th>
+            <th>Plate No</th>
+            <th>Side No</th>
+            <th>No Seat</th>
+            <th>New Side</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bus in buses %}
+        <tr style="text-align: center; border-bottom: 1px solid #ddd; background-color: #f2f2f2;">
+            <td style="color: brown;">{{ forloop.counter }}</td>
+            <td>
+                <form action="{% url 'updatebus' %}" method="POST" class="update-form" style="margin: 0;">
+                    {% csrf_token %}
+                    <input type="text" name="plate_no" value="{{ bus.plate_no }}" readonly style="border:none; background:transparent; text-align:center;">
+            </td>
+            <td>
+                <input type="text" name="sideno" value="{{ bus.sideno }}" readonly style="border:none; background:transparent; text-align:center;">
+            </td>
+            <td>
+                <input type="number" name="no_seats" value="{{ bus.no_seats|default:0 }}" style="width: 60px; text-align: center;">
+            </td>
+            <td>
+                <input type="text" name="new_sideno" id="new_sideno_{{ forloop.counter }}" required
+                       class="new-sideno-input form-control"
+                       {% if "3" == side or "/3" in side or "3/" in side %} 
+                            maxlength="3" 
+                       {% else %} 
+                            maxlength="4" 
+                       {% endif %}
+                       style="width: 110px; text-align: center; border: 1px solid #ccc; border-radius: 4px;"
+                       placeholder="Enter side">
+                
+                <p id="error-message_{{ forloop.counter }}" style="color: red; font-size: 11px; display: none; margin-top: 2px; font-weight: bold;"></p>
+            </td>
+            <td>
+                <button type="submit" style="background-color: #0000ff; color: white; border: none; padding: 5px 15px; cursor: pointer; border-radius: 4px;">
+                    <b>Change</b>
+                </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<script>
+    // 1. Get the dynamic configuration (e.g., "3" or "37/38" or "19/29")
+    const sideConfig = "{{ side }}".trim();
+    const validStarts = sideConfig.split('/').map(part => part.trim());
+
+    // Check if we are in 3-digit mode or 4-digit prefix mode
+    const isModeThree = validStarts.includes('3');
+
+    document.querySelectorAll('.new-sideno-input').forEach((input, index) => {
+        const errorDiv = document.getElementById(`error-message_${index + 1}`);
+
+        // Real-time validation as user types
+        input.addEventListener('input', function() {
+            // Step A: Restrict to numbers only (Removes "gghhh")
+            this.value = this.value.replace(/[^0-9]/g, '');
+            const val = this.value;
+
+            if (val.length > 0) {
+                if (isModeThree) {
+                    // Logic for 3-digit group
+                    if (val.length !== 3) {
+                        errorDiv.textContent = "Must be exactly 3 digits.";
+                        errorDiv.style.display = 'block';
+                    } else {
+                        errorDiv.style.display = 'none';
+                    }
+                } else {
+                    // Step B: Fixed 4-digit logic
+                    // Check if input starts with ANY allowed prefix (e.g., 37 OR 38)
+                    const startsCorrectly = validStarts.some(s => val.startsWith(s.substring(0,2)));
+
+                    if (!startsCorrectly) {
+                        errorDiv.textContent = `Must start with ${sideConfig}`;
+                        errorDiv.style.display = 'block';
+                    } else if (val.length !== 4) {
+                        errorDiv.textContent = "Need exactly 4 digits.";
+                        errorDiv.style.display = 'block';
+                    } else {
+                        errorDiv.style.display = 'none';
+                    }
+                }
+            } else {
+                errorDiv.style.display = 'none';
+            }
+        });
+
+        // Step C: Final Form Submission Guard
+        const form = input.closest('form');
+        form.addEventListener('submit', function(event) {
+            const val = input.value;
+            let isValid = true;
+
+            if (isModeThree) {
+                if (val.length !== 3) isValid = false;
+            } else {
+                const startsCorrectly = validStarts.some(s => val.startsWith(s.substring(0,2)));
+                if (!startsCorrectly || val.length !== 4) isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault(); // Block the request
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = "Please fix the side number format.";
+            }
+        });
+    });
+</script>
+-->
+
+<!--
+<table class="responsive-table" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+        {% if error %}
+        <div class="error">
+            <h6 style="color: red; text-align: center;"><b>{{ error }}</b></h6>
+        </div>
+        {% endif %}
+        {% if success %}
+        <div class="success">
+            <h6 style="color: green; text-align: center;"><b>{{ success }}</b></h6>
+        </div>
+        {% endif %}
+        <tr style="background-color: #2e7d32; color: white; text-align: center;">
+            <th style="padding: 10px;">No</th>
+            <th>Plate No</th>
+            <th>Side No</th>
+            <th>No Seat</th>
+            <th>New Side</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bus in buses %}
+        <tr style="text-align: center; border-bottom: 1px solid #ddd; background-color: #f2f2f2;">
+            <td style="color: brown;">{{ forloop.counter }}</td>
+            <td>
+                <form action="{% url 'updatebus' %}" method="POST" class="update-form" style="margin: 0;">
+                    {% csrf_token %}
+                    <input type="text" name="plate_no" value="{{ bus.plate_no }}" readonly style="border:none; background:transparent; text-align:center;">
+            </td>
+            <td>
+                <input type="text" name="sideno" class="current-side-val" value="{{ bus.sideno }}" readonly style="border:none; background:transparent; text-align:center;">
+            </td>
+            <td>
+                <input type="number" name="no_seats" value="{{ bus.no_seats|default:0 }}" style="width: 60px;">
+            </td>
+            <td>
+                <input type="text" name="new_sideno" required
+                       class="new-sideno-input form-control"
+                       style="width: 110px; text-align: center; border: 1px solid #ccc; border-radius: 4px;"
+                       placeholder="Enter side">
+                
+                <div class="error-msg" style="color: red; font-size: 11px; display: none; margin-top: 2px; font-weight: bold;"></div>
+            </td>
+            <td>
+                <button type="submit" style="background-color: blue; color: white; border: none; padding: 5px 15px; cursor: pointer; border-radius: 4px;">
+                    <b>Change</b>
+                </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener('input', function(event) {
+        if (event.target.classList.contains('new-sideno-input')) {
+            const input = event.target;
+            const row = input.closest('tr');
+            const errorDiv = input.nextElementSibling;
+            
+            // 1. Get current side number from this specific row (e.g., "3700")
+            const currentSide = row.querySelector('.current-side-val').value.trim();
+            const prefix = currentSide.substring(0, 2);
+            
+            // 2. Define logic based on your requirements
+            let allowedPrefixes = [];
+            let targetLength = 4;
+
+            if (currentSide.length === 3) {
+                targetLength = 3;
+                allowedPrefixes = []; // No prefix lock for 3-digit buses
+            } else if (prefix === "37" || prefix === "38") {
+                allowedPrefixes = ["37", "38"];
+            } else if (prefix === "19" || prefix === "29") {
+                allowedPrefixes = ["19", "29"];
+            } else {
+                allowedPrefixes = [prefix]; // Default to its own prefix
+            }
+
+            // 3. Clean input (numbers only) and set length
+            input.value = input.value.replace(/[^0-9]/g, '');
+            input.maxLength = targetLength;
+            
+            const val = input.value;
+            const hasValidPrefix = allowedPrefixes.length === 0 || allowedPrefixes.some(p => val.startsWith(p));
+
+            // 4. Update the display message
+            if (val.length > 0) {
+                if (targetLength === 4 && !hasValidPrefix) {
+                    errorDiv.textContent = `Must start with ${allowedPrefixes.join(' or ')}`;
+                    errorDiv.style.display = 'block';
+                } else if (val.length !== targetLength) {
+                    errorDiv.textContent = `Need ${targetLength} digits`;
+                    errorDiv.style.display = 'block';
+                } else {
+                    errorDiv.style.display = 'none'; // Correct
+                }
+            } else {
+                errorDiv.style.display = 'none';
+            }
+        }
+    });
+
+    // Final validation before sending to server
+    document.addEventListener('submit', function(event) {
+        if (event.target.classList.contains('update-form')) {
+            const input = event.target.querySelector('.new-sideno-input');
+            const errorDiv = input.nextElementSibling;
+            
+            if (errorDiv.style.display === 'block' || input.value === "") {
+                event.preventDefault();
+                alert("Please correct the side number before submitting.");
+            }
+        }
+    });
+</script>
+-->
+
+
+<!--
+<table class="responsive-table" style="width: 100%; border-collapse: collapse;">
+    <thead>
+        {% if error %}
+        <div class="error">
+            <h6 style="color: red; text-align: center;"><b>{{ error }}</b></h6>
+        </div>
+        {% endif %}
+        {% if success %}
+        <div class="success">
+            <h6 style="color: green; text-align: center;"><b>{{ success }}</b></h6>
+        </div>
+        {% endif %}
+        <tr style="background-color: #2e7d32; color: white;">
+            <th>No</th>
+            <th>Plate No</th>
+            <th>Side No</th>
+            <th>No Seat</th>
+            <th>New Side</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bus in buses %}
+        <tr>
+            <td style="color: brown; text-align: center;">{{ forloop.counter }}</td>
+            <td>
+                <form action="{% url 'updatebus' %}" method="POST" style="margin: 0;">
+                    {% csrf_token %}
+                    <input type="text" name="plate_no" value="{{ bus.plate_no }}" readonly style="border:none; background:transparent;">
+            </td>
+            <td>
+                <input type="text" name="sideno" value="{{ bus.sideno }}" readonly style="border:none; background:transparent;">
+            </td>
+            <td>
+                <input type="number" name="no_seats" value="{{ bus.no_seats }}" class="form-control" style="width: 70px;">
+            </td>
+            <td>
+                <input type="text" id="new_sideno_{{ forloop.counter }}" name="new_sideno" maxlength="4" required
+                       style="width: 110px;" class="new-sideno-input form-control"
+                       placeholder="Enter side">
+                <p id="error-message_{{ forloop.counter }}" style="color: red; font-size: 11px; display: none; margin-top: 2px; font-weight: bold;"></p>
+            </td>
+            <td>
+                <button type="submit" style="background: none; border: 1px solid red; cursor: pointer; padding: 2px 10px;">
+                    <b style="color: red;">Change</b>
+                </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    // 1. Get the dynamic configuration (e.g., "3" or "37/38" or "19/29")
+    const sideConfig = "{{ side }}".trim();
+    const validStarts = sideConfig.split('/').map(part => part.trim());
+    
+    // Check if we are in 3-digit mode or 4-digit prefix mode
+    const isModeThree = validStarts.includes('3');
+    const targetLength = isModeThree ? 3 : 4;
+
+    document.querySelectorAll('.new-sideno-input').forEach((input, index) => {
+        const errorMessage = document.getElementById(`error-message_${index + 1}`);
+
+        // Update maxlength dynamically based on side value
+        input.maxLength = targetLength;
+
+        input.addEventListener('input', function() {
+            // Numbers only
+            this.value = this.value.replace(/[^0-9]/g, '');
+            const val = this.value;
+
+            if (val.length > 0) {
+                if (isModeThree) {
+                    // Logic for side 3
+                    if (val.length !== 3) {
+                        errorMessage.textContent = "Must be exactly 3 digits.";
+                        errorMessage.style.display = 'block';
+                    } else {
+                        errorMessage.style.display = 'none';
+                    }
+                } else {
+                    // Logic for 37/38 or 19/29
+                    const startsCorrectly = validStarts.some(start => val.startsWith(start));
+                    if (!startsCorrectly) {
+                        errorMessage.textContent = `Must start with ${validStarts.join(' or ')}.`;
+                        errorMessage.style.display = 'block';
+                    } else if (val.length !== 4) {
+                        errorMessage.textContent = "Need exactly 4 digits.";
+                        errorMessage.style.display = 'block';
+                    } else {
+                        errorMessage.style.display = 'none';
+                    }
+                }
+            } else {
+                errorMessage.style.display = 'none';
+            }
+        });
+
+        // Strict validation on form submission
+        const form = input.closest('form');
+        form.addEventListener('submit', function(event) {
+            const val = input.value;
+            let isValid = true;
+
+            if (isModeThree) {
+                if (val.length !== 3) isValid = false;
+            } else {
+                const startsCorrectly = validStarts.some(start => val.startsWith(start));
+                if (!startsCorrectly || val.length !== 4) isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+                errorMessage.style.display = 'block';
+                if (!isModeThree) {
+                    errorMessage.textContent = `Must start with ${validStarts.join('/')} and be 4 digits.`;
+                } else {
+                    errorMessage.textContent = "Must be 3 digits.";
+                }
+            }
+        });
+    });
+</script>
+-->
+
+
+<!--
 <table class="responsive-table">
     <thead>
         {% if error %}
@@ -407,7 +929,7 @@
         });
     });
 </script>
-
+-->
 
 </br></br></br></br></br></br></br></br></br></br></br></br></br></br>
   <div class="copyright">

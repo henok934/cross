@@ -121,64 +121,260 @@
         </header>
 
 
-        </br></br></br></br></br></br></br></br></br></br></br></br> 
+        </br></br></br></br></br>
+	</br></br>
+	</br></br>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<div style="max-width: 1000px; margin: 20px auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    
+    <div style="text-align: right; margin-bottom: 10px;">
+        <button onclick="downloadTicketPDF()" style="background-color: #FF9800; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+            ⬇️ Download Ticket PDF
+        </button>
+    </div>
+
+    <div id="ticketContent" style="border: 2px solid #4CAF50; border-radius: 12px; padding: 30px; background-color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        
+        <h1 style="color: purple; text-align: center; margin-top: 0;"><b>Thanks for Traveling with us!!</b></h1>
+
+        {% if error %}
+        <div class="no-pdf" style="text-align: center; color: red; background: #fff0f0; border: 1px solid red; padding: 8px; border-radius: 5px; margin-bottom: 15px;">
+            <b>{{ error }}</b>
+        </div>
+        {% endif %}
+
+        {% if ticket %}
+        <div class="no-pdf" style="background: #f4fbf4; padding: 15px; border-radius: 8px; border: 1px solid #c3e6cb; margin-bottom: 25px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 15px;">
+            
+            <form action="{% url 'update_ticket' %}" method="post" style="margin: 0;">
+                {% csrf_token %}
+                <label style="color: green; font-weight: bold;">Update Date:</label>
+		 <input type="hidden" name="depcity" value="{{ ticket.depcity }}" required>
+        <input type="hidden" name="descity" value="{{ ticket.descity }}" required>
+        <input type="hidden" name="firstname" value="{{ ticket.firstname }}" required>
+        <input type="hidden" name="da" value="{{ ticket.date }}" required>
+        <input type="hidden" name="price" value="{{ ticket.price }}" required>
+        <input type="hidden" name="lastname" value="{{ ticket.lastname }}" required>
+        <input type="hidden" name="phone" value="{{ ticket.phone }}" required>
+        <input type="hidden" name="gender" value="{{ ticket.gender }}" required>
+        <input type="hidden" name="side_no" value="{{ ticket.side_no}}" required>
+        <input type="hidden" name="plate_no" value="{{ ticket.plate_no}}" required>
+        <input type="hidden" name="email" value="{{ ticket.email}}" required>
+                <input type="date" name="new_date" required style="border: 1px solid #ccc; padding: 5px; border-radius: 4px;">
+                <button type="submit" style="background-color: #4CAF50; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Update Date</button>
+            </form>
+
+            <form action="{% url 'passenger' %}" method="post" style="margin: 0;">
+                {% csrf_token %}
+                <input type="hidden" name="depcity" value="{{ ticket.depcity }}">
+                <input type="hidden" name="descity" value="{{ ticket.descity }}">
+                <input type="hidden" name="firstname" value="{{ ticket.firstname }}">
+                <input type="hidden" name="lastname" value="{{ ticket.lastname }}">
+                <input type="hidden" name="date" value="{{ ticket.date }}">
+                <label style="color: green; font-weight: bold;">Passenger Info:</label>
+                <button type="submit" style="background-color: #2196F3; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Update Name</button>
+            </form>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            
+            <div style="flex: 1.5;">
+                <h3 style="color: #008b8b; margin-bottom: 15px;">
+                    <span style="background: #e0f2f1; padding: 5px 10px; border-radius: 4px;">{{ level }} Level</span>
+                    <span style="margin-left: 20px;">PNR: <b style="color: blue;">{{ ticket.pnr }}</b></span>
+                </h3>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <p style="color: green; margin: 0;"><b>Booked Time:</b> <span style="color: blue;">{{ ticket.booked_time }}</span></p>
+                    <p style="color: green; margin: 0;"><b>First Name:</b> <span style="color: blue;">{{ ticket.firstname }}</span></p>
+                    <p style="color: green; margin: 0;"><b>Last Name:</b> <span style="color: blue;">{{ ticket.lastname }}</span></p>
+                    <p style="color: green; margin: 0;"><b>Ticket ID:</b> <span style="color: blue;">{{ ticket.ticket_id }}</span></p>
+                    <p style="color: green; margin: 0;"><b>Phone No:</b> <span style="color: blue;">{{ ticket.phone }}</span></p>
+                    <p style="color: green; margin: 0;"><b>From:</b> <span style="color: blue;">{{ ticket.depcity }}</span></p>
+                    <p style="color: green; margin: 0;"><b>To:</b> <span style="color: blue;">{{ ticket.descity }}</span></p>
+                    <p style="color: green; margin: 0;"><b>Side No:</b> <span style="color: blue;">{{ ticket.side_no }}</span></p>
+                    <p style="color: green; margin: 0;"><b>Travel Date:</b> <span style="color: blue;">{{ ticket.date }}</span></p>
+                    <p style="color: green; margin: 0;"><b>Seat No:</b> <span style="color: blue;">{{ ticket.no_seat }}</span></p>
+                    <p style="color: green; margin: 0;"><b>Price:</b> <span style="color: blue;">{{ ticket.price }} ETB</span></p>
+                    <p style="color: green; margin: 0;"><b>Plate No:</b> <span style="color: blue;">{{ ticket.plate_no }}</span></p>
+                </div>
+                <p style="color: green; margin-top: 20px;"><b>Email:</b> <span style="color: blue;">{{ ticket.email }}</span></p>
+            </div>
+
+            <div style="flex: 0.5; text-align: center; border-left: 1px solid #eee; padding-left: 20px;">
+                <img src="{{ qr_code_path }}" alt="QR Code" style="width: 200px; height: auto; border: 1px solid #ddd; padding: 5px; border-radius: 8px;">
+                <p style="color: #4CAF50; font-weight: bold; margin-top: 10px;">Verification QR</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
 <script>
-  function downloadTicket() {
-    const ticketContent = document.getElementById("ticketContent").outerHTML;
-    const ticketBlob = new Blob([ticketContent], { type: "text/html" });
-    const downloadLink = document.createElement("a");
-    downloadLink.href = URL.createObjectURL(ticketBlob);
-    downloadLink.download = "ticket.html";
-    downloadLink.click();
-  }
+    function downloadTicketPDF() {
+        const element = document.getElementById('ticketContent');
+        
+        // Hide the update buttons/inputs for the download
+        const noPdfParts = document.querySelectorAll('.no-pdf');
+        noPdfParts.forEach(part => part.style.display = 'none');
+
+        const opt = {
+            margin:       0.3,
+            filename:     'Ticket_{{ ticket.pnr }}.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 3, useCORS: true },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'landscape' }
+        };
+
+        html2pdf().set(opt).from(element).save().then(() => {
+            // Put the buttons back after download is finished
+            noPdfParts.forEach(part => part.style.display = 'flex');
+        });
+    }
 </script>
 
 
 
-    <h5 style="margin: 0 auto; padding-left: 130px; display: block; color: blue;">Download Ticket</h5>
-<button onclick="downloadTicket()" style="background-color: #FF9800; margin-left: 150px; padding: 10px 20px; border: none; cursor: pointer; font-size: 16px; color: white;">
-    ⬇️
-</button>
- <form action="{% url 'update_ticket' %}" method="post" style="margin-top: -200px;">
-            {% csrf_token %}
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<div class="center" style="padding: 20px; max-width: 850px; margin: 0 auto; font-family: sans-serif;">
+    
+    <div style="text-align: right; margin-bottom: 10px;">
+        <button onclick="generatePDF()" style="background-color: #FF9800; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 14px;">
+            ⬇️ Download Ticket (PDF)
+        </button>
+    </div>
+
+    <div id="ticketContent" style="border: 2px solid #4CAF50; border-radius: 12px; padding: 30px; background-color: white; position: relative; min-height: 450px;">
+        
+        <h1 style="color: purple; text-align: center; margin-bottom: 20px;"><b>Thanks for Traveling with us!!</b></h1>
+
+        {% if error %}
+        <div style="background-color: #ffebee; border: 1px solid red; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+            <h6 style="color: red; margin: 0; text-align: center;"><b>{{ error }}</b></h6>
+        </div>
+        {% endif %}
+
+        {% if ticket %}
+        <div class="no-pdf" style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px dashed #4CAF50;">
+            <form action="{% url 'update_ticket' %}" method="post" style="display: inline-block; margin-right: 20px;">
+                {% csrf_token %}
+                <label style="color: green; font-weight: bold;">Update Travel Date:</label>
+                <input type="date" name="new_date" required style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                <button type="submit" style="background-color: #4CAF50; color: white; padding: 6px 12px; border: none; border-radius: 4px; cursor: pointer;">Update</button>
+            </form>
+        </div>
+
+        <div style="display: flex; justify-content: space-between;">
+            
+            <div style="flex: 1;">
+                <h3 style="color: darkcyan; margin: 5px 0;"><b>{{ level }} Level</b></h3>
+                <h3 style="color: darkcyan; margin: 5px 0;"><b>PNR:</b> <span style="color: blue;">{{ ticket.pnr }}</span></h3>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 15px;">
+                    <p style="color: green; margin: 2px 0;"><b>Booked Time:</b> <span style="color: blue;">{{ ticket.booked_time }}</span></p>
+                    <p style="color: green; margin: 2px 0;"><b>First Name:</b> <span style="color: blue;">{{ ticket.firstname }}</span></p>
+                    <p style="color: green; margin: 2px 0;"><b>Last Name:</b> <span style="color: blue;">{{ ticket.lastname }}</span></p>
+                    <p style="color: green; margin: 2px 0;"><b>Ticket ID:</b> <span style="color: blue;">{{ ticket.ticket_id }}</span></p>
+                    <p style="color: green; margin: 2px 0;"><b>Phone No:</b> <span style="color: blue;">{{ ticket.phone }}</span></p>
+                    <p style="color: green; margin: 2px 0;"><b>From:</b> <span style="color: blue;">{{ ticket.depcity }}</span></p>
+                    <p style="color: green; margin: 2px 0;"><b>To:</b> <span style="color: blue;">{{ ticket.descity }}</span></p>
+                    <p style="color: green; margin: 2px 0;"><b>Side No:</b> <span style="color: blue;">{{ ticket.side_no }}</span></p>
+                    <p style="color: green; margin: 2px 0;"><b>Travel Date:</b> <span style="color: blue;">{{ ticket.date }}</span></p>
+                    <p style="color: green; margin: 2px 0;"><b>Seat No:</b> <span style="color: blue;">{{ ticket.no_seat }}</span></p>
+                    <p style="color: green; margin: 2px 0;"><b>Price:</b> <span style="color: blue;">{{ ticket.price }} ETB</span></p>
+                    <p style="color: green; margin: 2px 0;"><b>Plate No:</b> <span style="color: blue;">{{ ticket.plate_no }}</span></p>
+                </div>
+                <p style="color: green; margin-top: 15px;"><b>Email:</b> <span style="color: blue;">{{ ticket.email }}</span></p>
+            </div>
+
+            <div style="text-align: center; padding-left: 20px;">
+                <img src="{{ qr_code_path }}" alt="QR Code" style="width: 200px; height: auto; border: 1px solid #ddd; padding: 5px; border-radius: 8px;">
+                <p style="color: #4CAF50; font-weight: bold; margin-top: 10px;">Verification QR</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    </div>
+
+<script>
+    function generatePDF() {
+        const element = document.getElementById('ticketContent');
+        
+        // Temporarily hide the update forms so they don't appear in the PDF
+        const noPdfElements = document.querySelectorAll('.no-pdf');
+        noPdfElements.forEach(el => el.style.visibility = 'hidden');
+
+        const opt = {
+            margin:       [0.5, 0.5],
+            filename:     'Ticket_{{ ticket.pnr }}.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, logging: false },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'landscape' }
+        };
+
+        // Generate PDF
+        html2pdf().set(opt).from(element).save().then(() => {
+            // Restore forms after download
+            noPdfElements.forEach(el => el.style.visibility = 'visible');
+        });
+    }
+</script>
+-->
+
+
+<!--
 <div class="center" id="ticketContent" style="padding: 20px; text-align: left; max-width: 800px; margin: 0 auto;">
     <div style="border: 1px solid #4CAF50; border-radius: 8px; padding: 10px; background-color: white;">
+<form action="{% url 'update_ticket' %}" method="post">
+            {% csrf_token %}
         <h1 style="color: purple; text-align: center;"><b>Thanks for Traveling with us!!</b></h1>
-
 	{% if ticket %}
 
-        <h3 style="color: cyan; margin: 0; padding: 3px 0; text-align: left;">
-            <b>{{ level }}:</b> <b style="color: yellow;">Level</b>
-        </h3>
-        <input type="hidden" name="depcity" value="{{ ticket.depcity }}" required>
-        <input type="hidden" name="descity" value="{{ ticket.descity }}" required>
-        <input type="hidden" name="firstname" value="{{ ticket.firstname }}" required>
-	<input type="hidden" name="da" value="{{ ticket.date }}" required>
-	<input type="hidden" name="price" value="{{ ticket.price }}" required>
-        <input type="hidden" name="lastname" value="{{ ticket.lastname }}" required>
-        <input type="hidden" name="phone" value="{{ ticket.phone }}" required>
-	<input type="hidden" name="gender" value="{{ ticket.gender }}" required>
-	<input type="hidden" name="side_no" value="{{ ticket.side_no}}" required>
-	<input type="hidden" name="plate_no" value="{{ ticket.plate_no}}" required>
-	<input type="hidden" name="email" value="{{ ticket.email}}" required>
-
+{% endif %}
 {% if error %}
 <div class="success">
 <h6 style="color: red; margin-left: 150px;"><b>{{ error }}</b><span style="margin-left:20px;" class="symbol"><b>X</b></span></h6>
 </div>
 {% endif %}
-
 <label for="travel_date" style="color: green;">Update Travel Date:</label>
 <input type="date" id="travel_date" name="new_date" required style="margin-left: 10px;">
 <button type="submit" style="background-color: #4CAF50; color: white; padding: 5px 10px; border: none; cursor: pointer; margin-top: -200px;">
                 Update
             </button>
         </form>
+<form action="{% url 'passenger' %}" method="post">
 
+            {% csrf_token %}
+
+        <h1 style="color: purple; text-align: center;"><b></b></h1>
+        {% if ticket %}
+{% if error %}
+<div class="success">
+<h6 style="color: red; margin-left: 150px;"><b>{{ error }}</b><span style="margin-left:20px;" class="symbol"><b>X</b></span></h6>
+</div>
+{% endif %}
+
+<label for="travel_date" style="color: green;">Update Name:</label>
+<input type="hidden" name="depcity" value="{{ ticket.depcity }}" required>
+<input type="hidden" name="descity" value="{{ ticket.descity }}" required>
+<input type="hidden" name="firstname" value="{{ ticket.firstname }}" required>
+<input type="hidden" name="lastname" value="{{ ticket.lastname }}" required>
+<input type="hidden" name="date" value="{{ ticket.date }}" required>
+<button type="submit" style="background-color: #4CAF50; color: white; padding: 5px 10px; border: none; cursor: pointer;">
+                Update
+            </button>
+        </form>
+
+	 <h3 style="color: cyan; margin: 0; padding: 3px 0; text-align: left;">
+            <b>{{ level }}:</b> <b style="color: yellow;">Level</b>
+        </h3>
 	<h3 style="color: cyan; margin: 0; padding: 3px 0; text-align: left;">
         <b>PNR:</b> <b style="color: blue;">{{ ticket.pnr }}</b>
         </h3>
-
         <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
             <b>Booked Time:</b> <b style="color: blue;">{{ ticket.booked_time }}</b>
         </h3>
@@ -221,6 +417,16 @@
         <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
             <img src="{{ qr_code_path }}" alt="QR Code" style="width: 250px; height: auto; border: 2px solid #4CAF50; border-radius: 4px; margin-left: 370px; margin-top: -350px;">
         </h3>
+	 </div>
+</div>
+-->
+
+
+
+
+
+
+
 	<script>
 function downloadTicket() {
     // Get the content to be downloaded
@@ -276,6 +482,8 @@ function downloadTicket() {
 }
 </script>
 {% else %}
+
+
 <!--
 <label for="travel_date" style="color: green;">Update Travel Date:</label>
 <input type="date" id="travel_date" name="new_date" required style="margin-left: 10px;">
@@ -283,9 +491,9 @@ function downloadTicket() {
                 Update
             </button>
         </form>
-	-->
+-->
 
-        {% endif %}
+{% endif %}
     </div>
 </div>
 

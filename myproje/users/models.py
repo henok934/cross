@@ -1,3 +1,195 @@
+import uuid
+import random
+import string
+import qrcode
+import base64
+from io import BytesIO
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
+from django.contrib.auth.hashers import make_password
+
+# ==========================================
+# 1. AUTHENTICATION & ROLE MODELS
+# ==========================================
+
+class CustomUser(AbstractUser):
+    """ Acts as the SYSTEM ADMIN """
+    registration_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    phone = models.CharField(max_length=50, null=True, blank=True)
+    registered_time = models.DateTimeField(auto_now_add=True)
+
+class Sc(models.Model):
+    """ SHARE COMPANY Admin """
+    registration_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    registered_time = models.DateTimeField(auto_now_add=True)
+    firstname = models.CharField(max_length=50, null=True, blank=True)
+    lastname = models.CharField(max_length=50, null=True, blank=True)
+    username = models.CharField(max_length=50, unique=True)
+    password = models.CharField(max_length=128) 
+    name = models.CharField(max_length=50, null=True, blank=True) # Company Name
+    side = models.CharField(max_length=50, null=True, blank=True)
+    level = models.CharField(max_length=50, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    phone = models.CharField(max_length=50, null=True, blank=True)
+    gender = models.CharField(max_length=20, null=True, blank=True)
+
+    def set_password(self, raw_password):
+        self.password = make_password(raw_password)
+
+class Worker(models.Model):
+    """ BOOKER Model (Worker) """
+    registration_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    registered_time = models.DateTimeField(auto_now_add=True)
+    fname = models.CharField(max_length=50, null=True, blank=True)
+    lname = models.CharField(max_length=50, null=True, blank=True)
+    city = models.CharField(max_length=50, null=True, blank=True)
+    username = models.CharField(max_length=50, unique=True)
+    password = models.CharField(max_length=128)
+    phone = models.CharField(max_length=50, null=True, blank=True)
+    gender = models.CharField(max_length=20, null=True, blank=True)
+    groups = models.ManyToManyField('auth.Group', related_name='worker_set', blank=True)
+    worker_permissions = models.ManyToManyField('auth.Permission', related_name='worker_permissions_set', blank=True)
+
+    def set_password(self, raw_password):
+        self.password = make_password(raw_password)
+
+# ==========================================
+# 2. INFRASTRUCTURE & LOGIC MODELS
+# ==========================================
+
+class City(models.Model):
+    registration_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    registered_time = models.DateTimeField(auto_now_add=True)
+    depcity = models.CharField(max_length=50, unique=True)
+
+
+class Bus(models.Model):
+    registration_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    registered_time = models.DateTimeField(auto_now_add=True)
+    owner_sc = models.ForeignKey(Sc, on_delete=models.CASCADE, related_name='buses', null=True) # Added null=True
+    firstname = models.CharField(max_length=100, null=True, blank=True) # Add this
+    lastname = models.CharField(max_length=100, null=True, blank=True)  # Add this
+    phone = models.CharField(max_length=20, null=True, blank=True)
+    name = models.CharField(max_length=50, null=True, blank=True)
+    plate_no = models.CharField(max_length=50, unique=True)
+    sideno = models.CharField(max_length=50)
+    no_seats = models.IntegerField(default=45) # Added default=45
+    level = models.CharField(max_length=50, default='Level 1') # Added default
+
+class Route(models.Model):
+    registration_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    registered_time = models.DateTimeField(auto_now_add=True)
+    depcity = models.CharField(max_length=50)
+    descity = models.CharField(max_length=50)
+    kilometer = models.CharField(max_length=50)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    date = models.CharField(max_length=50)
+    plate_no = models.CharField(max_length=50)
+    side_no = models.CharField(max_length=50)
+    is_active = models.BooleanField(default=False)
+
+class Service_fee(models.Model):
+    registration_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    registered_time = models.DateTimeField(auto_now_add=True)
+    service_fee = models.DecimalField(max_digits=10, decimal_places=2)
+
+# ==========================================
+# 3. TRANSACTIONAL & FEEDBACK MODELS
+# ==========================================
+
+import uuid
+import random
+import string
+from django.db import models
+from django.utils import timezone
+import qrcode
+from io import BytesIO
+import base64
+class Ticket(models.Model):
+    ticket_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    pnr = models.CharField(max_length=6, unique=True, editable=False)
+    firstname = models.CharField(max_length=50, null=True, blank=True)
+    lastname = models.CharField(max_length=50, null=True, blank=True)
+    phone = models.CharField(max_length=50, null=True, blank=True)
+    depcity = models.CharField(max_length=50, null=True, blank=True)
+    descity = models.CharField(max_length=50, null=True, blank=True)
+    date = models.CharField(max_length=50, null=True, blank=True)
+    email = models.CharField(max_length=50, null=True, blank=True)
+    gender = models.CharField(max_length=50, null=True, blank=True)
+    no_seat = models.CharField(max_length=20, null=True, blank=True)
+    price = models.CharField(max_length=50, null=True, blank=True)
+    side_no = models.CharField(max_length=20, null=True, blank=True)
+    plate_no = models.CharField(max_length=20, null=True, blank=True)
+    username = models.CharField(max_length=20, null=True, blank=True)
+    booked_time = models.DateTimeField(default=timezone.now)
+    qr_code = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.firstname} {self.lastname} - PNR: {self.pnr}"
+
+    def generate_pnr(self):
+        return ''.join(random.choices(string.ascii_uppercase, k=6))
+
+    def generate_qr_data(self):
+        # This method pulls data from the current instance
+        return (
+            f"Ticket ID: {self.ticket_id}\n"
+            f"PNR: {self.pnr}\n"
+            f"Name: {self.firstname} {self.lastname}\n"
+            f"Phone: {self.phone}\n"
+            f"From: {self.depcity} To: {self.descity}\n"
+            f"Date: {self.date}\n"
+            f"Seat: {self.no_seat}\n"
+            f"Price: {self.price} ETB"
+        )
+
+    def generate_qr_code(self):
+        data = self.generate_qr_data()
+        qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4)
+        qr.add_data(data)
+        qr.make(fit=True)
+
+        img = qr.make_image(fill_color="black", back_color="white")
+        buffer = BytesIO()
+        img.save(buffer, format='PNG')
+        return 'data:image/png;base64,' + base64.b64encode(buffer.getvalue()).decode()
+
+    def save(self, *args, **kwargs):
+        if not self.pnr:
+            self.pnr = self.generate_pnr()
+
+         # 1. Save the new names to the DB first
+        super().save(*args, **kwargs)
+
+        # 2. Generate the QR using the updated names
+        new_qr = self.generate_qr_code()
+
+        # 3. Update the instance and the DB record with the NEW QR string
+        self.qr_code = new_qr
+        Ticket.objects.filter(id=self.id).update(qr_code=new_qr)
+
+
+class Buschange(models.Model):
+    new_side_no = models.CharField(max_length=50)
+    new_plate_no = models.CharField(max_length=50)
+    depcity = models.CharField(max_length=50)
+    descity = models.CharField(max_length=50)
+    date = models.CharField(max_length=50)
+    side_no = models.CharField(max_length=20)
+    plate_no = models.CharField(max_length=20)
+    groups = models.ManyToManyField('auth.Group', related_name='buschange_set', blank=True)
+
+class Feedback(models.Model):
+    registration_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    registered_time = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    phone = models.CharField(max_length=50)
+    message = models.TextField()
+
+
+"""
 # users/models.py
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -253,6 +445,78 @@ class Admin(models.Model):
         return f"{self.username} - {self.fname} - {self.lname} - {self.gender} - {self.password} - {self.phone} - {self.registration_id} - {self.registered_time}"
 
 
+import uuid
+import random
+import string
+import qrcode
+import base64
+from io import BytesIO
+from django.db import models
+from django.utils import timezone
+
+class Ticket(models.Model):
+    ticket_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    pnr = models.CharField(max_length=6, unique=True, editable=False)
+    firstname = models.CharField(max_length=50, null=True, blank=True)
+    lastname = models.CharField(max_length=50, null=True, blank=True)
+    phone = models.CharField(max_length=50, null=True, blank=True)
+    depcity = models.CharField(max_length=50, null=True, blank=True)
+    descity = models.CharField(max_length=50, null=True, blank=True)
+    date = models.CharField(max_length=50, null=True, blank=True)
+    email = models.CharField(max_length=50, null=True, blank=True)
+    gender = models.CharField(max_length=50, null=True, blank=True)
+    no_seat = models.CharField(max_length=20, null=True, blank=True)
+    price = models.CharField(max_length=50, null=True, blank=True)
+    side_no = models.CharField(max_length=20, null=True, blank=True)
+    plate_no = models.CharField(max_length=20, null=True, blank=True)
+    username = models.CharField(max_length=20, null=True, blank=True)
+    booked_time = models.DateTimeField(default=timezone.now)
+    qr_code = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.firstname} {self.lastname} - PNR: {self.pnr}"
+
+    def generate_pnr(self):
+        return ''.join(random.choices(string.ascii_uppercase, k=6))
+
+    def generate_qr_data(self):
+        # This method pulls data from the current instance
+        return (
+            f"Ticket ID: {self.ticket_id}\n"
+            f"PNR: {self.pnr}\n"
+            f"Name: {self.firstname} {self.lastname}\n"
+            f"Phone: {self.phone}\n"
+            f"From: {self.depcity} To: {self.descity}\n"
+            f"Date: {self.date}\n"
+            f"Seat: {self.no_seat}\n"
+            f"Price: {self.price} ETB"
+        )
+
+    def generate_qr_code(self):
+        data = self.generate_qr_data()
+        qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4)
+        qr.add_data(data)
+        qr.make(fit=True)
+
+        img = qr.make_image(fill_color="black", back_color="white")
+        buffer = BytesIO()
+        img.save(buffer, format='PNG')
+        return 'data:image/png;base64,' + base64.b64encode(buffer.getvalue()).decode()
+
+    def save(self, *args, **kwargs):
+        if not self.pnr:
+            self.pnr = self.generate_pnr()
+        
+        # 1. Save the new names to the DB first
+        super().save(*args, **kwargs)
+        
+        # 2. Generate the QR using the updated names
+        new_qr = self.generate_qr_code()
+        
+        # 3. Update the instance and the DB record with the NEW QR string
+        self.qr_code = new_qr
+        Ticket.objects.filter(id=self.id).update(qr_code=new_qr)
+
 
 import uuid
 import random
@@ -325,7 +589,8 @@ class Ticket(models.Model):
         self.__class__.objects.filter(ticket_id=self.ticket_id).update(qr_code=self.qr_code)
 
 
-"""
+
+
 class Buschange(models.Model):
     new_side_no = models.CharField(max_length=50, null=True, blank=True)
     new_plate_no = models.CharField(max_length=50, null=True, blank=True)
@@ -347,7 +612,6 @@ class Buschange(models.Model):
     )
     def __str__(self):
         return f"{self.depcity} - {self.descity}, {self.new_side_no} - {self.new_plate_no}, - {self.plate_no} - {self.side_no} - {self.date}"
-"""
 from django.db import models
 
 class Buschange(models.Model):
@@ -373,3 +637,4 @@ class Buschange(models.Model):
     def __str__(self):
         return f"{self.depcity} - {self.descity}, {self.new_side_no} - {self.new_plate_no}, - {self.plate_no} - {self.side_no} - {self.date}"
 
+"""

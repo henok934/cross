@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<title>your ticke</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Travelix Project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/styles/bootstrap4/bootstrap.min.css">
+<link href="../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="../static/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="../static/styles/responsive.css">
+</head>
+<body style="background-color: lightblue;">
+<div class="super_container">
+<header class="header">
+                <div class="top_bar">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col d-flex flex-row">
+                                                <div class="phone">+251-11-551 82 92</div>
+                                                <div class="social">
+                                                        <ul class="social_list">
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                     <li class="social_list_item"><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                                                                <li class="social_list_item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                                        </ul>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+
+
+<nav class="main_nav">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
+                                                <div class="logo_container">
+                                                        <div class="logo">
+    <a href="#">
+        <img src="../static/images/logo.png" alt="">
+        <span style="color: white;">ticket</span>
+    </a>
+</div>
+</div>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<div class="container-fluid" style="background-color: ![#000000][] #000000 padding: 10px; border-radius: 5px;">
+    <ul class="main_nav_list d-flex flex-nowrap align-items-center" style="list-style-type: none; padding: 0; margin: 0; overflow-x: auto;">
+	 <li class="main_nav_item" style="margin-right: 20px; margin-left: 100px;">
+            <a href="{% url 'about' %}" style="color: blue; text-decoration: none;">Home</a>
+        </li>
+        <li class="main_nav_item" style="margin-right: 20px; margin-left: 20px;">
+            <a href="{% url 'book' %}" style="color: blue; text-decoration: none;">Book</a>
+        </li>
+        <ul style="list-style-type: none; padding: 0; margin: 0;">
+    <li class="main_nav_item" style="margin-right: 20px; margin-left: 30px; display: inline; white-space: nowrap;">
+        <a href="{% url 'about' %}" style="color: blue; text-decoration: none;">About Us</a>
+    </li>
+</ul>
+<ul style="list-style-type: none; padding: 0; margin: 0;">
+    <li class="main_nav_item" style="margin-right: 20px; margin-left: 30px; display: inline; white-space: nowrap;">
+        <a href="{% url 'get_ticket' %}" style="color: blue; text-decoration: none;">Show Ticket</a>
+    </li>
+</ul>
+        <li class="main_nav_item" style="margin-right: 20px; margin-left:30px;">
+            <a href="{% url 'comment' %}" style="color: blue; text-decoration: none;">Comment</a>
+        </li>
+        <li class="main_nav_item" style="margin-right: 20px; margin-left:20px;">
+            <a href="{% url 'login' %}" style="color: blue; text-decoration: none;">Login</a>
+        </li>
+<li class="main_nav_item" style="display: inline;">
+    <form action="{% url 'changebuses' %}" method="post" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+        {% csrf_token %}
+        <button type="button" id="notificationButton" style="background: none; border: none; cursor: pointer; margin-left:30px;" class="main_nav_item">
+            🔔<span style="color: red;"><b>{{ buschanges_count }}</b></span>
+        </button>
+        <br>
+        <input type="date" name="date" placeholder="Date" required id="dateInput" style="display: none; margin-left: 10px; width: 120px; background-color: #ffebcd; border: 1px solid #ffa07a; border-radius: 4px; padding: 3px;">
+    </form>
+</li>
+<script>
+    document.getElementById('notificationButton').addEventListener('click', function() {
+        var dateInput = document.getElementById('dateInput');
+
+        // Toggle visibility of date input
+        if (dateInput.style.display === 'none') {
+            dateInput.style.display = 'inline-block';  // Show the date input
+ dateInput.focus(); // Focus on the date input when shown
+        } else {
+            dateInput.style.display = 'none';  // Hide the date input
+        }
+    });
+
+    // Automatically submit the form when a date is selected
+    document.getElementById('dateInput').addEventListener('change', function() {
+        document.getElementById('search_form_1').submit();
+    });
+</script>
+<div class="search_panel active">
+</div>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+  {% if error1 %}
+    <div class="success">
+        <h6 style="color: red; margin-left: 300px;"><b>{{ error1 }}</b><span style="margin-left:20px;" class="symbol"><b>X</b></span></h6>
+    </div>
+    {% endif %}
+        </header>
+
+
+        </br></br></br></br></br></br></br></br></br></br></br></br> 
+
+<!--	<script>
+  function downloadTicket() {
+    const ticketContent = document.getElementById("ticketContent").outerHTML;
+    const ticketBlob = new Blob([ticketContent], { type: "text/html" });
+    const downloadLink = document.createElement("a");
+    downloadLink.href = URL.createObjectURL(ticketBlob);
+    downloadLink.download = "ticket.html";
+    downloadLink.click();
+  }
+</script>
+<h5 style="margin: 0 auto; padding-left: 130px; display: block; color: blue;">Download Ticket</h5>
+<button onclick="downloadTicket()" style="background-color: #FF9800; margin-left: 150px; padding: 10px 20px; border: none; cursor: pointer; font-size: 16px; color: white;">
+    ⬇️
+</button>
+-->
+<!--
+<form action="{% url 'passenger' %}" method="post" style="margin-top: 20px;">
+    {% csrf_token %}
+    
+    {% if error %}
+    <div style="text-align: center; color: red; margin-bottom: 10px;">
+        <b>{{ error }}</b> <span style="cursor:pointer;">X</span>
+    </div>
+    {% endif %}
+
+    <div style="border: 1px solid #4CAF50; border-radius: 8px; padding: 20px; background-color: white; max-width: 1000px; margin: 0 auto;">
+        <h2 style="color: purple; text-align: center; margin-top: 0;">Thanks for Traveling with us!!</h2>
+        
+        {% if ticket %}
+        <input type="hidden" name="depcity" value="{{ ticket.depcity }}">
+        <input type="hidden" name="descity" value="{{ ticket.descity }}">
+        <input type="hidden" name="firstname" value="{{ ticket.firstname }}">
+        <input type="hidden" name="date" value="{{ ticket.date }}">
+        <input type="hidden" name="lastname" value="{{ ticket.lastname }}">
+        <input type="hidden" name="phone" value="{{ ticket.phone }}">
+
+        <div style="display: flex; flex-wrap: nowrap; gap: 10px; align-items: center; justify-content: center;">
+            
+            <label style="color: green; font-weight: bold; white-space: nowrap;">Fill Passenger Name:</label>
+
+            <input type="text" name="new_firstname" placeholder="First Name" 
+                pattern="[A-Za-z\s]+" oninput="formatName(this)"
+                style="text-transform: capitalize; text-align: center; padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 140px;" required>
+
+            <input type="text" name="new_lastname" placeholder="Last Name" 
+                pattern="[A-Za-z\s]+" oninput="formatName(this)"
+                style="text-transform: capitalize; text-align: center; padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 140px;" required>
+
+            <input type="tel" name="new_phone" placeholder="0911223344" 
+                pattern="[0-9]+" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                style="text-align: center; padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 140px;" required>
+
+            <button type="submit" style="background-color: #4CAF50; color: white; padding: 8px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; white-space: nowrap;">
+                Update
+            </button>
+
+	    <h3 style="color: cyan; margin: 0; padding: 3px 0; text-align: left;">
+            <b>{{ level }}:</b> <b style="color: yellow;">Level</b>
+        </h3>
+        <h3 style="color: cyan; margin: 0; padding: 3px 0; text-align: left;">
+        <b>PNR:</b> <b style="color: blue;">{{ ticket.pnr }}</b>
+        </h3>
+        <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+            <b>Booked Time:</b> <b style="color: blue;">{{ ticket.booked_time }}</b>
+        </h3>
+        <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+            <b>First Name:</b> <b style="color: blue;">{{ ticket.firstname }}</b>
+        </h3>
+        <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+            <b>Last Name:</b> <b style="color: blue;">{{ ticket.lastname }}</b>
+        </h3>
+        <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+            <b>Ticket ID:</b> <b style="color: blue;">{{ ticket.ticket_id }}</b>
+        </h3>
+	<h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+            <b>Phone No:</b> <b style="color: blue;">{{ ticket.phone }}</b>
+        </h3>
+        <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+            <b>From:</b> <b style="color: blue;">{{ ticket.depcity }}</b>
+        </h3>
+        <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+            <b>To:</b> <b style="color: blue;">{{ ticket.descity }}</b>
+        </h3>
+        <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+            <b>Side No:</b> <b style="color: blue;">{{ ticket.side_no }}</b>
+        </h3>
+        <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+            <b>Travel Date:</b> <b style="color: blue;">{{ ticket.date }}</b>
+        </h3>
+        <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+            <b>Seat No:</b> <b style="color: blue;">{{ ticket.no_seat }}</b>
+        </h3>
+        <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+            <b>Price:</b> <b style="color: blue;">{{ ticket.price }}</b>
+        </h3>
+        <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+            <b>Plate No:</b> <b style="color: blue;">{{ ticket.plate_no }}</b>
+        </h3>
+         <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+            <b>Email:</b> <b style="color: blue;">{{ ticket.email }}</b>
+        </h3>
+        <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+            <img src="{{ qr_code_path }}" alt="QR Code" style="width: 250px; height: auto; border: 2px solid #4CAF50; border-radius: 4px; margin-left: 370px; margin-top: -350px;">
+        </h3>
+	     </div>
+        {% endif %}
+	 </div>
+   </form>
+   -->
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<form action="{% url 'passenger' %}" method="post" style="margin-top: 20px; font-family: Arial, sans-serif;">
+    {% csrf_token %}
+
+    {% if error %}
+    <div style="text-align: center; color: red; margin-bottom: 10px;">
+        <b>{{ error }}</b> <span style="cursor:pointer;">X</span>
+    </div>
+    {% endif %}
+
+     {% if sucess %}
+    <div style="text-align: center; color: green; margin-bottom: 10px;">
+        <b>{{ sucess }}</b> <span style="cursor:pointer;">X</span>
+    </div>
+    {% endif %}
+
+    <div id="ticket-area" style="border: 1px solid #4CAF50; border-radius: 8px; padding: 20px; background-color: white; max-width: 1000px; margin: 0 auto; position: relative;">
+        
+        <h2 style="color: purple; text-align: center; margin-top: 0;">Thanks for Traveling with us!!</h2>
+
+        {% if ticket %}
+        <input type="hidden" name="depcity" value="{{ ticket.depcity }}">
+        <input type="hidden" name="descity" value="{{ ticket.descity }}">
+        <input type="hidden" name="firstname" value="{{ ticket.firstname }}">
+        <input type="hidden" name="date" value="{{ ticket.date }}">
+        <input type="hidden" name="lastname" value="{{ ticket.lastname }}">
+        <input type="hidden" name="phone" value="{{ ticket.phone }}">
+
+        <div class="no-print" style="display: flex; flex-wrap: nowrap; gap: 10px; align-items: center; justify-content: center; border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 20px;">
+            <label style="color: green; font-weight: bold; white-space: nowrap;">Update Passenger:</label>
+            
+            <input type="text" name="new_firstname" placeholder="First Name"
+                pattern="[A-Za-z\s]+" oninput="formatName(this)"
+                style="text-transform: capitalize; text-align: center; padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 130px;" required>
+            
+            <input type="text" name="new_lastname" placeholder="Last Name"
+                pattern="[A-Za-z\s]+" oninput="formatName(this)"
+                style="text-transform: capitalize; text-align: center; padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 130px;" required>
+            
+            <input type="tel" name="new_phone" placeholder="0911223344"
+                pattern="[0-9]+" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                style="text-align: center; padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 130px;" required>
+
+            <button type="submit" style="background-color: #4CAF50; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                Update
+            </button>
+
+            <button type="button" onclick="downloadPDF()" style="background-color: #FF9800; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                <span>⬇️</span> Download PDF
+            </button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="flex: 1;">
+                <h3 style="color: #008b8b; margin: 5px 0;"><b>{{ level }}:</b> <span style="color: #d4af37;">Level</span></h3>
+                <h3 style="color: #008b8b; margin: 5px 0;"><b>PNR:</b> <span style="color: blue;">{{ ticket.pnr }}</span></h3>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <p style="color: green; margin: 3px 0;"><b>Booked Time:</b> <span style="color: blue;">{{ ticket.booked_time }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>First Name:</b> <span style="color: blue;">{{ ticket.firstname }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>Last Name:</b> <span style="color: blue;">{{ ticket.lastname }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>Ticket ID:</b> <span style="color: blue;">{{ ticket.ticket_id }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>From:</b> <span style="color: blue;">{{ ticket.depcity }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>To:</b> <span style="color: blue;">{{ ticket.descity }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>Travel Date:</b> <span style="color: blue;">{{ ticket.date }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>Seat No:</b> <span style="color: blue;">{{ ticket.no_seat }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>Price:</b> <span style="color: blue;">{{ ticket.price }} ETB</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>Phone No:</b> <span style="color: blue;">{{ ticket.phone }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>Plate No:</b> <span style="color: blue;">{{ ticket.plate_no }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>Side No:</b> <span style="color: blue;">{{ ticket.side_no }}</span></p>
+                </div>
+                <p style="color: green; margin: 10px 0;"><b>Email:</b> <span style="color: blue;">{{ ticket.email }}</span></p>
+            </div>
+
+            <div style="text-align: center; margin-left: 20px;">
+                <img src="{{ qr_code_path }}" alt="QR Code" style="width: 180px; height: auto; border: 2px solid #4CAF50; border-radius: 8px; padding: 5px;">
+                <p style="color: green; font-weight: bold; margin-top: 5px;">Scan to Verify</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</form>
+
+<script>
+    // 1. Function to format Names
+    function formatName(input) {
+        let value = input.value.replace(/[^A-Za-z\s]/g, '');
+        if (value.length > 0) {
+            value = value.charAt(0).toUpperCase() + value.slice(1);
+        }
+        input.value = value;
+    }
+
+    // 2. Function to Download PDF
+    function downloadPDF() {
+        const element = document.getElementById('ticket-area');
+        
+        // Hide the update inputs and buttons from the PDF
+        const actionRow = document.querySelector('.no-print');
+        actionRow.style.display = 'none';
+
+        const opt = {
+            margin:       0.5,
+            filename:     'Bus_Ticket_{{ ticket.pnr }}.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+        };
+
+        // Generate PDF and then restore the display of buttons
+        html2pdf().set(opt).from(element).save().then(() => {
+            actionRow.style.display = 'flex';
+        });
+    }
+</script>
+
+
+
+
+
+   <!--
+   <form action="{% url 'passenger' %}" method="post" style="margin-top: 20px;">
+    {% csrf_token %}
+
+    {% if error %}
+    <div style="text-align: center; color: red; margin-bottom: 10px;">
+        <b>{{ error }}</b> <span style="cursor:pointer;">X</span>
+    </div>
+    {% endif %}
+
+    <div style="border: 1px solid #4CAF50; border-radius: 8px; padding: 20px; background-color: white; max-width: 1000px; margin: 0 auto;">
+        <h2 style="color: purple; text-align: center; margin-top: 0;">Thanks for Traveling with us!!</h2>
+
+        {% if ticket %}
+        <input type="hidden" name="depcity" value="{{ ticket.depcity }}">
+        <input type="hidden" name="descity" value="{{ ticket.descity }}">
+        <input type="hidden" name="firstname" value="{{ ticket.firstname }}">
+        <input type="hidden" name="date" value="{{ ticket.date }}">
+        <input type="hidden" name="lastname" value="{{ ticket.lastname }}">
+        <input type="hidden" name="phone" value="{{ ticket.phone }}">
+        <div style="display: flex; flex-wrap: nowrap; gap: 10px; align-items: center; justify-content: center; border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 20px;">
+            <label style="color: green; font-weight: bold; white-space: nowrap;">Update Passenger:</label>
+
+            <input type="text" name="new_firstname" placeholder="First Name"
+                pattern="[A-Za-z\s]+" oninput="formatName(this)"
+                style="text-transform: capitalize; text-align: center; padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 150px;" required>
+	         <input type="text" name="new_lastname" placeholder="Last Name"
+                pattern="[A-Za-z\s]+" oninput="formatName(this)"
+                style="text-transform: capitalize; text-align: center; padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 150px;" required>
+            <input type="tel" name="new_phone" placeholder="0911223344"
+                pattern="[0-9]+" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                style="text-align: center; padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 150px;" required>
+
+            <button type="submit" style="background-color: #4CAF50; color: white; padding: 8px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                Update
+            </button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+
+            <div style="flex: 1;">
+                <h3 style="color: cyan; margin: 5px 0;"><b>{{ level }}:</b> <span style="color: #d4af37;">Level</span></h3>
+                <h3 style="color: cyan; margin: 5px 0;"><b>PNR:</b> <span style="color: blue;">{{ ticket.pnr }}</span></h3>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <p style="color: green; margin: 3px 0;"><b>Booked Time:</b> <span style="color: blue;">{{ ticket.booked_time }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>First Name:</b> <span style="color: blue;">{{ ticket.firstname }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>Last Name:</b> <span style="color: blue;">{{ ticket.lastname }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>Ticket ID:</b> <span style="color: blue;">{{ ticket.ticket_id }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>From:</b> <span style="color: blue;">{{ ticket.depcity }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>To:</b> <span style="color: blue;">{{ ticket.descity }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>Travel Date:</b> <span style="color: blue;">{{ ticket.date }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>Seat No:</b> <span style="color: blue;">{{ ticket.no_seat }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>Price:</b> <span style="color: blue;">{{ ticket.price }} ETB</span></p>
+		    <p style="color: green; margin: 3px 0;"><b>Phone No:</b> <span style="color: blue;">{{ ticket.phone }}</span></p>
+                    <p style="color: green; margin: 3px 0;"><b>Plate No:</b> <span style="color: blue;">{{ ticket.plate_no }}</span></p>
+		                        <p style="color: green; margin: 3px 0;"><b>Side No:</b> <span style="color: blue;">{{ ticket.side_no }}</span></p>
+                </div>
+                <p style="color: green; margin: 10px 0;"><b>Email:</b> <span style="color: blue;">{{ ticket.email }}</span></p>
+            </div>
+
+            <div style="text-align: center; margin-left: 20px;">
+                <img src="{{ qr_code_path }}" alt="QR Code" style="width: 200px; height: auto; border: 2px solid #4CAF50; border-radius: 8px; padding: 5px;">
+                <p style="color: green; font-weight: bold; margin-top: 5px;">Scan for Verification</p>
+            </div>
+
+	    </div>
+
+        {% endif %}
+    </div>
+</form>
+<script>
+  function formatName(input) {
+    let value = input.value.replace(/[^A-Za-z\s]/g, '');
+    if (value.length > 0) {
+      value = value.charAt(0).toUpperCase() + value.slice(1);
+    }
+    input.value = value;
+  }
+</script>
+-->
+
+
+	<script>
+function downloadTicket() {
+    // Get the content to be downloaded
+    const ticketContent = document.getElementById("ticketContent").outerHTML;
+    // Define styles for download
+    const styles = `
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            #ticketContent {
+                border: 1px solid #4CAF50;
+                border-radius: 8px;
+                padding: 10px;
+                background-color: white;
+            }
+            h1 {
+                color: purple;
+                text-align: center;
+            }
+            h3 {
+                color: green;
+                margin: 0;
+                padding: 3px 0;
+                text-align: left;
+            }
+            b {
+                color: blue;
+            }
+	    </style>
+    `;
+    const fullContent = `
+        <html>
+            <head>
+                <title>Ticket</title>
+                ${styles}
+            </head>
+            <body>
+                ${ticketContent}
+            </body>
+        </html>
+    `;
+    const blob = new Blob([fullContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'ticket.html'; // Suggested filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+</script>
+
+<!--
+<label for="travel_date" style="color: green;">Update Travel Date:</label>
+<input type="date" id="travel_date" name="new_date" required style="margin-left: 10px;">
+<button type="submit" style="background-color: #4CAF50; color: white; padding: 5px 10px; border: none; cursor: pointer; margin-top: -200px;">
+                Update
+            </button>
+        </form>
+-->
+    </div>
+</div>
+
+
+<!--
+<script>
+function downloadTicket() {
+    // Get the content to be downloaded
+    const ticketContent = document.getElementById("ticketContent").outerHTML;
+    // Define styles for download
+    const styles = `
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            #ticketContent {
+                border: 1px solid #4CAF50;
+                border-radius: 8px;
+                padding: 10px;
+                background-color: white;
+            }
+            h1 {
+                color: purple;
+                text-align: center;
+            }
+            h3 {
+                color: green;
+                margin: 0;
+                padding: 3px 0;
+                text-align: left;
+            }
+            b {
+                color: blue;
+            }
+        </style>
+    `;
+    const fullContent = `
+        <html>
+            <head>
+                <title>Ticket</title>
+                ${styles}
+            </head>
+            <body>
+                ${ticketContent}
+            </body>
+        </html>
+    `;
+    const blob = new Blob([fullContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'ticket.html'; // Suggested filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+</script>
+-->
+<!--
+<div class="copyright">
+                <div class="container">
+                        <div class="row">
+                                <div class="col-lg-3 order-lg-1 order-2  ">
+                                        <div class="copyright_content d-flex flex-row align-items-center">
+                                                <div>
+&copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by <a href="#">Ticket Team</a>
+</div>
+                                        </div>
+                                </div>
+
+<div class="col-lg-9 order-lg-2 order-1">
+                                        <div class="footer_nav_container d-flex flex-row align-items-center justify-content-lg-end">
+                                                <div class="footer_nav">
+                                                        <ul class="footer_nav_list">
+                                                         <li class="main_nav_item"><a href="{% url 'about' %}">home</a></li>
+                                                                <li class="main_nav_item"><a href="{% url 'get_ticket' %}">show ticket</a></li>
+                                                                <li class="main_nav_item"><a href="{% url 'book' %}">book</a></li>
+                                                                <li class="main_nav_item"><a href="{% url 'logout' %}">logout</a></li>
+
+
+                                                        </ul>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+-->
+<script src="../static/js/jquery-3.2.1.min.js"></script>
+<script src="../static/styles/bootstrap4/popper.js"></script>
+<script src="../static/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="../static/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="../static/https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
+<script src="../static/js/contact_custom.js"></script>
+</body>
+</html>
+
+<li class="main_nav_item"><a href="{% url 'businsert' %}">BusInsert</a></li>

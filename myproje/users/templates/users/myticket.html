@@ -183,7 +183,7 @@
 </div>
 -->
 
-
+<!--
 <div class="center" id="ticketContent" style="padding: 20px; text-align: left; max-width: 800px; margin: 0 auto;">
     <div style="border: 1px solid #4CAF50; border-radius: 8px; padding: 10px; background-color: white;">
         <h1 style="color: purple; text-align: center;"><b>Thanks for Traveling with us!!</b></h1>
@@ -240,10 +240,553 @@
         {% endfor %}
     </div>
 </div>
+-->
+
+<!--
+<div style="text-align: center; margin-bottom: 20px;" class="no-print">
+    <button onclick="window.print();" style="background: #4CAF50; color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
+        ⎙ Print Ticket
+    </button>
+</div>
+
+<div id="ticket-container">
+    {% for ticket in tickets %}
+    <div class="ticket-card" style="border: 2px solid #333; padding: 20px; max-width: 700px; margin: 0 auto 20px auto; background: white; position: relative; font-family: Arial, sans-serif;">
+
+        <div style="text-align: center; border-bottom: 2px solid #4CAF50; margin-bottom: 15px;">
+            <h2 style="margin: 5px; color: #4CAF50;">BOARDING PASS</h2>
+            <p style="margin: 5px;"><strong>PNR: {{ ticket.pnr }}</strong></p>
+        </div>
+
+        <div style="display: flex; justify-content: space-between;">
+            <div style="flex: 1;">
+                <p><strong>Passenger:</strong> {{ ticket.firstname }} {{ ticket.lastname }}</p>
+                <p><strong>Phone:</strong> {{ ticket.phone }}</p>
+                <p><strong>Route:</strong> {{ ticket.depcity }} ➔ {{ ticket.descity }}</p>
+                <p><strong>Date:</strong> {{ ticket.date }}</p>
+                <p><strong>Seat No:</strong> <span style="font-size: 20px; color: blue;">{{ ticket.no_seat }}</span></p>
+                <p><strong>Bus:</strong> {{ ticket.plate_no }} ({{ ticket.side_no }})</p>
+            </div>
+
+              <h3 style="color: green; margin: 0; padding: 3px 0; text-align: left;">
+            <img src="{{ ticket.qr_code }}" alt="QR Code" style="width: 150px; height: auto; border: 2px solid #4CAF50; border-radius: 4px;">
+        </h3>
+                <p style="font-size: 10px; margin-top: 5px;">ID: {{ ticket.ticket_id }}</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid #eee; text-align: center;">
+            <p><strong>Total Price: {{ ticket.price }} ETB</strong></p>
+            <p style="font-style: italic; font-size: 12px;">Please arrive at the station 30 minutes before departure.</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+/* International Printing Standard */
+@media print {
+    body { background: white !important; }
+    .no-print { display: none !important; } /* Hide buttons when printing */
+    .ticket-card {
+        border: 1px solid #000 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        page-break-inside: avoid;
+    }
+    #ticket-container { width: 100% !important; }
+}
+</style>
+-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<div style="text-align: center; margin-bottom: 30px;" class="no-print">
+    <button onclick="window.print();" style="background: #1a237e; color: white; padding: 14px 28px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold;">
+        ⎙ PRINT TICKET
+    </button>
+
+    <button onclick="downloadTicket();" style="background: #c62828; color: white; padding: 14px 28px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-left: 15px;">
+        ⬇ DOWNLOAD PDF
+    </button>
+</div>
+
+<div id="ticket-container">
+    {% for ticket in tickets %}
+    <div class="ticket-card" style="border: 4px solid #1a237e; border-radius: 15px; padding: 0; max-width: 850px; margin: 0 auto 30px auto; background: white; font-family: Arial, sans-serif; overflow: hidden; page-break-after: always;">
+
+        <div style="background: #1a237e; color: white; padding: 15px 30px; display: block; overflow: hidden;">
+            <div style="float: left;"><h2 style="margin: 0; font-size: 24px;"><b>Cross Country Bus</b></h2></div>
+            <div style="float: right; text-align: right;">
+                <span style="font-size: 12px; opacity: 0.8; display: block;">REFERENCE PNR</span>
+                <b style="font-size: 22px; color: #ffeb3b;">{{ ticket.pnr }}</b>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+
+        <div style="padding: 25px; overflow: hidden;">
+            <div style="width: 60%; float: left; border-right: 2px dashed #ddd; padding-right: 20px;">
+                <div style="margin-bottom: 20px;">
+                    <span style="color: #757575; font-size: 12px; font-weight: bold; display: block;">PASSENGER NAME</span>
+                    <b style="font-size: 22px; color: #1a237e; text-transform: uppercase;">{{ ticket.firstname }} {{ ticket.lastname }}</b>
+                </div>
+
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <td style="padding-bottom: 15px;">
+                            <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">FROM (መ ነሻ)</span>
+                            <b style="font-size: 16px;">{{ ticket.depcity }}</b>
+                        </td>
+                        <td style="padding-bottom: 15px;">
+                            <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">TO (መድረሻ) </span>
+                            <b style="font-size: 16px;">{{ ticket.descity }}</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">TRAVEL DATE</span>
+                            <b style="font-size: 16px; color: #c62828;">{{ ticket.date }}</b>
+                        </td>
+                        <td>
+                            <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">BUS INFO</span>
+                            <b style="font-size: 16px;">{{ ticket.plate_no }} | {{ ticket.side_no }}</b>
+                        </td>
+                    </tr>
+                </table>
+
+                <div style="margin-top: 25px; background: #f5f5f5; padding: 15px; border-radius: 10px; border: 1px solid #ddd;">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 50%;">
+                                <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">SEAT NUMBER</span>
+                                <b style="font-size: 35px; color: #1a237e; display: block;">{{ ticket.no_seat }}</b>
+                            </td>
+                            <td style="width: 50%;">
+                                <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">TOTAL FARE</span>
+                                <b style="font-size: 24px; color: #2e7d32; display: block;">{{ ticket.price }} ETB</b>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div style="width: 30%; float: right; text-align: center; padding-top: 20px;">
+                <img src="{{ ticket.qr_code }}" style="width: 160px; height: 160px; border: 1px solid #ddd; margin-bottom: 10px;">
+                <b style="color: #757575; font-size: 11px; display: block;">TICKET ID: {{ ticket.ticket_id }}</b>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+
+        <div style="background: #f9f9f9; padding: 10px 30px; border-top: 1px solid #eee; text-align: center;">
+            <p style="margin: 0; font-size: 11px; color: #999;">* Present this boarding pass at the terminal 30 minutes before departure.</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+function downloadTicket() {
+    const element = document.getElementById('ticket-container');
+    const opt = {
+        margin:       [0.2, 0.2],
+        filename:     'Bus_Ticket_{{ tickets.0.pnr }}.pdf',
+        image:        { type: 'jpeg', quality: 1 },
+        html2canvas:  { 
+            scale: 3, 
+            useCORS: true, 
+            letterRendering: true,
+            logging: true 
+        },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).save();
+}
+</script>
+
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<div style="text-align: center; margin-bottom: 30px;" class="no-print">
+    <button onclick="window.print();" style="background: #1a237e; color: white; padding: 14px 28px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+        ⎙ PRINT TICKET
+    </button>
+
+    <button onclick="downloadTicket();" style="background: #c62828; color: white; padding: 14px 28px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-left: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+        ⬇ DOWNLOAD PDF
+    </button>
+</div>
+
+<div id="ticket-container">
+    {% for ticket in tickets %}
+    <div id="ticket-{{ forloop.counter }}" class="ticket-card" style="border: 4px solid #1a237e; border-radius: 15px; padding: 0; max-width: 850px; margin: 0 auto 30px auto; background: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+
+        <div style="background: #1a237e; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="margin: 0; font-size: 24px; letter-spacing: 2px;"><b>OFFICIAL BOARDING PASS</b></h2>
+            <div style="text-align: right;">
+                <span style="font-size: 12px; opacity: 0.8; display: block;">REFERENCE PNR</span>
+                <b style="font-size: 22px; color: #ffeb3b;">{{ ticket.pnr }}</b>
+            </div>
+        </div>
+
+        <div style="display: flex; padding: 25px;">
+            <div style="flex: 2; border-right: 2px dashed #ddd; padding-right: 20px;">
+                <div style="margin-bottom: 20px;">
+                    <span style="color: #757575; font-size: 12px; font-weight: bold; display: block;">PASSENGER NAME</span>
+                    <b style="font-size: 22px; color: #1a237e; text-transform: uppercase;">{{ ticket.firstname }} {{ ticket.lastname }}</b>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">FROM</span>
+                        <b style="font-size: 18px;">{{ ticket.depcity }}</b>
+                    </div>
+                    <div>
+                        <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">TO</span>
+                        <b style="font-size: 18px;">{{ ticket.descity }}</b>
+                    </div>
+                    <div>
+                        <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">TRAVEL DATE</span>
+                        <b style="font-size: 18px; color: #c62828;">{{ ticket.date }}</b>
+                    </div>
+                    <div>
+                        <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">BUS PLATE / SIDE</span>
+                        <b style="font-size: 18px;">{{ ticket.plate_no }} | {{ ticket.side_no }}</b>
+                    </div>
+                </div>
+                <div style="margin-top: 25px; display: flex; align-items: center; background: #f5f5f5; padding: 15px; border-radius: 10px;">
+                    <div style="margin-right: 30px;">
+                        <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">SEAT NUMBER</span>
+                        <b style="font-size: 35px; color: #1a237e;">{{ ticket.no_seat }}</b>
+                    </div>
+                    <div>
+                        <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">TOTAL FARE</span>
+                        <b style="font-size: 24px; color: #2e7d32;">{{ ticket.price }} ETB</b>
+                    </div>
+                </div>
+            </div>
+
+            <div style="flex: 1; text-align: center; padding-left: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <img src="{{ ticket.qr_code }}" alt="QR Code" style="width: 180px; height: 180px; border: 5px solid #f5f5f5; border-radius: 10px; margin-bottom: 10px;">
+                <b style="color: #999;">VERIFICATION QR</b>
+                <b style="color: #757575; font-size: 11px;">TICKET ID: {{ ticket.ticket_id }}</b>
+            </div>
+        </div>
+
+        <div style="background: #f9f9f9; padding: 10px 30px; border-top: 1px solid #eee; text-align: center;">
+            <p style="margin: 0; font-size: 11px; color: #999; font-style: italic;">
+                * This is a computer-generated boarding pass. Please present this at the terminal 30 minutes before departure.
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+function downloadTicket() {
+    const element = document.getElementById('ticket-container');
+    const opt = {
+        margin:       0.2,
+        filename:     'Bus-Ticket-{{ tickets.0.pnr }}.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    // This converts the div directly into a PDF download
+    html2pdf().set(opt).from(element).save();
+}
+</script>
+
+<style>
+@media print {
+    .no-print { display: none !important; }
+    body { background: white !important; padding: 0 !important; }
+    #ticket-container { width: 100% !important; margin: 0 !important; }
+    .ticket-card {
+        box-shadow: none !important;
+        border: 2px solid #1a237e !important;
+        page-break-inside: avoid;
+    }
+}
+</style>
+-->
+
+
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<div style="text-align: center; margin-bottom: 30px;" class="no-print">
+    <button onclick="window.print();" style="background: #1a237e; color: white; padding: 14px 28px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+        ⎙ PRINT TICKET
+    </button>
+
+    <button onclick="downloadTicket();" style="background: #c62828; color: white; padding: 14px 28px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-left: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+        ⬇ DOWNLOAD TICKET
+    </button>
+</div>
+
+<div id="ticket-container">
+    {% for ticket in tickets %}
+    <div id="ticket-{{ forloop.counter }}" class="ticket-card" style="border: 4px solid #1a237e; border-radius: 15px; padding: 0; max-width: 850px; margin: 0 auto 30px auto; background: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+
+        <div style="background: #1a237e; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="margin: 0; font-size: 24px; letter-spacing: 2px;"><b>OFFICIAL BOARDING PASS</b></h2>
+            <div style="text-align: right;">
+                <span style="font-size: 12px; opacity: 0.8; display: block;">REFERENCE PNR</span>
+                <b style="font-size: 22px; color: #ffeb3b;">{{ ticket.pnr }}</b>
+            </div>
+        </div>
+
+        <div style="display: flex; padding: 25px;">
+            <div style="flex: 2; border-right: 2px dashed #ddd; padding-right: 20px;">
+                <div style="margin-bottom: 20px;">
+                    <span style="color: #757575; font-size: 12px; font-weight: bold; display: block;">PASSENGER NAME</span>
+                    <b style="font-size: 22px; color: #1a237e; text-transform: uppercase;">{{ ticket.firstname }} {{ ticket.lastname }}</b>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">FROM</span>
+                        <b style="font-size: 18px;">{{ ticket.depcity }}</b>
+                    </div>
+                    <div>
+                        <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">TO</span>
+                        <b style="font-size: 18px;">{{ ticket.descity }}</b>
+                    </div>
+                    <div>
+                        <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">TRAVEL DATE</span>
+                        <b style="font-size: 18px; color: #c62828;">{{ ticket.date }}</b>
+                    </div>
+                    <div>
+                        <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">BUS PLATE / SIDE</span>
+                        <b style="font-size: 18px;">{{ ticket.plate_no }} | {{ ticket.side_no }}</b>
+                    </div>
+                </div>
+
+                <div style="margin-top: 25px; display: flex; align-items: center; background: #f5f5f5; padding: 15px; border-radius: 10px;">
+                    <div style="margin-right: 30px;">
+                        <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">SEAT NUMBER</span>
+                        <b style="font-size: 35px; color: #1a237e;">{{ ticket.no_seat }}</b>
+                    </div>
+                    <div>
+                        <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">TOTAL FARE</span>
+                        <b style="font-size: 24px; color: #2e7d32;">{{ ticket.price }} ETB</b>
+                    </div>
+                </div>
+            </div>
+
+            <div style="flex: 1; text-align: center; padding-left: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+		
+            <img src="{{ ticket.qr_code }}" alt="QR Code" style="width: 180px; height: 180px; border: 5px solid #f5f5f5; border-radius: 10px; margin-bottom: 10px;">
+	 
+                        <b style="color: #999;">VERIFICATION QR</b>
+                    
+
+                <b style="color: #757575; font-size: 11px;">TICKET ID: {{ ticket.ticket_id }}</b>
+            </div>
+        </div>
+
+        <div style="background: #f9f9f9; padding: 10px 30px; border-top: 1px solid #eee; text-align: center;">
+            <p style="margin: 0; font-size: 11px; color: #999; font-style: italic;">
+                * This is a computer-generated boarding pass. Please present this at the terminal 30 minutes before departure.
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+function downloadTicket() {
+    const ticketContainer = document.querySelector("#ticket-container");
+    html2canvas(ticketContainer, {
+        scale: 2, // Improves image quality
+        useCORS: true, // Necessary if QR code images are on a different domain/media setting
+        backgroundColor: null
+    }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'Bus-Boarding-Pass-{{ tickets.0.pnr }}.png';
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+    });
+}
+</script>
+
+<style>
+@media print {
+    .no-print { display: none !important; }
+    body { background: white !important; padding: 0 !important; }
+    #ticket-container { width: 100% !important; margin: 0 !important; }
+    .ticket-card {
+        box-shadow: none !important;
+        border: 2px solid #1a237e !important;
+        page-break-inside: avoid;
+    }
+}
+</style>
+-->
+
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<div style="text-align: center; margin-bottom: 30px;" class="no-print">
+    <button onclick="window.print();" style="background: #1a237e; color: white; padding: 14px 28px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+        ⎙ PRINT TICKET
+    </button>
+    <button onclick="generatePDF();" style="background: #2e7d32; color: white; padding: 14px 28px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-left: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+        📄 DOWNLOAD PDF
+    </button>
+    
+     <button onclick="downloadTicket();" style="background: #c62828; color: white; padding: 14px 28px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-left: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+        ⬇ DOWNLOAD TICKET
+    </button>
+
+
+</div>
+
+<div id="ticket-pdf-area">
+    {% for ticket in tickets %}
+    <div class="ticket-card" style="border: 4px solid #1a237e; border-radius: 15px; padding: 0; max-width: 850px; margin: 0 auto 30px auto; background: white; font-family: 'Arial', sans-serif; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+        
+        <div style="background: #1a237e; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="margin: 0; font-size: 24px;"><b>BOARDING PASS</b></h2>
+            <div style="text-align: right;">
+                <b style="font-size: 22px; color: #ffeb3b;">PNR: {{ ticket.pnr }}</b>
+            </div>
+        </div>
+
+        <div style="display: flex; padding: 25px;">
+            <div style="flex: 2; border-right: 2px dashed #ddd; padding-right: 20px;">
+                <p><strong>PASSENGER Name:</strong> <b style="font-size: 20px; color: #1a237e;">{{ ticket.firstname }} {{ ticket.lastname }}</b></p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">FROM</span>
+                        <b style="font-size: 18px;">{{ ticket.depcity }}</b>
+                    </div>
+                    <div>
+                        <span style="color: #757575; font-size: 11px; font-weight: bold; display: block;">TO</span>
+                        <b style="font-size: 18px;">{{ ticket.descity }}</b>
+                    </div>
+
+                <p><strong>DATE:</strong> <b style="color: #c62828;">{{ ticket.date }}</b></p>
+                
+                <div style="margin-top: 20px; background: #f5f5f5; padding: 15px; border-radius: 10px; display: flex; justify-content: space-around;">
+                    <div style="text-align: center;">
+                        <span style="display: block; font-size: 11px;">SEAT</span>
+                        <b style="font-size: 30px; color: #1a237e;">{{ ticket.no_seat }}</b>
+                    </div>
+                    <div style="text-align: center;">
+                        <span style="display: block; font-size: 11px;">PRICE</span>
+                        <b style="font-size: 30px; color: #2e7d32;">{{ ticket.price }} ETB</b>
+                    </div>
+                </div>
+            </div>
+
+            <div style="flex: 1; text-align: center; padding-left: 20px;">
+		  
+                {% if ticket.qr_code %}
+                    <img src="{{ ticket.qr_code.url }}" style="width: 160px; height: 160px; border: 1px solid #ddd;">
+                {% endif %}
+		  
+	<img src="{{ ticket.qr_code }}" alt="QR Code" style="width: 180px; height: 180px; border: 5px solid #f5f5f5; border-radius: 10px; margin-bottom: 10px;">
+
+
+                <p style="font-size: 11px; margin-top: 10px;">ID: {{ ticket.ticket_id }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+function generatePDF() {
+    const element = document.getElementById('ticket-pdf-area');
+    const opt = {
+        margin:       0.5,
+        filename:     'Ticket_{{ tickets.0.pnr }}.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    // New Promise-based usage:
+    html2pdf().set(opt).from(element).save();
+}
+</script>
+-->
 
 
 
 
+
+<!--
+<div style="text-align: center; margin-bottom: 20px;" class="no-print">
+    <button onclick="window.print();" style="background: #4CAF50; color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold; margin-right: 10px;">
+        ⎙ Print / Download PDF
+    </button>
+</div>
+
+<div id="ticket-container">
+    {% for ticket in tickets %}
+    <div class="ticket-card" style="border: 3px solid #000; padding: 30px; max-width: 800px; margin: 0 auto 20px auto; background: white; font-family: 'Helvetica', sans-serif; box-shadow: 5px 5px 15px rgba(0,0,0,0.1);">
+
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid #4CAF50; padding-bottom: 10px; margin-bottom: 20px;">
+            <div style="text-align: left;">
+                <h1 style="margin: 0; color: #4CAF50; font-size: 28px;">BOARDING PASS</h1>
+                <p style="margin: 0; font-size: 14px; color: #666;">International Bus Ticket System</p>
+            </div>
+            <div style="text-align: right;">
+                <p style="margin: 0; font-size: 18px;"><strong>PNR: <span style="color: #d32f2f;">{{ ticket.pnr }}</span></strong></p>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between;">
+            <div style="flex: 2; line-height: 1.8;">
+                <p><strong>PASSENGER NAME:</strong> <b style="text-transform: uppercase; font-size: 18px;">{{ ticket.firstname }} {{ ticket.lastname }}</b></p>
+                <p><strong>CONTACT PHONE:</strong> <b>{{ ticket.phone }}</b></p>
+                <p><strong>DEPARTURE FROM:</strong> <b>{{ ticket.depcity }}</b></p>
+                <p><strong>DESTINATION TO:</strong> <b>{{ ticket.descity }}</b></p>
+                <p><strong>TRAVEL DATE:</strong> <b style="color: #2e7d32;">{{ ticket.date }}</b></p>
+                <p><strong>BUS PLATE NO:</strong> <b>{{ ticket.plate_no }}</b> | <strong>SIDE NO:</strong> <b>{{ ticket.side_no }}</b></p>
+
+                <div style="margin-top: 20px; background: #e8f5e9; padding: 10px; border-radius: 5px; display: inline-block;">
+                    <span style="font-size: 22px;"><strong>SEAT NO:</strong> <b style="color: blue;">{{ ticket.no_seat }}</b></span>
+                </div>
+            </div>
+
+            <div style="flex: 1; text-align: center; border-left: 2px dashed #ccc; padding-left: 20px;">
+                {% if ticket.qr_code %}
+                    <img src="{{ ticket.qr_code.url }}" style="width: 180px; height: 180px; border: 1px solid #000; padding: 5px;">
+                {% else %}
+                    <div style="width: 180px; height: 180px; background: #eee; border: 1px dashed #999; display: flex; align-items: center; justify-content: center;">
+                        <span style="color: #999;">QR CODE IMAGE</span>
+                    </div>
+                {% endif %}
+                <p style="font-size: 12px; margin-top: 10px; font-weight: bold;">TICKET ID: {{ ticket.ticket_id }}</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; padding-top: 10px; border-top: 2px solid #4CAF50; display: flex; justify-content: space-between; align-items: center;">
+            <p style="font-size: 20px;"><strong>TOTAL PRICE:</strong> <b style="color: #d32f2f;">{{ ticket.price }} ETB</b></p>
+            <p style="font-size: 12px; color: #666; width: 50%; text-align: right;">Valid for one-way travel only. Non-transferable. Please bring this ticket and ID to the terminal.</p>
+        </div>
+    </div>
+    <div class="page-break"></div>
+    {% endfor %}
+</div>
+
+<style>
+/* CSS for Print/Download Method */
+@media print {
+    body { background-color: white !important; padding: 0 !important; margin: 0 !important; }
+    .no-print { display: none !important; } /* Only prints the ticket */
+    .ticket-card {
+        margin: 0 auto !important;
+        box-shadow: none !important;
+        border: 2px solid #000 !important;
+        page-break-inside: avoid;
+    }
+    .page-break { page-break-after: always; }
+}
+</style>
+-->
 
 
 

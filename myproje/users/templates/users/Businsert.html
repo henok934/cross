@@ -104,27 +104,6 @@
         </div>
     </div>
 </nav>
-<!--
-<form action="{% url 'specific' %}" method="post" id="search_form_1" class="search_panel_content" style="margin: 10px 0; width: 100%; max-width: 600px; border: 0; border-radius: 8px; margin-top: 200px; margin-left: 450px; display: flex; align-items: center; gap: 10px;">
-    {% csrf_token %}
-
-    <div style="display: flex; align-items: center;">
-        <label for="from" style="color: blue; font-weight: bold; margin-right: 5px;"><b>From</b></label>
-        <input type="date" name="from" id="to" class="form-control" style="width: 100px; height: 35px; color: brown;  border: 2px solid #d3d3d3; border-radius: 8px;" required>
-
-        </div>
-
-    <div style="display: flex; align-items: center;">
-        <label for="to" style="color: blue; font-weight: bold; margin-right: 5px;"><b>To</b></label>
-        <input type="date" name="to" id="to" class="form-control" style="width: 100px; height: 35px; color: brown; border: 2px background-color: brown; solid #d3d3d3; border-radius: 8px;" required>
-    </div>
-
-    <button type="submit" style="background-color: yellow; color: black; width: 100px; height: 35px; border: none; text-align: center; border: 2px solid #d3d3d3; border-radius: 8px;">
-        Search
-    </button>
-</form>
--->
-
 <style>
     /* Responsive adjustments */
     @media (max-width: 768px) {
@@ -249,9 +228,10 @@ function handleInput(input) {
         </div>
     </div>
 
+
 <div style="display: flex; align-items: center; margin-left: 0px;">
     <label for="sideno" class="col-form-label" style="margin-right: 10px;">Side No:</label>
-    <input type="text" id="sideno" name="sideno" maxlength="4" required
+    <input type="text" id="sideno" name="sideno" required
            style="width: 230px; margin-left: 10px;" class="form-control"
            placeholder="Enter side number"
            oninput="this.value = this.value.replace(/[^0-9]/g, ''); validateInput();">
@@ -259,198 +239,55 @@ function handleInput(input) {
 <p id="error-message" style="color: red; display: none;"></p>
 
 <script>
-    const side = "{{ side }}";  // Example: "3/80/81"
-    const validStarts = side.split('/').map(part => part.trim()); // Extract valid starts
-
-    // Set the maxlength based on the presence of '3'
+    const side = "{{ side }}".trim(); // Example values: "3" or "37/38" or "344"
     const sidenoInput = document.getElementById('sideno');
-    if (validStarts.includes('3')) {
-        sidenoInput.maxLength = 3; // Change maxlength to 3 if side is 3
-    } else {
-        sidenoInput.maxLength = 4; // Otherwise, keep maxlength as 4
-    }
+    const errorMessage = document.getElementById('error-message');
 
     function validateInput() {
         const value = sidenoInput.value;
-        const errorMessage = document.getElementById('error-message');
-
-        // Check if side includes '3'
-        const isSideThree = validStarts.includes('3');
-
-        // If side is 3, check if the input is exactly 3 digits
-        if (isSideThree) {
-            if (value.length !== 3) {
-                errorMessage.textContent = `Invalid input. Please enter a 3-digit number.`;
-                errorMessage.style.display = 'block'; // Show error message
-            } else {
-                errorMessage.style.display = 'none'; // Hide error message if valid
-            }
+        const validStarts = side.split('/').map(part => part.trim());
+        
+        // --- 1. SET THE TARGET LENGTH ---
+        let targetLength = 0;
+        if (side === "3") {
+            targetLength = 3; // Rule: Side "3" requires 3 digits
+        } else if (side.includes('/')) {
+            targetLength = 4; // Rule: Multi-prefixes like "37/38" require 4 digits
         } else {
-            // For other sides, check if it starts with valid prefixes
-            if (value.length > 0 && !validStarts.some(start => value.startsWith(start))) {
-                errorMessage.textContent = `Invalid input. Please enter a number starting with ${validStarts.join(', ')}.`;
-                errorMessage.style.display = 'block'; // Show error message
-            } else {
-                errorMessage.style.display = 'none'; // Hide error message if valid
-            }
+            targetLength = side.length; // Rule: Default to length of the string provided
+        }
+
+        sidenoInput.maxLength = targetLength;
+
+        // --- 2. VALIDATION LOGIC ---
+        if (value.length === 0) {
+            errorMessage.style.display = 'none';
+            return;
+        }
+
+        // Check if input starts with a valid prefix (if multi-prefix)
+        const isValidStart = validStarts.some(s => value.startsWith(s));
+
+        if (!isValidStart && side !== "3") {
+             errorMessage.textContent = `Must start with ${validStarts.join(' or ')}.`;
+             errorMessage.style.display = 'block';
+        } else if (value.length !== targetLength) {
+            // ERROR: Not equal to target length
+            errorMessage.textContent = `Input must be exactly ${targetLength} digits.`;
+            errorMessage.style.display = 'block';
+        } else {
+            errorMessage.style.display = 'none'; // Valid!
         }
     }
 
+    // Final check for the "Submit" button
     document.querySelector('form').addEventListener('submit', function(event) {
-        const value = sidenoInput.value;
-        const errorMessage = document.getElementById('error-message');
-
-        // Final validation on form submission
-        const isSideThree = validStarts.includes('3');
-
-        if (isSideThree) {
-            if (value.length !== 3) {
-                event.preventDefault(); // Prevent form submission
-                errorMessage.textContent = `Invalid input. Please enter a 3-digit number.`;
-                errorMessage.style.display = 'block'; // Show error message
-            }
-        } else {
-            if (value.length > 0 && !validStarts.some(start => value.startsWith(start))) {
-                event.preventDefault(); // Prevent form submission
-                errorMessage.textContent = `Invalid input. Please enter a number starting with ${validStarts.join(', ')}.`;
-                errorMessage.style.display = 'block'; // Show error message
-            }
+        validateInput();
+        if (errorMessage.style.display === 'block' || sidenoInput.value === "") {
+            event.preventDefault();
         }
     });
 </script>
-
-
-
-
-
-
-<!--
-<div style="display: flex; align-items: center; margin-left: 0px;">
-    <label for="sideno" class="col-form-label" style="margin-right: 10px;">Side No:</label>
-    <input type="text" id="sideno" name="sideno" maxlength="4" required
-           style="width: 230px; margin-left: 10px;" class="form-control"
-           placeholder="Enter side number" 
-           oninput="this.value = this.value.replace(/[^0-9]/g, ''); validateInput();">
-</div>
-<p id="error-message" style="color: red; display: none;"></p>
-
-<script>
-    const side = "{{ side }}";  // Example: "3/80/81"
-    const validStarts = side.split('/').map(part => part.trim()); // Extract valid starts
-
-    // Set the maxlength based on the presence of '3'
-    const sidenoInput = document.getElementById('sideno');
-    sidenoInput.maxLength = 3; // Set maxlength to 3 regardless
-
-    function validateInput() {
-        const value = sidenoInput.value;
-        const errorMessage = document.getElementById('error-message');
-
-        // Check if the input is exactly three digits
-        if (value.length !== 3) {
-            errorMessage.textContent = `Invalid input. Please enter a 3-digit number.`;
-            errorMessage.style.display = 'block'; // Show error message
-        } else if (value.length > 0 && !validStarts.some(start => value.startsWith(start))) {
-            errorMessage.textContent = `Invalid input. Please enter a number starting with ${validStarts.join(', ')}.`;
-            errorMessage.style.display = 'block'; // Show error message
-        } else {
-            errorMessage.style.display = 'none'; // Hide error message if valid
-        }
-    }
-
-    document.querySelector('form').addEventListener('submit', function(event) {
-        const value = sidenoInput.value;
-        const errorMessage = document.getElementById('error-message');
-
-        // Final validation on form submission
-        if (value.length !== 3) {
-            event.preventDefault(); // Prevent form submission
-            errorMessage.textContent = `Invalid input. Please enter a 3-digit number.`;
-            errorMessage.style.display = 'block'; // Show error message
-        } else if (value.length > 0 && !validStarts.some(start => value.startsWith(start))) {
-            event.preventDefault(); // Prevent form submission
-            errorMessage.textContent = `Invalid input. Please enter a number starting with ${validStarts.join(', ')}.`;
-            errorMessage.style.display = 'block'; // Show error message
-        } else {
-            errorMessage.style.display = 'none'; // Hide error message if valid
-        }
-    });
-</script>
--->
-
-
-
-<!--
-<div style="display: flex; align-items: center; margin-left: 0px;">
-    <label for="sideno" class="col-form-label" style="margin-right: 10px;">Side No:</label>
-    <input type="text" id="sideno" name="sideno" maxlength="4" required
-           style="width: 230px; margin-left: 10px;" class="form-control"
-           placeholder="Enter side number" 
-           oninput="this.value = this.value.replace(/[^0-9]/g, ''); validateInput();">
-</div>
-<p id="error-message" style="color: red; display: none;"></p>
-
-<script>
-    const side = "{{ side }}";  // Example: "3/80/81"
-    const validStarts = side.split('/').map(part => part.trim()); // Extract valid starts
-
-    // Set the maxlength based on the presence of '3'
-    const sidenoInput = document.getElementById('sideno');
-    if (validStarts.includes('3')) {
-        sidenoInput.maxLength = 3; // Set maxlength to 3 if side is 3
-    } else {
-        sidenoInput.maxLength = 4; // Set maxlength to 4 otherwise
-    }
-
-    function validateInput() {
-        const value = sidenoInput.value;
-        const errorMessage = document.getElementById('error-message');
-
-        // Check if side includes 3 and enforce 3-digit length
-        const isSideThree = validStarts.includes('3');
-
-        // If the side includes 3, the input must be exactly 3 digits
-        if (isSideThree && value.length !== 3) {
-            errorMessage.textContent = `Invalid input. If side number is 3, it must be exactly 3 digits.`;
-            errorMessage.style.display = 'block'; // Show error message
-        } else if (value.length > 0 && isSideThree && !/^\d{3}$/.test(value)) {
-            errorMessage.textContent = `Invalid input. If side number is 3, it must be a 3-digit number.`;
-            errorMessage.style.display = 'block'; // Show error message
-        }  
-	  else {
-            errorMessage.style.display = 'none'; // Hide error message if valid
-        }
-    }
-
-    document.querySelector('form').addEventListener('submit', function(event) {
-        const value = sidenoInput.value;
-        const errorMessage = document.getElementById('error-message');
-
-        // Final validation on form submission
-        const isSideThree = validStarts.includes('3');
-
-        if (isSideThree && value.length !== 3) {
-            event.preventDefault(); // Prevent form submission
-            errorMessage.textContent = `Invalid input. If side number is 3, it must be exactly 3 digits.`;
-            errorMessage.style.display = 'block'; // Show error message
-        } else if (isSideThree && !/^\d{3}$/.test(value)) {
-            event.preventDefault(); // Prevent form submission
-            errorMessage.textContent = `Invalid input. If side number is 3, it must be a 3-digit number.`;
-            errorMessage.style.display = 'block'; // Show error message
-
-        } else if (value.length > 0 && !validStarts.some(start => value.startsWith(start))) {
-            event.preventDefault(); // Prevent form submission
-            errorMessage.textContent = `Invalid input. Please enter a number starting with ${validStarts.join(', ')}.`;
-            errorMessage.style.display = 'block'; // Show error message
-        } else {
-            errorMessage.style.display = 'none'; // Hide error message if valid
-        }
-    });
-</script>
--->
-
-
-
 
 <div class="form-group row">
         <label for="side-no-input" class="col-sm-3 col-form-label">Total Seat:</label>
